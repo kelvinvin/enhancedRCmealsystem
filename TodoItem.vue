@@ -19,6 +19,7 @@ export default {
             this.todo.completed = !this.todo.completed;
         }
     }
+    // bla bla
 }
 </script>
 
