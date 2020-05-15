@@ -19,14 +19,15 @@ export default {
 
 <style>
     .container {
-        height: 300px;
         width: 300px;
-        position: absolute;
+        height: 250px;
         border: 5px solid black;
-        margin: 5%;
-        padding: 5%;
-        text-align: center;
-        left: 30%;
+        padding: 50px;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        margin-left: -150px;
+        margin-top: -125px;
     }
 
     input[type="text"] {

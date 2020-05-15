@@ -11,8 +11,14 @@
                 <input type="text" placeholder="Enter your password here...">
                 <input type="submit">
             </form>
-            <br>
-            <router-link to="/ForgotPassword">Forgot Password</router-link>
+
+            <div class="SignUp">
+                <router-link to="/SignUp">Sign Up</router-link>
+            </div>
+            
+            <div class="ForgotPassword">
+                <router-link to="/ForgotPassword">Forgot Password</router-link>
+            </div>
         </div>
 
         <div class="picture">
@@ -45,9 +51,8 @@ export default {
 
     input[type=text], select {
         width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
+        border: 5px solid black;
+        padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: 4px;
@@ -67,6 +72,10 @@ export default {
         margin-left: 5px 5px 5px 30px;
         width: 65%;
         height: 30%px;
+    }
+
+    .SignUp {
+        margin: 20px 0;
     }
 
 </style>
