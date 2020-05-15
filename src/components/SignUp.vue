@@ -21,7 +21,7 @@
             placeholder="Password needs to be at least 6 characters long">
         </form>
 
-        <input type="submit" class="Submit">
+        <button type="submit" class="Submit">Submit</button>
     </div>
 </template>
 
