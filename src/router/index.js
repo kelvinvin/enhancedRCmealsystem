@@ -29,6 +29,11 @@ Vue.use(VueRouter)
     path: '/SignUp',
     name: 'SignUp',
     component: SignUp
+  },
+  {
+    path: '/MealSelection',
+    name: 'MealSelection',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MealSelection.vue')
   }
 ]
 
