@@ -7,9 +7,11 @@
             <h3>Sign in with your organizational account</h3>
 
             <form>
-                <input type="text" placeholder="Enter your NUS email here...">
-                <input type="text" placeholder="Enter your password here...">
-                <input type="submit">
+                <input type="text" v-model="username" placeholder="Enter your NUS email here...">
+                <input type="text" v-model="password" placeholder="Enter your password here...">
+                <button type="submit">Sign In</button>
+                {{ username }}
+                {{ password }}
             </form>
 
             <div class="SignUp">
@@ -29,7 +31,13 @@
 
 <script>
 export default {
-    name: "Login"
+    name: "Login",
+    data() {
+        return {
+            username: "",
+            password: ""
+        }
+    }
 }
 </script>
 
@@ -38,7 +46,7 @@ export default {
         font-family: Arial, Helvetica, sans-serif;
         text-align: right;
         float: right;
-        width: 30%
+        width: 30%;
     }
 
     .words h1 {
