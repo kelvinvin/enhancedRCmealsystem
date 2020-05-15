@@ -11,6 +11,8 @@
                 <input type="text" placeholder="Enter your password here...">
                 <input type="submit">
             </form>
+            <br>
+            <router-link to="/ForgotPassword">Forgot Password</router-link>
         </div>
 
         <div class="picture">
