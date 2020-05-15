@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import ForgotPassword from '../components/ForgotPassword'
 import SignUp from '../components/SignUp'
+import HomePage from '../components/HomePage'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ Vue.use(VueRouter)
     path: '/SignUp',
     name: 'SignUp',
     component: SignUp
+  },
+  {
+    path: '/HomePage',
+    name: 'HomePage',
+    component: HomePage
   }
 ]
 
