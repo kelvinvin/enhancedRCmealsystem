@@ -1,11 +1,11 @@
 <template>
-    <div class="container">
+    <div class="forgotpassword">
         <h1>Forgot Password</h1>
         <br>
         <h3>USERNAME</h3>
         <form>
             <input type="text">
-            <input type="submit">
+            <button type="submit">Submit</button>
         </form>
 
     </div>
@@ -18,16 +18,16 @@ export default {
 </script>
 
 <style>
-    .container {
-        width: 300px;
-        height: 250px;
+    .forgotpassword {
+        width: 500px;
+        height: 400px;
         border: 5px solid black;
         padding: 50px;
         top: 50%;
         left: 50%;
         position: absolute;
-        margin-left: -150px;
-        margin-top: -125px;
+        margin-left: -250px;
+        margin-top: -200px;
     }
 
     input[type="text"] {

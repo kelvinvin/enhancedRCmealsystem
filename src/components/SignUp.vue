@@ -33,14 +33,14 @@ export default {
 
 <style>
     .form {
-        width: 300px;
+        width: 550px;
         height: 450px;
         border: 5px solid black;
         padding: 50px;
         top: 50%;
         left: 50%;
         position: absolute;
-        margin-left: -150px;
+        margin-left: -275px;
         margin-top: -225px;
     }
 

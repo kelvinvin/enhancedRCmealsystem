@@ -9,9 +9,9 @@
             <form>
                 <input type="text" v-model="username" placeholder="Enter your NUS email here...">
                 <input type="text" v-model="password" placeholder="Enter your password here...">
-                <button type="submit">Sign In</button>
-                {{ username }}
-                {{ password }}
+                <button type="submit">
+                    <router-link to="/HomePage">Submit</router-link>
+                </button>
             </form>
 
             <div class="SignUp">
@@ -36,6 +36,11 @@ export default {
         return {
             username: "",
             password: ""
+        }
+    },
+    methods: {
+        Logincheck() {
+            <router-link to="/HomePage"></router-link>
         }
     }
 }
