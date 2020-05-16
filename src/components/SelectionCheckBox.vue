@@ -13,32 +13,55 @@
                     <th><p>Friday</p></th></tr>
             
                 <tr><td><p>Breakfast</p></td>
-                    <td><input type="checkbox" onclick=incrementCost() name="Monday" value="breakfast" /></td>
-                <td><input type="checkbox" onclick=incrementCost() name="Tuesday" value="breakfast" /></td>
-                <td><input type="checkbox" onclick=incrementCost() name="Wednesday" value="breakfast" /></td>
-                <td><input type="checkbox" onclick=incrementCost() name="Thursday" value="breakfast" /></td>
-                <td><input type="checkbox" onclick=incrementCost() name="Friday" value="breakfast" /></td></tr>
+                    <td><input type="checkbox" @change="updateCount" name = "meal" value="mondayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name = "meal" value="tuesdayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name = "meal" value="wednesdayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name = "meal" value="thursdayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name = "meal" value="fridayBreakfast" /></td></tr>
                 
                 <tr><td><p>Dinner</p></td>
-                    <td><input type="checkbox" onclick=incrementCost().call() name="Monday" value="dinner" /></td>
-                    <td><input type="checkbox" onclick=incrementCost().call() name="Tuesday" value="dinner" /></td>
-                    <td><input type="checkbox" onclick=incrementCost() name="Wednesday" value="dinner" /></td>
-                    <td><input type="checkbox" onclick=incrementCost() name="Thursday" value="dinner" /></td>
-                    <td><input type="checkbox" onclick=incrementCost() name="Friday" value="dinner" /></td></tr>
+                    <td><input type="checkbox" @change="updateCount" name = "meal" value="mondayDinner" /></td>
+                    <td><input type="checkbox" @change="updateCount" name = "meal" value="tuesdayDinner" /></td>
+                    <td><input type="checkbox" @change="updateCount" name = "meal" value="wednesdayBreakfast" /></td>
+                    <td><input type="checkbox" @change="updateCount" name = "meal" value="thursdayDinner" /></td>
+                    <td><input type="checkbox" @change="updateCount" name = "meal" value="fridayDinner" /></td></tr>
                 
                 </table>
             
-        <p> Total amount: <span id="cost"></span> </p>
+        <p> Total amount: {{updateCost}} </p>
         <button type="submit" form="form1" value="Submit">Submit</button></form>
     </div>
 </template>
 
+
 <script>
-
-
 export default {
-    name: "SelectionCheckBox"
+    name: "SelectionCheckBox",
+    data() {
+        return {
+            cost : 0,
+            costPerMeal: 200,
+            meals: [
+                {name: 'Monday'},
+                {name: 'Tuesday'},
+                {name: 'Wednesday'},
+                {name: 'Thursday'},
+                {name: 'Friday'}
+            ]
+        }
+    },
+    methods: {
+        updateCount: function() {
+            this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length;
+        }
+    },
+    computed: {
+        updateCost: function() {
+            return this.cost;
+        }
+    }
 }
+
 </script>
 
 <style>
