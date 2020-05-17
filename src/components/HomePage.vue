@@ -7,6 +7,7 @@
                  <v-calendar is-expanded :attributes='attrs' />
             </div>
             <div class="col">
+                <router-link to="/MealSelection">Register Meal Plan</router-link>
             </div>
         </div>   
     </div>
@@ -27,6 +28,17 @@ export default {
                     label: 'Malay Asian Indian Western'
                 },
                 dates: new Date(),
+                },
+                {
+                key: 'today',
+                highlight: false,
+                popover: {
+                    label: 'Malay Asian Indian Western'
+                },
+                customData: {
+                    
+                },
+                dates: new Date(2020, 4, 31),
                 },
             ],
         };

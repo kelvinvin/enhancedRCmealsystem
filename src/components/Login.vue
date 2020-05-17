@@ -7,8 +7,8 @@
             <h3>Sign in with your organizational account</h3>
 
             <form>
-                <input type="text" v-model="username" placeholder="Enter your NUS email here...">
-                <input type="text" v-model="password" placeholder="Enter your password here...">
+                <input type="text" class="username" v-model="username" placeholder="Enter your NUS email here...">
+                <input type="text" class="password" v-model="password" placeholder="Enter your password here...">
                 <button type="submit">
                     <router-link to="/HomePage">Submit</router-link>
                 </button>
@@ -89,6 +89,10 @@ export default {
 
     .SignUp {
         margin: 20px 0;
+    }
+
+    .username {
+        margin-bottom: 15px;
     }
 
 </style>
