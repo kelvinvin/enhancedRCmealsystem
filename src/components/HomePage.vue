@@ -25,20 +25,9 @@ export default {
                 key: 'today',
                 highlight: true,
                 popover: {
-                    label: 'Malay Asian Indian Western'
+                    label: "Today's date"
                 },
                 dates: new Date(),
-                },
-                {
-                key: 'today',
-                highlight: false,
-                popover: {
-                    label: 'Malay Asian Indian Western'
-                },
-                customData: {
-                    
-                },
-                dates: new Date(2020, 4, 31),
                 },
             ],
         };
