@@ -2,11 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
-import ForgotPassword from '../components/ForgotPassword'
-import SignUp from '../components/SignUp'
-import HomePage from '../components/HomePage'
+import ForgotPassword from '../components/ForgotPassword.vue'
+import SignUp from '../components/SignUp.vue'
+import HomePage from '../components/HomePage.vue'
 import MealSelection from '../views/MealSelection.vue'
-import TableMenu from '../components/TableMenu'
+import TableMenu from '../components/TableMenu.vue'
 
 Vue.use(VueRouter)
 
@@ -49,6 +49,7 @@ Vue.use(VueRouter)
 ]
 
 const router = new VueRouter({
+  mode: "history",
   routes
 })
 

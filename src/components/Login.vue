@@ -8,9 +8,10 @@
 
             <form>
                 <input type="text" class="username" v-model="username" placeholder="Enter your NUS email here...">
-                <input type="text" class="password" v-model="password" placeholder="Enter your password here...">
-                <button type="submit">
-                    <router-link to="/HomePage">Submit</router-link>
+                <input type="password" class="password" v-model="password" placeholder="Enter your password here...">
+                <button class="btn btn-primary" @click.prevent="LoginCheck">
+                    <!-- <router-link to="/HomePage">Submit</router-link> -->
+                    Login
                 </button>
             </form>
 
@@ -39,8 +40,9 @@ export default {
         }
     },
     methods: {
-        Logincheck() {
-            <router-link to="/HomePage"></router-link>
+        LoginCheck() {
+            if (this.username == 'wincent' && this.password == 'password')
+                return this.$router.push('/HomePage');
         }
     }
 }

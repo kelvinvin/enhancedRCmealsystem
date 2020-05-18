@@ -4,17 +4,18 @@
             <div class="col">
             </div>
             <div class="col-6">
-                 <v-calendar is-expanded :attributes='attrs' />
+                 <v-calendar is-expanded :attributes='attrs' @dayclick="test" />
             </div>
             <div class="col">
                 <router-link to="/MealSelection">Register Meal Plan</router-link>
             </div>
-        </div>   
+        </div>
+        <table-menu v-if="dayClicked"></table-menu>   
     </div>
 </template>
 
 <script>
-
+import TableMenu from './TableMenu.vue'
 
 export default {
     name: 'HomePage',
@@ -30,9 +31,18 @@ export default {
                 dates: new Date(),
                 },
             ],
+            dayClicked: false,
         };
     },
-  
+    methods: {
+        test(event) {
+            this.dayClicked = true;
+            console.log(event.label);
+        }
+    },
+    components: {
+        TableMenu
+    }
 }
 </script>
 
