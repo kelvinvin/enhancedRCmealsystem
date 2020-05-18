@@ -29,9 +29,4 @@ export default {
 </script>
 
 <style>
-    .form-group {
-        border: 5px solid black;
-        padding: 10px;
-        margin: 20px;
-    }
 </style>
