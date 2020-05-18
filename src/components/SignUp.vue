@@ -1,5 +1,5 @@
 <template>
-    <div type="body">
+    <div class="signup">
         <div v-if="submitted" class="alert alert-success">
             <strong>Success!</strong> Redirecting in 3 seconds..
         </div>
