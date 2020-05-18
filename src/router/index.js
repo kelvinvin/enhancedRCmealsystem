@@ -6,6 +6,7 @@ import ForgotPassword from '../components/ForgotPassword'
 import SignUp from '../components/SignUp'
 import HomePage from '../components/HomePage'
 import MealSelection from '../views/MealSelection.vue'
+import TableMenu from '../components/TableMenu'
 
 Vue.use(VueRouter)
 
@@ -39,7 +40,12 @@ Vue.use(VueRouter)
     path: '/HomePage',
     name: 'HomePage',
     component: HomePage
-  }
+  },
+  {
+    path: '/TableMenu',
+    name: 'TableMenu',
+    component: TableMenu
+  },
 ]
 
 const router = new VueRouter({
