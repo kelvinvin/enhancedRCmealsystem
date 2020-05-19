@@ -9,6 +9,9 @@
             </div>
             <div class="col">
                 <router-link to="/MealSelection">Register Meal Plan</router-link>
+                <h4 class="totalmeal">Toal Meals     : </h4>
+                <h4>Meals Consumed : </h4>
+                <h4>Meals Left     : </h4>
             </div>
         </div>
         <table-menu class="table" v-if="dayClicked"></table-menu>   
@@ -50,5 +53,14 @@ export default {
 <style>
     .table {
         margin-top: 50px;
+    }
+
+    h4 {
+        float: left;
+    }
+
+    .totalmeal {
+        padding-top: 10px;
+        margin-top: 10px;
     }
 </style>
