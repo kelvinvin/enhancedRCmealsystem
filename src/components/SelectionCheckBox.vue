@@ -35,12 +35,12 @@
             Note that you have to opt for full-week meals in this category.
             <br>
             <p>I would like to opt for recess week consumption: </p>
-            <input type="radio" name="options" @change="updateCountRecWeek"> 
+            <input type="radio" @change="updateCount" name="options" id="recess"> 
             <label for="yes">Yes</label>
-            <input type="radio" name="options">
+            <input type="radio" @change="updateCount" name="options" id="norecess"> 
             <label for="no">No</label>
 
-            <p> Total amount: {{updateCost}} </p>
+            <p> Total amount: {{returnCost}} </p>
             <button type="submit" form="form1" value="Submit">Submit</button>
         </form>
     </div>
@@ -54,27 +54,21 @@ export default {
         return {
             cost : 0,
             costPerMeal: 200,
-            meals: [
-                {name: 'Monday'},
-                {name: 'Tuesday'},
-                {name: 'Wednesday'},
-                {name: 'Thursday'},
-                {name: 'Friday'}
-            ],
-
+            additionalCost: 300,
         }
     },
     methods: {
         updateCount() {
-            this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length;
+            var recessToggle = document.getElementById("recess").checked;
+            if (recessToggle) {
+                this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length + this.additionalCost;
+            } else {
+                this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length;
+            }
         },
-
-        updateCountRecWeek() {
-            this.cost = this.cost + 300;
-        }
     },
     computed: {
-        updateCost() {
+        returnCost() {
             return this.cost;
         }
     }

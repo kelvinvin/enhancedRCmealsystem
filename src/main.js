@@ -3,15 +3,16 @@ import App from './App.vue'
 import router from './router'
 import VCalendar from 'v-calendar';
 import BootstrapVue from 'bootstrap-vue';
-import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { ValidationObserver, ValidationProvider, extend } from 'vee-validate';
+import * as rules from 'vee-validate/dist/rules';
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue);
-
+Vue.component('ValidationObserver', ValidationObserver);
+Vue.component('ValidationProvider', ValidationProvider);
 Vue.use(VCalendar, {
   // ...some defaults
   screens: {
@@ -26,3 +27,7 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
+Object.keys(rules).forEach(rule => {
+  extend(rule, rules[rule]);
+});
