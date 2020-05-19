@@ -35,7 +35,7 @@
             Note that you have to opt for full-week meals in this category.
             <br>
             <p>I would like to opt for recess week consumption: </p>
-            <input type="radio" name="options" @change="updateCountRecWeek"> 
+            <input type="radio" name="options" id="RecessWeek" @click="updateRecessWeek"> 
             <label for="yes">Yes</label>
             <input type="radio" name="options">
             <label for="no">No</label>
@@ -52,25 +52,18 @@ export default {
     name: "SelectionCheckBox",
     data() {
         return {
-            cost : 0,
+            cost: 0,
             costPerMeal: 200,
-            meals: [
-                {name: 'Monday'},
-                {name: 'Tuesday'},
-                {name: 'Wednesday'},
-                {name: 'Thursday'},
-                {name: 'Friday'}
-            ],
-
+            costRecessWeek: 500,
+            recessWeek: false
         }
     },
     methods: {
         updateCount() {
             this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length;
         },
-
-        updateCountRecWeek() {
-            this.cost = this.cost + 300;
+        updateRecessWeek() {
+            return document.getElementById("RecessWeek").checked ? this.cost + this.costRecessWeek : this.cost;
         }
     },
     computed: {

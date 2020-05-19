@@ -14,7 +14,7 @@
                 <h4>Meals Left     : </h4>
             </div>
         </div>
-        <table-menu class="table" v-if="dayClicked"></table-menu>   
+        <TableMenu class="table" v-if="dayClicked"></TableMenu>   
     </div>
 </template>
 
@@ -41,7 +41,7 @@ export default {
     methods: {
         test(event) {
             this.dayClicked = !this.dayClicked;
-            console.log(event.label);
+            console.log(event.id);
         }
     },
     components: {
