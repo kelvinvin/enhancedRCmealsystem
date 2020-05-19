@@ -10,7 +10,6 @@
                 <input type="text" class="username" v-model="username" placeholder="Enter your NUS email here...">
                 <input type="password" class="password" v-model="password" placeholder="Enter your password here...">
                 <button class="btn btn-primary" @click.prevent="LoginCheck">
-                    <!-- <router-link to="/HomePage">Submit</router-link> -->
                     Login
                 </button>
             </form>
@@ -48,7 +47,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .words {
         font-family: Arial, Helvetica, sans-serif;
         text-align: right;
@@ -64,7 +63,7 @@ export default {
         font-size: 20px;
     }
 
-    input[type=text], select {
+    input[type="text"], select {
         width: 100%;
         border: 5px solid black;
         padding: 10px;
@@ -74,13 +73,16 @@ export default {
         box-sizing: border-box;
     }
 
-    input[type=submit] {
-        width: 20%;
-    }
-
-    input[type=submit]:hover {
-        background-color: orange;
-    }
+    input[type="password"], select {
+        width: 100%;
+        border: 5px solid black;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    } 
 
     .picture img {
         float: left;

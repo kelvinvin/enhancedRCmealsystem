@@ -4,13 +4,14 @@
             <div class="col">
             </div>
             <div class="col-6">
-                 <v-calendar is-expanded :attributes='attrs' @dayclick="test" />
+                 <v-calendar is-expanded :attributes='attrs' 
+                 @dayclick="test"/>
             </div>
             <div class="col">
                 <router-link to="/MealSelection">Register Meal Plan</router-link>
             </div>
         </div>
-        <table-menu v-if="dayClicked"></table-menu>   
+        <table-menu class="table" v-if="dayClicked"></table-menu>   
     </div>
 </template>
 
@@ -36,7 +37,7 @@ export default {
     },
     methods: {
         test(event) {
-            this.dayClicked = true;
+            this.dayClicked = !this.dayClicked;
             console.log(event.label);
         }
     },
@@ -47,5 +48,7 @@ export default {
 </script>
 
 <style>
-
+    .table {
+        margin-top: 50px;
+    }
 </style>

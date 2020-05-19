@@ -1,9 +1,13 @@
 <template>
     <div class="checkbox"> 
         <header><h1>Meal Selection</h1></header>
-        <p>Please indicate the days and meals that you require this semester.</p>
+        <p>Please indicate the days and meals that you require this semester.
+            <br>
+            Note that you have to choose at least 7 meals/ week.
+        </p>
 
         <form action="/action_page.php" method="get" id="form1">
+            I would like to consume every:
             <table>
                 <tr><th>&nbsp;</th>
                     <th><p>Monday</p></th>
@@ -13,7 +17,7 @@
                     <th><p>Friday</p></th></tr>
             
                 <tr><td><p>Breakfast</p></td>
-                    <td><input type="checkbox" @change="updateCount" name = "meal" value="mondayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name = "meal" value="mondayBreakfast" /></td>
                 <td><input type="checkbox" @change="updateCount" name = "meal" value="tuesdayBreakfast" /></td>
                 <td><input type="checkbox" @change="updateCount" name = "meal" value="wednesdayBreakfast" /></td>
                 <td><input type="checkbox" @change="updateCount" name = "meal" value="thursdayBreakfast" /></td>
@@ -25,11 +29,20 @@
                     <td><input type="checkbox" @change="updateCount" name = "meal" value="wednesdayBreakfast" /></td>
                     <td><input type="checkbox" @change="updateCount" name = "meal" value="thursdayDinner" /></td>
                     <td><input type="checkbox" @change="updateCount" name = "meal" value="fridayDinner" /></td></tr>
-                
-                </table>
-            
-        <p> Total amount: {{updateCost}} </p>
-        <button type="submit" form="form1" value="Submit">Submit</button></form>
+            </table>
+
+            Please indicate if you would like to consume during recess week.
+            Note that you have to opt for full-week meals in this category.
+            <br>
+            <p>I would like to opt for recess week consumption: </p>
+            <input type="radio" name="options" @change="updateCountRecWeek"> 
+            <label for="yes">Yes</label>
+            <input type="radio" name="options">
+            <label for="no">No</label>
+
+            <p> Total amount: {{updateCost}} </p>
+            <button type="submit" form="form1" value="Submit">Submit</button>
+        </form>
     </div>
 </template>
 
@@ -47,16 +60,21 @@ export default {
                 {name: 'Wednesday'},
                 {name: 'Thursday'},
                 {name: 'Friday'}
-            ]
+            ],
+
         }
     },
     methods: {
-        updateCount: function() {
+        updateCount() {
             this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length;
+        },
+
+        updateCountRecWeek() {
+            this.cost = this.cost + 300;
         }
     },
     computed: {
-        updateCost: function() {
+        updateCost() {
             return this.cost;
         }
     }
@@ -66,15 +84,18 @@ export default {
 
 <style scoped>
     table {
-        margin-left:35%;
-        margin-right:35%;
+        /* margin-left:35%;
+        margin-right:35%; */
         border: 2px solid black;
         padding: 5px;
-        width: 30%;
+        margin-top: 10px;
+        margin-bottom: 40px;
+        /* width: 70%; */
     }
 
     .checkbox {
         border: 5px solid black;
         padding: 30px;
     }
+
 </style>
