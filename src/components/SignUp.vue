@@ -82,7 +82,7 @@
             </b-form-group>
         </ValidationProvider>
 
-        <RegisterTnC @inputData="updateMessage" />
+        <RegisterTnC @inputData="updateCheckBox" />
 
         <b-button block type="submit" variant="primary" value="submit">Submit</b-button>
         </b-form>
@@ -116,7 +116,7 @@ export default {
         async register() {
             const isValid = await this.$refs.observer.validate();
             if (!this.check) {
-                alert('Please read and check the terms and conditions above before submitting')
+                alert('Please Read and Check the Terms and Conditions before submitting')
             }
             if (isValid && this.check) {
                 this.submitted = true;
@@ -129,7 +129,7 @@ export default {
                 setTimeout(() => {this.$router.push('HomePage'); }, 3000)
             }
         },
-        updateMessage(variable) {
+        updateCheckBox(variable) {
             this.check = variable;
         }
     }
