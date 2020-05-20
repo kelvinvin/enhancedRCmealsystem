@@ -67,24 +67,28 @@ export default {
         }
     },
     methods: {
+        
         updateCount() {
             var recessToggle = document.getElementById("recess").checked;
+            var noOfMeals = document.querySelectorAll('input[name=meal]:checked').length;
             if (recessToggle) {
-                this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length + this.costRecessWeek;
+                this.cost = this.costPerMeal * noOfMeals+ this.costRecessWeek;
             } else {
-                this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length;
+                this.cost = this.costPerMeal * noOfMeals;
             }
         },
         canSubmit() {
             var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
+            var recessCheck = document.getElementById('recess').checked;
+            var recessNoCheck = document.getElementById('norecess').checked;
+            var termsAndCond = document.getElementById('agree').checked;
             if (mealsSelected < 7) {
                 alert('Please ensure that you have indicated at least 7 meals/ week')
                 console.log("can't");
-            } else if (!document.getElementById('recess').checked
-                && !document.getElementById('norecess').checked) {
+            } else if (!recessCheck && !recessNoCheck) {
                 alert('Please ensure that you have indicated recess week meal plan')
                 console.log("can't")
-            } else if (!document.getElementById('agree').checked) {
+            } else if (!termsAndCond) {
                 alert('Please ensure that you have read the terms and conditions above')
                 console.log("can't")
             } else {
