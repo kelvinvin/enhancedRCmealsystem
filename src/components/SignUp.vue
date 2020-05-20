@@ -19,7 +19,7 @@
             </b-form-group>
         </ValidationProvider>
 
-        <ValidationProvider rules="required|email" name="Email">
+        <ValidationProvider rules="required|domain" name="Email">
             <b-form-group 
             slot-scope="{ valid, errors }"
             label="Email">
@@ -35,7 +35,7 @@
             </b-form-group>
         </ValidationProvider>
 
-        <ValidationProvider rules="required" name="Matric ID">
+        <ValidationProvider rules="required|nusMatric" name="Matric ID">
             <b-form-group 
             slot-scope="{ valid, errors }"
             label="NUS Matriculation ID">
@@ -51,7 +51,7 @@
             </b-form-group>
         </ValidationProvider>
 
-        <ValidationProvider rules="required" name="Password" vid="password">
+        <ValidationProvider rules="required|customPassword" name="Password" vid="password">
             <b-form-group 
             slot-scope="{ valid, errors }"
             label="Password">      
@@ -67,7 +67,7 @@
             </b-form-group>
         </ValidationProvider>
 
-        <ValidationProvider rules="required|confirmed:password" name="Confirm Password">
+        <ValidationProvider rules="required|confirmed:password|min:6" name="Confirm Password">
             <b-form-group 
             slot-scope="{ valid, errors }"
             label="Confirm Password">
