@@ -68,14 +68,25 @@
                  provident nihil!
                 <br>
     
-                <input type="checkbox" name="tncCheckBox" value="check" id="agree"> I have read and agree to the Terms and Conditions
+                <input type="checkbox" name="tncCheckBox" value="check" id="agree" @click="check"> I have read and agree to the Terms and Conditions
                 
         </div>
 </template>
 
 <script>
 export default {
-    name: 'RegisterTnC'
+    name: 'RegisterTnC',
+    data() {
+        return {
+            checked: false
+        }
+    },
+    methods: {
+        check() {
+            this.checked = !this.checked
+            this.$emit("inputData", this.checked)
+        }
+    }
 }
 </script>
 

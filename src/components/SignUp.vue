@@ -82,7 +82,7 @@
             </b-form-group>
         </ValidationProvider>
 
-        <RegisterTnC />
+        <RegisterTnC @inputData="updateMessage" />
 
         <b-button block type="submit" variant="primary" value="submit">Submit</b-button>
         </b-form>
@@ -110,11 +110,15 @@ export default {
         confirmation: '',
     },
     submitted : false,
+    check: false
   }),
     methods: {
         async register() {
             const isValid = await this.$refs.observer.validate();
-            if (isValid) {
+            if (!this.check) {
+                alert('Please read and check the terms and conditions above before submitting')
+            }
+            if (isValid && this.check) {
                 this.submitted = true;
                 AuthenticationService.register( {
                     name: this.account.name,
@@ -122,9 +126,12 @@ export default {
                     matric_id: this.account.matric_id,
                     password: this.account.password
                 });
-                setTimeout(() => {this.$router.push('MealSelection'); }, 3000)
+                setTimeout(() => {this.$router.push('HomePage'); }, 3000)
             }
         },
+        updateMessage(variable) {
+            this.check = variable;
+        }
     }
 }
 </script>
