@@ -6,7 +6,7 @@
             Note that you have to choose at least 7 meals/ week.
         </p>
 
-        <form action="/action_page.php" method="get" id="form1">
+        <form action="#" method="get" id="form1">
             I would like to consume every:
             <table>
                 <tr><th>&nbsp;</th>
@@ -35,43 +35,70 @@
             Note that you have to opt for full-week meals in this category.
             <br>
             <p>I would like to opt for recess week consumption: </p>
-            <input type="radio" name="options" id="RecessWeek" @click="updateRecessWeek"> 
+            <input type="radio" name="options" id="recess" @click="updateCount"> 
             <label for="yes">Yes</label>
-            <input type="radio" name="options">
+            <input type="radio" @change="updateCount" name="options" id="norecess"> 
             <label for="no">No</label>
 
-            <p> Total amount: {{updateCost}} </p>
-            <button type="submit" form="form1" value="Submit">Submit</button>
+            <p> Total amount: {{returnCost}} </p>
+            
         </form>
+
+        <MealPlanTnC />
+        
+        <button type="submit" form="form1" value="Submit" @click.prevent="canSubmit">Submit</button>
     </div>
 </template>
 
 
 <script>
+import MealPlanTnC from './MealPlanTnC.vue';
+
 export default {
     name: "SelectionCheckBox",
+    components: {
+        MealPlanTnC
+    },
     data() {
         return {
             cost: 0,
             costPerMeal: 200,
             costRecessWeek: 500,
-            recessWeek: false
         }
     },
     methods: {
         updateCount() {
-            this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length;
+            var recessToggle = document.getElementById("recess").checked;
+            if (recessToggle) {
+                this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length + this.costRecessWeek;
+            } else {
+                this.cost = this.costPerMeal * document.querySelectorAll('input[name=meal]:checked').length;
+            }
         },
-        updateRecessWeek() {
-            return document.getElementById("RecessWeek").checked ? this.cost + this.costRecessWeek : this.cost;
+        canSubmit() {
+            var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
+            if (mealsSelected < 7) {
+                alert('Please ensure that you have indicated at least 7 meals/ week')
+                console.log("can't");
+            } else if (!document.getElementById('recess').checked
+                && !document.getElementById('norecess').checked) {
+                alert('Please ensure that you have indicated recess week meal plan')
+                console.log("can't")
+            } else if (!document.getElementById('agree').checked) {
+                alert('Please ensure that you have read the terms and conditions above')
+                console.log("can't")
+            } else {
+                console.log("can")
+            }
         }
     },
     computed: {
-        updateCost() {
+        returnCost() {
             return this.cost;
         }
     }
 }
+
 
 </script>
 

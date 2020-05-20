@@ -4,7 +4,7 @@
             <strong>Success!</strong> Redirecting in 3 seconds..
         </div>
         <ValidationObserver ref="observer">
-        <b-form slot-scope="{ validate }" @submit.prevent="validate().then(post)">
+        <b-form slot-scope="{ validate }" @submit.prevent="validate().then(register)">
         <ValidationProvider rules="required" name="Name">
             <b-form-group slot-scope="{ valid, errors }" label="Name">
                 <b-form-input
@@ -82,7 +82,9 @@
             </b-form-group>
         </ValidationProvider>
 
-        <b-button block type="submit" variant="primary">Submit</b-button>
+        <RegisterTnC />
+
+        <b-button block type="submit" variant="primary" value="submit">Submit</b-button>
         </b-form>
         </ValidationObserver>
     </div>
@@ -90,10 +92,14 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
+import AuthenticationService from '@/services/AuthenticationService';
+import RegisterTnC from './RegisterTnC';
+
 export default {
   components: {
     ValidationObserver,
-    ValidationProvider
+    ValidationProvider,
+    RegisterTnC
   },
   data: () => ({
     account:{
@@ -103,23 +109,22 @@ export default {
         password: '',
         confirmation: '',
     },
-    submitted : false
+    submitted : false,
   }),
     methods: {
-        post: function() {
-            this.submitted = true;
-            const axios = require('axios');
-            axios.post('https://cors-anywhere.herokuapp.com/jsonplaceholder.typicode.com/posts', {
-                // placeholder api, to be replaced with actual server
-                user_id: 1,
-                firstName: this.account.firstName,
-                lastName: this.account.lastName,
-                email: this.account.email,
-                password: this.account.password,
-            }).then(
+        async register() {
+            const isValid = await this.$refs.observer.validate();
+            if (isValid) {
+                this.submitted = true;
+                AuthenticationService.register( {
+                    name: this.account.name,
+                    email: this.account.email,
+                    matric_id: this.account.matric_id,
+                    password: this.account.password
+                });
                 setTimeout(() => {this.$router.push('MealSelection'); }, 3000)
-            )
-        }
+            }
+        },
     }
 }
 </script>
