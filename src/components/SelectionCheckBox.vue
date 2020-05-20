@@ -92,7 +92,8 @@ export default {
                 alert('Please ensure that you have read the terms and conditions above')
                 console.log("can't")
             } else {
-                console.log("can")
+                this.$router.push('HomePage')
+                alert('Meal Registeration successful')
             }
         }
     },
