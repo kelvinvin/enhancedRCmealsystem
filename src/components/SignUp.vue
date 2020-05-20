@@ -82,7 +82,9 @@
             </b-form-group>
         </ValidationProvider>
 
-        <b-button block type="submit" variant="primary">Submit</b-button>
+        <RegisterTnC @inputData="updateCheckBox" />
+
+        <b-button block type="submit" variant="primary" value="submit">Submit</b-button>
         </b-form>
         </ValidationObserver>
     </div>
@@ -91,10 +93,13 @@
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import AuthenticationService from '@/services/AuthenticationService';
+import RegisterTnC from './RegisterTnC';
+
 export default {
   components: {
     ValidationObserver,
     ValidationProvider,
+    RegisterTnC
   },
   data: () => ({
     account:{
@@ -104,12 +109,16 @@ export default {
         password: '',
         confirmation: '',
     },
-    submitted : false
+    submitted : false,
+    check: false
   }),
     methods: {
         async register() {
             const isValid = await this.$refs.observer.validate();
-            if (isValid) {
+            if (!this.check) {
+                alert('Please Read and Check the Terms and Conditions before submitting')
+            }
+            if (isValid && this.check) {
                 this.submitted = true;
                 AuthenticationService.register( {
                     name: this.account.name,
@@ -117,8 +126,11 @@ export default {
                     matric_id: this.account.matric_id,
                     password: this.account.password
                 });
-                setTimeout(() => {this.$router.push('MealSelection'); }, 3000)
+                setTimeout(() => {this.$router.push('HomePage'); }, 3000)
             }
+        },
+        updateCheckBox(variable) {
+            this.check = variable;
         }
     }
 }
