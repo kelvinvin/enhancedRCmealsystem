@@ -9,6 +9,7 @@ module.exports = {
             res.status(400).send({
                 error: 'This email account is already in use.'
             })
+            // res.status(400).json({ msg: 'This email account is already in use'})
         }
     }
 }
