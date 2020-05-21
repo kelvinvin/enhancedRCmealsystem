@@ -3,9 +3,9 @@ const Joi = require('joi')
 module.exports = {
     register (req, res, next) {
         const schema = {
-            name: Joi.string().required,
+            name: Joi.string(),
             email: Joi.string().email(),
-            matric_id: Joi.string().required,
+            matric_id: Joi.string(),
             password: Joi.string().regex(
                 new RegExp('^[a-zA-Z0-9]{8,32}$')
             )
