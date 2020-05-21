@@ -40,6 +40,15 @@
             <input type="radio" @change="updateCount" name="options" id="norecess"> 
             <label for="no">No</label>
 
+            <br>
+
+            <p>Are you vegetarian?</p>
+            <input type="radio" name="options_veg" id="veg" @click="updateCount"> 
+            <label for="yes">Yes</label>
+            <input type="radio" @change="updateCount" name="options_veg" id="noVeg"> 
+            <label for="no">No</label>
+
+
             <p> Total amount: {{returnCost}} </p>
             
         </form>
@@ -81,13 +90,19 @@ export default {
             var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
             var recessCheck = document.getElementById('recess').checked;
             var recessNoCheck = document.getElementById('norecess').checked;
+            var veg = document.getElementById('veg').checked;
+            var noVeg = document.getElementById('noVeg').checked;
             var termsAndCond = document.getElementById('agree').checked;
+
             if (mealsSelected < 7) {
                 alert('Please ensure that you have indicated at least 7 meals/ week')
                 console.log("can't");
             } else if (!recessCheck && !recessNoCheck) {
                 alert('Please ensure that you have indicated recess week meal plan')
                 console.log("can't")
+            } else if (!veg && !noVeg) {
+                alert('Please indicate if you need vegetarian dietary requirement')
+            
             } else if (!termsAndCond) {
                 alert('Please ensure that you have read the terms and conditions above')
                 console.log("can't")
