@@ -30,7 +30,7 @@ extend('customPassword', {
 
 extend('nusMatric', {
   validate: value => {
-    var isNUSmatricId = /^A[\d]{7}U$/.test(value);
+    var isNUSmatricId = /^A[\d]{7}[A-Z]$/.test(value);
     return isNUSmatricId;
   },
   message: 'NUS Matric ID is invalid'
