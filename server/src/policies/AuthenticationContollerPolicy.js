@@ -4,7 +4,7 @@ module.exports = {
     register (req, res, next) {
         const schema = {
             name: Joi.string(),
-            email: Joi.string().email(),
+            email: Joi.string(),
             matric_id: Joi.string(),
             password: Joi.string().regex(
                 new RegExp('^[a-zA-Z0-9]{8,32}$')
@@ -23,6 +23,9 @@ module.exports = {
                 })
                 break
                 case 'matric_id':
+                    res.status(400).send({
+                        error: 'You must provide a valid matric id'
+                    })
                     break
                 case 'password':
                 res.status(400).send({
