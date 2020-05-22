@@ -121,14 +121,14 @@ export default {
             if (isValid && this.check) {
                 this.submitted = true;
                 AuthenticationService.register( {
-                    name: this.account.name,
-                    email: this.account.email,
-                    matric_id: this.account.matric_id,
-                    password: this.account.password
-                });
-                setTimeout(() => {this.$router.push('HomePage'); }, 3000)
-            }
-        },
+                     name: this.account.name,
+                      email: this.account.email,
+                      matric_id: this.account.matric_id,
+                      password: this.account.password
+                 });
+                  setTimeout(() => {this.$router.push('/'); }, 3000)
+                }
+            },
         updateCheckBox(variable) {
             this.check = variable;
         }

@@ -4,11 +4,6 @@ const Sequelize = require('sequelize')
 const config = require('../config/config')
 const db = {}
 
-
-
-// getting the local authentication type
-const LocalStrategy = require('passport-local').Strategy
-
 const sequelize = new Sequelize(
     config.db.database,
     config.db.user,

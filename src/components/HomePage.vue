@@ -14,12 +14,12 @@
                 <h4>Meals Left     : </h4>
             </div>
         </div>
-        <TableMenu class="table" v-if="dayClicked"></TableMenu>   
+        <!-- <TableMenu class="table" v-if="dayClicked"></TableMenu>    -->
     </div>
 </template>
 
 <script>
-import TableMenu from './TableMenu.vue'
+// import TableMenu from './TableMenu.vue'
 
 export default {
     name: 'HomePage',
@@ -42,11 +42,12 @@ export default {
         test(event) {
             this.dayClicked = !this.dayClicked;
             console.log(event.id);
+            window.open('https://uci.nus.edu.sg/ohs/wp-content/uploads/sites/3/2020/01/200206-Thu-Daily-Menu.pdf');
         }
     },
-    components: {
-        TableMenu
-    }
+    // components: {
+    //     TableMenu
+    // }
 }
 </script>
 

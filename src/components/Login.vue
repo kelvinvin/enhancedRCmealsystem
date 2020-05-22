@@ -7,9 +7,10 @@
             <h3>Sign in with your organizational account</h3>
 
             <form>
-                <input type="text" class="username" v-model="username" placeholder="Enter your NUS email here...">
-                <input type="password" class="password" v-model="password" placeholder="Enter your password here...">
-                <button class="btn btn-primary" @click.prevent="LoginCheck">
+                <input type="text" class="username" v-model="email" placeholder="Enter your NUS email here...">
+                <input type="password" class="password" v-model="password" 
+                placeholder="Enter your password here...">
+                <button class="btn btn-primary" @click.prevent="login">
                     Login
                 </button>
             </form>
@@ -30,18 +31,22 @@
 </template>
 
 <script>
+import AuthenticationService from '@/services/AuthenticationService'
+
 export default {
     name: "Login",
     data() {
         return {
-            username: "",
+            email: "",
             password: ""
         }
     },
     methods: {
-        LoginCheck() {
-            if (this.username == 'wincent' && this.password == 'password')
-                return this.$router.push('/HomePage');
+        async login() {
+            await AuthenticationService.login({
+                email: this.email,
+                password: this.password
+            })
         }
     }
 }
