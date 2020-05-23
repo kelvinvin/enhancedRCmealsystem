@@ -12,30 +12,6 @@ import * as rules from 'vee-validate/dist/rules'
 
 Vue.config.productionTip = false
 
-extend('domain', {
-  validate: value => {
-    var nusDomainRegex = /^e[\d]{7}@u.nus.edu$/;
-    return nusDomainRegex.test(value);
-  },
-  message: 'Please enter your NUS domain email.'
-});
-
-extend('customPassword', {
-  validate: value => {
-    var requiredCharacters = /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@*#$%^&+=!]).*$/.test(value);
-    return requiredCharacters;
-  },
-  message: 'Your password needs to be min length 8 chars, and must include 1 lower-case, upper-case, and special character (@#$%^&*+=!)'
-});
-
-extend('nusMatric', {
-  validate: value => {
-    var isNUSmatricId = /^A[\d]{7}[A-Z]$/.test(value);
-    return isNUSmatricId;
-  },
-  message: 'NUS Matric ID is invalid'
-});
-
 Vue.use(BootstrapVue);
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
