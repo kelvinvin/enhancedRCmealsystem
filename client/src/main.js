@@ -9,6 +9,8 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import { ValidationObserver, ValidationProvider, extend } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
+import store from './store/store'
+import { sync } from 'vuex-router-sync'
 
 Vue.config.productionTip = false
 
@@ -26,8 +28,11 @@ Vue.use(VCalendar, {
   // ...other defaults
 })
 
+sync(store, router)
+
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
 

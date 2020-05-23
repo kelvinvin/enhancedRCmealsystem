@@ -144,12 +144,14 @@ export default {
             }
             if (isValid && this.check) {
                 this.submitted = true;
-                AuthenticationService.register( {
-                     name: this.account.name,
+                const response = AuthenticationService.register( {
+                      name: this.account.name,
                       email: this.account.email,
                       matric_id: this.account.matric_id,
                       password: this.account.password
                  });
+                this.$store.dispatch('setToken', response.data.token)
+                this.$store.dispatch('setUser', response.data.user)
                   setTimeout(() => {this.$router.push('/'); }, 3000)
                 }
             },
