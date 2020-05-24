@@ -49,6 +49,10 @@ export default {
             })
             this.$store.dispatch('setToken', response.data.token)
             this.$store.dispatch('setUser', response.data.user)
+
+            if (response.data.isUserLoggedIn) {
+                this.$router.push('/HomePage')
+            }
         }
     }
 }

@@ -15,6 +15,9 @@
             </div>
         </div>
         <!-- <TableMenu class="table" v-if="dayClicked"></TableMenu>    -->
+        <v-btn @click="logout">
+            Log Out
+        </v-btn>
     </div>
 </template>
 
@@ -43,6 +46,12 @@ export default {
             this.dayClicked = !this.dayClicked;
             console.log(event.id);
             window.open('https://uci.nus.edu.sg/ohs/wp-content/uploads/sites/3/2020/01/200206-Thu-Daily-Menu.pdf');
+        },
+
+        logout() {
+            this.$store.dispatch('setToken', null)
+            this.$store.dispatch('setUser', null)
+            this.$router.push('/')
         }
     },
     // components: {

@@ -144,7 +144,7 @@ export default {
             }
             if (isValid && this.check) {
                 this.submitted = true;
-                const response = AuthenticationService.register( {
+                const response = await AuthenticationService.register( {
                       name: this.account.name,
                       email: this.account.email,
                       matric_id: this.account.matric_id,
