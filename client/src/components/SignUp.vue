@@ -67,7 +67,7 @@
             </b-form-group>
         </ValidationProvider>
 
-        <ValidationProvider rules="required|confirmed:password|min:6" name="Confirm Password">
+        <ValidationProvider rules="required|confirmed:password|customPassword" name="Confirm Password">
             <b-form-group 
             slot-scope="{ valid, errors }"
             label="Confirm Password">
@@ -91,9 +91,33 @@
 </template>
 
 <script>
-import { ValidationObserver, ValidationProvider } from 'vee-validate';
+import { ValidationObserver, ValidationProvider, extend } from 'vee-validate';
 import AuthenticationService from '@/services/AuthenticationService';
 import RegisterTnC from './RegisterTnC';
+
+extend('domain', {
+  validate: value => {
+    var nusDomainRegex = /^e[\d]{7}@u.nus.edu$/;
+    return nusDomainRegex.test(value);
+  },
+  message: 'Please enter your NUS domain email.'
+});
+
+extend('customPassword', {
+  validate: value => {
+    var requiredCharacters = /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@*#$%^&+=!]).*$/.test(value);
+    return requiredCharacters;
+  },
+  message: 'Your password needs to be min length 8 chars, and must include 1 lower-case, upper-case, and special character (@#$%^&*+=!)'
+});
+
+extend('nusMatric', {
+  validate: value => {
+    var isNUSmatricId = /^A[\d]{7}[A-Z]$/.test(value);
+    return isNUSmatricId;
+  },
+  message: 'Matric ID is not valid.'
+});
 
 export default {
   components: {
@@ -120,12 +144,14 @@ export default {
             }
             if (isValid && this.check) {
                 this.submitted = true;
-                AuthenticationService.register( {
-                     name: this.account.name,
+                const response = AuthenticationService.register( {
+                      name: this.account.name,
                       email: this.account.email,
                       matric_id: this.account.matric_id,
                       password: this.account.password
                  });
+                this.$store.dispatch('setToken', response.data.token)
+                this.$store.dispatch('setUser', response.data.user)
                   setTimeout(() => {this.$router.push('/'); }, 3000)
                 }
             },

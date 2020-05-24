@@ -10,7 +10,7 @@ module.exports = {
             storage: './enhancedRCmealsystem.sqlite'
         }
     },
-    // authentication: {
-    //     jwtSecret: process.env.JWT_SECRET || 'secret'
-    // }
+    authentication: {
+        jwtSecret: process.env.JWT_SECRET || 'secret'
+    }
 }
