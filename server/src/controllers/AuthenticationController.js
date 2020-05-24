@@ -18,12 +18,12 @@ module.exports = {
                 user: userJson,
                 token: jwtSignUser(userJson)
             })
-            console.log($(userJson))
+            // console.log($(userJson))
         } catch {
             res.status(400).send({
                 error: 'This email account is already in use.'
             })
-            res.status(400).json({ msg: 'This email account is already in use'})
+            // res.status(400).json({ msg: 'This email account is already in use'})
         }
     },
 
