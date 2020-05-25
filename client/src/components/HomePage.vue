@@ -9,7 +9,7 @@
             </div>
             <div class="col">
                 <router-link to="/MealSelection">Register Meal Plan</router-link>
-                <h4 class="totalmeal">Toal Meals     : </h4>
+                <h4 class="totalmeal">Total Meals     : </h4>
                 <h4>Meals Consumed : </h4>
                 <h4>Meals Left     : </h4>
             </div>
@@ -23,6 +23,7 @@
 
 <script>
 // import TableMenu from './TableMenu.vue'
+import MealsService from '@/services/MealsService'
 
 export default {
     name: 'HomePage',
@@ -39,6 +40,7 @@ export default {
                 },
             ],
             dayClicked: false,
+            meals: null
         };
     },
     methods: {
@@ -57,6 +59,9 @@ export default {
     // components: {
     //     TableMenu
     // }
+    async mounted() {
+        this.meals = await MealsService.getMeals()
+    }
 }
 </script>
 
