@@ -18,6 +18,7 @@
         <v-btn @click="logout">
             Log Out
         </v-btn>
+        <v-model="this.selectedDate">
     </div>
 </template>
 
@@ -39,7 +40,7 @@ export default {
                 dates: new Date(),
                 },
             ],
-            dayClicked: false,
+            selectedDate: null,
             meals: null
         };
     },
@@ -58,9 +59,6 @@ export default {
             this.$router.push('/')
         }
     },
-    // components: {
-    //     TableMenu
-    // }
     async mounted() {
         this.meals = (await MealsService.getMeals()).data
     }
