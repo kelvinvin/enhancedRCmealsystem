@@ -4,18 +4,26 @@
             <div class="col">
             </div>
             <div class="col-6">
-                 <v-calendar is-expanded :attributes='attrs' 
-                 @dayclick="menuOnDate"/>
+                <div>
+                    <v-calendar is-expanded :attributes='attrs' 
+                    @dayclick="menuOnDate"/>
+                </div>
+
+                 <div class="mealAttr">
+                    <h4>Total Meals: </h4>
+                    <h4>Meals Consumed: </h4>
+                    <h4>Meals Left: </h4>
+                 </div>
+                <div>
+                 <Feedback />
+                </div>
             </div>
             <div class="col">
                 <router-link to="/MealSelection">Register Meal Plan</router-link>
-                <h4 class="totalmeal">Total Meals     : </h4>
-                <h4>Meals Consumed : </h4>
-                <h4>Meals Left     : </h4>
+                
             </div>
         </div>
         <!-- <TableMenu class="table" v-if="dayClicked"></TableMenu>    -->
-        <Feedback />
     </div>
 </template>
 
@@ -81,12 +89,8 @@ export default {
         margin-top: 50px;
     }
 
-    h4 {
-        float: left;
-    }
-
-    .totalmeal {
-        padding-top: 10px;
+    .mealAttr {
         margin-top: 10px;
+        padding: 10px;
     }
 </style>

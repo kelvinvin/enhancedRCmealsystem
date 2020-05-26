@@ -50,7 +50,7 @@
                 ></b-form-textarea>
         </div>
         <br>
-        <b-button @click.prevent="submitFeedback">Submit</b-button>
+        <b-button @click.prevent="submitFeedback">Submit Feedback</b-button>
     </div>
 </template>
 
