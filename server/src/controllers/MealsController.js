@@ -3,20 +3,20 @@ const {Meal} = require('../models/')
 module.exports = {
     async getMeals (req, res) {
         try {
-            // const meals = await Meal.findAll()
-            // res.send(meals)
-            const {date, link} = req.body
-            const meals = await Meal.findOne({
-                where: {
-                    date: date
-                }
-            })
-            if (!meals) {
-                return res.status(403).send({
-                    error: 'meal not found for that date'
-                })
-            }
-            res.send(meals.link)
+            const meals = await Meal.findAll()
+            res.send(meals)
+            // const {date, link} = req.body
+            // const meals = await Meal.findOne({
+            //     where: {
+            //         date: date
+            //     }
+            // })
+            // if (!meals) {
+            //     return res.status(403).send({
+            //         error: 'meal not found for that date'
+            //     })
+            // }
+            // res.send(meals.link)
 
         } catch (err) {
             res.status(500).send({

@@ -46,8 +46,10 @@ export default {
     methods: {
         test(event) {
             this.dayClicked = !this.dayClicked;
-            console.log(event.id);
-            window.open('https://uci.nus.edu.sg/ohs/wp-content/uploads/sites/3/2020/01/200206-Thu-Daily-Menu.pdf');
+            console.log(event);
+            // this.meals = event.id;
+            // window.open();
+            console.log()
         },
 
         logout() {
@@ -60,7 +62,7 @@ export default {
     //     TableMenu
     // }
     async mounted() {
-        this.meals = await MealsService.getMeals()
+        this.meals = (await MealsService.getMeals()).data
     }
 }
 </script>
