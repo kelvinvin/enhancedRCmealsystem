@@ -5,7 +5,7 @@
             </div>
             <div class="col-6">
                  <v-calendar is-expanded :attributes='attrs' 
-                 @dayclick="test"/>
+                 @dayclick="menuOnDate"/>
             </div>
             <div class="col">
                 <router-link to="/MealSelection">Register Meal Plan</router-link>
@@ -39,17 +39,27 @@ export default {
                 dates: new Date(),
                 },
             ],
-            meals: null
-            // noMeal: false
+            meals: null,
+            // res: null
+            thereIsMeal: false
         };
     },
     methods: {
-        test(event) {
+        menuOnDate(event) {
+            // to reset thereIsMeal to false everytime page loads
+            this.thereIsMeal = false
+            // check meal database if menu exists
             this.meals.forEach(meal => {
                 if (event.id == meal.date) {
-                    return window.open(meal.link);
+                    this.thereIsMeal = true
+                    return window.open(meal.PDFUrl);
                 }
             })
+            // if meal does not exist throw an alert
+            if (!this.thereIsMeal) {
+                alert('Dining hall is closed on this date')
+                this.thereIsMeal = false
+            }
         },
         logout() {
             this.$store.dispatch('setToken', null)
