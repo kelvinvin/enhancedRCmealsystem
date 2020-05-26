@@ -43,15 +43,16 @@ export default {
     },
     methods: {
         async login() {
-            const response = await AuthenticationService.login({
-                email: this.email,
-                password: this.password
-            })
-            this.$store.dispatch('setToken', response.data.token)
-            this.$store.dispatch('setUser', response.data.user)
-
-            if (response.data.isUserLoggedIn) {
+            try {
+                const response = await AuthenticationService.login({
+                    email: this.email,
+                    password: this.password
+                })
+                this.$store.dispatch('setToken', response.data.token)
+                this.$store.dispatch('setUser', response.data.user)
                 this.$router.push('/HomePage')
+            } catch (err) {
+                console.log(err)
             }
         }
     }
