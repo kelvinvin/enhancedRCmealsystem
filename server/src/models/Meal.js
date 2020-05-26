@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const Meal = sequelize.define('Meal', {
         date: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATEONLY,
             allowNull: false
         },
         link: {

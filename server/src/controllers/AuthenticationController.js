@@ -40,7 +40,7 @@ module.exports = {
                     error: 'The login user information was incorrect'
                 })
             }
-
+            
             const isPasswordValid = await user.comparePassword(password)
             // const isPasswordValid = password === user.password
             if (!isPasswordValid) { 
