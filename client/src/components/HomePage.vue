@@ -40,19 +40,21 @@ export default {
                 dates: new Date(),
                 },
             ],
+<<<<<<< HEAD
             selectedDate: null,
+=======
+>>>>>>> 7129cb6fd06bf5b981d34167e042afa210755d72
             meals: null
         };
     },
     methods: {
         test(event) {
-            this.dayClicked = !this.dayClicked;
-            console.log(event);
-            // this.meals = event.id;
-            // window.open();
-            console.log()
+            this.meals.forEach(meal => {
+                if (event.id == meal.date) {
+                    return window.open(meal.link);
+                }
+            })
         },
-
         logout() {
             this.$store.dispatch('setToken', null)
             this.$store.dispatch('setUser', null)
