@@ -15,10 +15,6 @@
             </div>
         </div>
         <!-- <TableMenu class="table" v-if="dayClicked"></TableMenu>    -->
-        <v-btn @click="logout">
-            Log Out
-        </v-btn>
-        <v-model="this.selectedDate">
     </div>
 </template>
 
@@ -40,10 +36,6 @@ export default {
                 dates: new Date(),
                 },
             ],
-<<<<<<< HEAD
-            selectedDate: null,
-=======
->>>>>>> 7129cb6fd06bf5b981d34167e042afa210755d72
             meals: null
         };
     },
