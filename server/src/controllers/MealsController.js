@@ -1,4 +1,4 @@
-const {Meal} = require('../models')
+const {Meal} = require('../models/')
 
 module.exports = {
     async getMeals (req, res) {
@@ -10,10 +10,10 @@ module.exports = {
                 error: 'An error has occured trying to fetch the meal'
             })
         }
-    }
-}
+    },
+// }
 
-module.exports = {
+// module.exports = {
     async addMeal (req, res) {
         try {
             const meal = await Meal.create(req.body)
