@@ -39,19 +39,17 @@ export default {
                 dates: new Date(),
                 },
             ],
-            dayClicked: false,
             meals: null
         };
     },
     methods: {
         test(event) {
-            this.dayClicked = !this.dayClicked;
-            console.log(event);
-            // this.meals = event.id;
-            // window.open();
-            console.log()
+            this.meals.forEach(meal => {
+                if (event.id == meal.date) {
+                    return window.open(meal.link);
+                }
+            })
         },
-
         logout() {
             this.$store.dispatch('setToken', null)
             this.$store.dispatch('setUser', null)

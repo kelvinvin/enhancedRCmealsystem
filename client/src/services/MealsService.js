@@ -2,6 +2,6 @@ import Api from '@/services/Api'
 
 export default {
     getMeals () {
-        return Api().get('meals')
+        return Api().get('/HomePage')
     }
 }
