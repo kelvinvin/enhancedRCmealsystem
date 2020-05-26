@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATEONLY,
             allowNull: false
         },
-        link: {
+        PDFUrl: {
             type: DataTypes.STRING,
             allowNull: false
         }
