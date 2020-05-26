@@ -14,11 +14,16 @@
                 <h4>Meals Left     : </h4>
             </div>
         </div>
+        <!-- <TableMenu class="table" v-if="dayClicked"></TableMenu>    -->
+        <Feedback />
     </div>
 </template>
 
 <script>
+// import TableMenu from './TableMenu.vue'
+
 import MealsService from '@/services/MealsService'
+import Feedback from '../components/Feedback'
 
 export default {
     name: 'HomePage',
@@ -51,6 +56,9 @@ export default {
             this.$store.dispatch('setUser', null)
             this.$router.push('/')
         }
+    },
+    components: {
+        Feedback
     },
     async mounted() {
         this.meals = (await MealsService.getMeals()).data
