@@ -140,6 +140,7 @@ export default {
         align-self:center;
         text-align:center;
     }
+    
 
     .checkbox {
         border: 5px solid black;
