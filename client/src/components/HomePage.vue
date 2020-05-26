@@ -13,15 +13,9 @@
                 <h4>Meals Consumed : </h4>
                 <h4>Meals Left     : </h4>
             </div>
-            <v-btn @click="logout">
-                Log Out
-            </v-btn>
         </div>
         <!-- <TableMenu class="table" v-if="dayClicked"></TableMenu>    -->
-<<<<<<< HEAD
         
-=======
->>>>>>> 57464382f3547858416330645cd3791495d9c2f0
     </div>
 </template>
 
@@ -61,6 +55,9 @@ export default {
             this.$router.push('/')
         }
     },
+    // components: {
+    //     TableMenu
+    // }
     async mounted() {
         this.meals = (await MealsService.getMeals()).data
     }
