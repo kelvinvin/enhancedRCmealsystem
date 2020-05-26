@@ -14,21 +14,28 @@
                     <th><p>Tuesday</p></th>
                     <th><p>Wednesday</p></th>
                     <th><p>Thursday</p></th>
-                    <th><p>Friday</p></th></tr>
+                    <th><p>Friday</p></th>
+                    <th><p>Saturday</p></th>
+                    <th><p>Sunday</p></th>
+                </tr>
             
-                <tr><td><p>Breakfast</p></td>
-                <td><input type="checkbox" @change="updateCount" name = "meal" value="mondayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name = "meal" value="tuesdayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name = "meal" value="wednesdayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name = "meal" value="thursdayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name = "meal" value="fridayBreakfast" /></td></tr>
-                
-                <tr><td><p>Dinner</p></td>
-                    <td><input type="checkbox" @change="updateCount" name = "meal" value="mondayDinner" /></td>
-                    <td><input type="checkbox" @change="updateCount" name = "meal" value="tuesdayDinner" /></td>
-                    <td><input type="checkbox" @change="updateCount" name = "meal" value="wednesdayBreakfast" /></td>
-                    <td><input type="checkbox" @change="updateCount" name = "meal" value="thursdayDinner" /></td>
-                    <td><input type="checkbox" @change="updateCount" name = "meal" value="fridayDinner" /></td></tr>
+                <tr><td><p><strong>Breakfast</strong></p></td>
+                <td><input type="checkbox" @change="updateCount" name="meal" value="mondayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name="meal" value="tuesdayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name="meal" value="wednesdayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name="meal" value="thursdayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name="meal" value="fridayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name="meal" value="saturdayBreakfast" /></td>
+                <td><input type="checkbox" @change="updateCount" name="meal" value="sundayBreakfast" /></td></tr>
+
+                <tr><td><p><strong>Dinner</strong></p></td>
+                    <td><input type="checkbox" @change="updateCount" name="meal" value="mondayDinner" /></td>
+                    <td><input type="checkbox" @change="updateCount" name="meal" value="tuesdayDinner" /></td>
+                    <td><input type="checkbox" @change="updateCount" name="meal" value="wednesdayBreakfast" /></td>
+                    <td><input type="checkbox" @change="updateCount" name="meal" value="thursdayDinner" /></td>
+                    <td><input type="checkbox" @change="updateCount" name="meal" value="fridayDinner" /></td>
+                    <td><input type="checkbox" @change="updateCount" name="meal" value="saturdayDinner" /></td>
+                    <td><input type="checkbox" @change="updateCount" name="meal" value="sundayDinner" /></td></tr>
             </table>
 
             Please indicate if you would like to consume during recess week.
@@ -124,13 +131,14 @@ export default {
 
 <style scoped>
     table {
-        /* margin-left:35%;
-        margin-right:35%; */
         border: 2px solid black;
         padding: 5px;
         margin-top: 10px;
         margin-bottom: 40px;
-        /* width: 70%; */
+        margin-left:-100px;
+        width: 150%;
+        align-self:center;
+        text-align:center;
     }
 
     .checkbox {

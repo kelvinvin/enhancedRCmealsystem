@@ -5,10 +5,25 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/mealselection">Meal Selection</router-link> |
       <router-link to="/HomePage">HomePage</router-link>
-    </div>
+        <v-btn id="logout" v-if="$store.state.isUserLoggedIn" @click="logout">
+          Log Out
+        </v-btn>
+      </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+    methods: {
+        logout() {
+            this.$store.dispatch('setToken', null)
+            this.$store.dispatch('setUser', null)
+            this.$router.push('/')
+        }
+    }
+}
+</script>
 
 <style>
 #app {
@@ -30,5 +45,9 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+#logout {
+    float: right;  
 }
 </style>
