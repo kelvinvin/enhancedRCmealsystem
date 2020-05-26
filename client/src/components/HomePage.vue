@@ -13,11 +13,12 @@
                 <h4>Meals Consumed : </h4>
                 <h4>Meals Left     : </h4>
             </div>
+            <v-btn @click="logout">
+                Log Out
+            </v-btn>
         </div>
         <!-- <TableMenu class="table" v-if="dayClicked"></TableMenu>    -->
-        <v-btn @click="logout">
-            Log Out
-        </v-btn>
+        
     </div>
 </template>
 
@@ -40,6 +41,7 @@ export default {
                 },
             ],
             meals: null
+            // noMeal: false
         };
     },
     methods: {

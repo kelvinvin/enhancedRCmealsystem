@@ -7,6 +7,7 @@ import SignUp from '../components/SignUp.vue'
 import HomePage from '../components/HomePage.vue'
 import MealSelection from '../views/MealSelection.vue'
 import TableMenu from '../components/TableMenu.vue'
+import Feedback from '../components/Feedback.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ Vue.use(VueRouter)
     path: '/TableMenu',
     name: 'TableMenu',
     component: TableMenu
+  },
+  {
+    path: '/Feedback',
+    name: 'Feedback',
+    component: Feedback
   },
 ]
 
