@@ -1,23 +1,56 @@
 <template>
     <div class="container">
+        <div v-if="submitted" class="alert alert-success">
+            <strong>Success!</strong> Your feedback has been successfully submitted!
+        </div>
         <div class="row">
+            <!-- Date to select -->
             <div class="col-md-12">
                 <p>Choose your date for feedback</p>
                 <date-picker v-model="date" :config="options"></date-picker>
             </div>
-            
-       
-      
-    </div>
-        <div>
-          <b-form-textarea
-            id="textarea"
-            v-model="text"
-            placeholder="Enter something..."
-            rows="7"
-            max-rows="30"
-            ></b-form-textarea>
         </div>
+            <br>
+            <!-- Options for bfast/ dinner -->
+        <div>
+            
+            <b-form-group label="Select Menu Time:">
+                <b-form-radio v-model="radioSelected" name="menu-time" value="Breakfast">Breakfast</b-form-radio>
+                <b-form-radio v-model="radioSelected" name="menu-time" value="Dinner">Dinner</b-form-radio>
+            </b-form-group>
+            <div class="mt-3">Selected: <strong>{{ radioSelected }}</strong></div>
+        </div>
+            <br>
+            <!-- Menu type -->
+        <div>
+            <p>Select Cuisine type:</p>
+            <b-form-select v-model="dropDownSelect" 
+            :options="dropDownOptions">
+            </b-form-select>
+        </div>
+            <br>
+            <!-- Rating -->
+        <div>
+            <b-form-group label="Rating:">
+                <b-form-radio v-model="rating" name="rating" value="5">5</b-form-radio>
+                <b-form-radio v-model="rating" name="rating" value="4">4</b-form-radio>
+                <b-form-radio v-model="rating" name="rating" value="3">3</b-form-radio>
+                <b-form-radio v-model="rating" name="rating" value="2">2</b-form-radio>
+                <b-form-radio v-model="rating" name="rating" value="1">1</b-form-radio>
+            </b-form-group>
+        </div>            
+            <!-- Feedback box section -->
+        <div>
+            <b-form-textarea
+                id="textarea"
+                v-model="text"
+                placeholder="Enter feedback here..."
+                rows="7"
+                max-rows="30"
+                ></b-form-textarea>
+        </div>
+        <br>
+        <b-button @click.prevent="submitFeedback">Submit Feedback</b-button>
     </div>
 </template>
 
@@ -26,8 +59,11 @@
   import 'bootstrap/dist/css/bootstrap.css';
   import datePicker from 'vue-bootstrap-datetimepicker';
   import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
-   
+
+// Rating Initialization
+    
   export default {    
+    name: 'Feedback',
     data () {
       return {
         date: new Date(),
@@ -35,20 +71,41 @@
           format: 'DD/MM/YYYY',
           useCurrent: false,
         },
+        radioSelected: '',
+        dropDownSelect: null,
+        dropDownOptions: [
+          { value: 'Malay', text: 'Malay' },
+          { value: 'Indian', text: 'Indian' },
+          { value: 'Asian', text: 'Asian' },
+          { value: 'Western', text: 'Western' },
+          { value: 'Vegetarian', text: 'Vegetarian' },
+        ],
         text: '',
+        rating: null,
+        submitted: false
       }
     },
     components: {
       datePicker
     },
     methods: {
-        
+        submitFeedback() {
+            if (this.radioSelected == '') {
+                alert('Please select Menu time')
+            } else if (this.dropDownSelect == null) {
+                alert('Please select Cuisine Type')
+            } else if (this.rating == null) {
+                alert('Please indicate your rating preference in your feedback')
+            } else {
+                this.submitted = true
+            }
+        }
     },
-    mounted() {
-    this.$root.$on('bv::dropdown::show', bvEvent => {
-      console.log('Dropdown is about to be shown', bvEvent)
-    })
-  }
   }
 </script>
 
+<style scoped>
+    .checked {
+        color: orange;
+    }
+</style>

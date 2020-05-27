@@ -23,7 +23,6 @@ module.exports = {
             res.status(400).send({
                 error: 'This email account is already in use.'
             })
-            res.status(400).json({ msg: 'This email account is already in use'})
         }
     },
 
@@ -37,18 +36,14 @@ module.exports = {
             })
             if (!user) {
                 return res.status(403).send({
-                    error: 'The login user information was incorrect'
+                    error: 'Incorrect user ID or password. Type the correct user ID and password, and try again.'
                 })
             }
             
             const isPasswordValid = await user.comparePassword(password)
-            // const isPasswordValid = password === user.password
             if (!isPasswordValid) { 
-                     console.log(isPasswordValid)
-                    console.log(password)
-                    console.log(user.password)
                 return res.status(404).send({
-                    error: 'The login pass information was incorrect'
+                    error: 'Incorrect user ID or password. Type the correct user ID and password, and try again.'
                 })
             }
 

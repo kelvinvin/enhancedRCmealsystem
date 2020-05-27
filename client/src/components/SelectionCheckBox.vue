@@ -3,7 +3,7 @@
         <header><h1>Meal Selection</h1></header>
         <p>Please indicate the days and meals that you require this semester.
             <br>
-            Note that you have to choose at least 7 meals/ week.
+            Note that you have to choose at least 9 meals/ week.
         </p>
 
         <form action="#" method="get" id="form1">
@@ -26,7 +26,7 @@
                 <td><input type="checkbox" @change="updateCount" name="meal" value="thursdayBreakfast" /></td>
                 <td><input type="checkbox" @change="updateCount" name="meal" value="fridayBreakfast" /></td>
                 <td><input type="checkbox" @change="updateCount" name="meal" value="saturdayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name="meal" value="sundayBreakfast" /></td></tr>
+                <td><input type="checkbox" @change="updateCount" name="meal" value="sundayBreakfast" disabled/></td></tr>
 
                 <tr><td><p><strong>Dinner</strong></p></td>
                     <td><input type="checkbox" @change="updateCount" name="meal" value="mondayDinner" /></td>
@@ -34,7 +34,7 @@
                     <td><input type="checkbox" @change="updateCount" name="meal" value="wednesdayBreakfast" /></td>
                     <td><input type="checkbox" @change="updateCount" name="meal" value="thursdayDinner" /></td>
                     <td><input type="checkbox" @change="updateCount" name="meal" value="fridayDinner" /></td>
-                    <td><input type="checkbox" @change="updateCount" name="meal" value="saturdayDinner" /></td>
+                    <td><input type="checkbox" @change="updateCount" name="meal" value="saturdayDinner" disabled/></td>
                     <td><input type="checkbox" @change="updateCount" name="meal" value="sundayDinner" /></td></tr>
             </table>
 
@@ -61,8 +61,10 @@
         </form>
 
         <MealPlanTnC />
-        
-        <button type="submit" form="form1" value="Submit" @click.prevent="canSubmit">Submit</button>
+        <br>
+        <div class="error" v-html="error"/>
+        <br>
+        <button type="submit" class="btn btn-primary" form="form1" value="Submit" @click.prevent="canSubmit">Submit</button>
     </div>
 </template>
 
@@ -80,6 +82,7 @@ export default {
             cost: 0,
             costPerMeal: 200,
             costRecessWeek: 500,
+            error: null
         }
     },
     methods: {
@@ -93,6 +96,7 @@ export default {
             }
         },
         canSubmit() {
+            
             var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
             var recessCheck = document.getElementById('recess').checked;
             var recessNoCheck = document.getElementById('norecess').checked;
@@ -100,20 +104,19 @@ export default {
             var noVeg = document.getElementById('noVeg').checked;
             var termsAndCond = document.getElementById('agree').checked;
 
-            if (mealsSelected < 7) {
-                alert('Please ensure that you have indicated at least 7 meals/ week')
-                console.log("can't");
+            if (mealsSelected <= 9) {
+                this.error = 'Please ensure that you have indicated at least 9 meals/ week'
+    
             } else if (!recessCheck && !recessNoCheck) {
-                alert('Please ensure that you have indicated recess week meal plan')
-                console.log("can't")
+                this.error = 'Please ensure that you have indicated recess week meal plan'
+                
             } else if (!veg && !noVeg) {
-                alert('Please indicate if you need vegetarian dietary requirement')
-            
+                this.error = 'Please indicate if you need vegetarian dietary requirement'
             } else if (!termsAndCond) {
-                alert('Please ensure that you have read the terms and conditions above')
-                console.log("can't")
-            } else {
-                this.$router.push('HomePage')
+                this.error = 'Please ensure that you have read the terms and conditions above'
+            
+            } else if (this.error != null) {
+                this.$router.push('/HomePage')
                 alert('Meal Registeration successful')
             }
         }
@@ -142,6 +145,10 @@ export default {
     .checkbox {
         border: 5px solid black;
         padding: 30px;
+    }
+
+    .error {
+        color: red;
     }
 
 </style>
