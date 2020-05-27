@@ -64,7 +64,9 @@
         <br>
         <div class="error" v-html="error"/>
         <br>
-        <button type="submit" class="btn btn-primary" form="form1" value="Submit" @click.prevent="canSubmit">Submit</button>
+        <button type="submit" class="btn btn-primary" form="form1" value="Submit" @click.prevent="canSubmit">
+            Register Meal Plan
+        </button>
     </div>
 </template>
 
@@ -108,13 +110,11 @@ export default {
                 this.error = 'Please ensure that you have indicated at least 9 meals/ week'
     
             } else if (!recessCheck && !recessNoCheck) {
-                this.error = 'Please ensure that you have indicated recess week meal plan'
-                
+                this.error = 'Please ensure that you have indicated recess week meal plan'   
             } else if (!veg && !noVeg) {
                 this.error = 'Please indicate if you need vegetarian dietary requirement'
             } else if (!termsAndCond) {
                 this.error = 'Please ensure that you have read the terms and conditions above'
-            
             } else if (this.error != null) {
                 this.$router.push('/HomePage')
                 alert('Meal Registeration successful')
