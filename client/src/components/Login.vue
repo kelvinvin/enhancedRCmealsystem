@@ -13,6 +13,7 @@
                 <button class="btn btn-primary" @click.prevent="login">
                     Login
                 </button>
+                <div class="errorMsg" v-if="!!error"> You have entered invalid login information </div>
             </form>
 
             <div class="SignUp">
@@ -38,7 +39,8 @@ export default {
     data() {
         return {
             email: "",
-            password: ""
+            password: "",
+            error: null
         }
     },
     methods: {
@@ -50,9 +52,9 @@ export default {
                 })
                 this.$store.dispatch('setToken', response.data.token)
                 this.$store.dispatch('setUser', response.data.user)
-                this.$router.push('/HomePage')
+                this.$router.push('/Homepage')
             } catch (err) {
-                console.log(err)
+                this.error = err.response.data.error;
             }
         }
     }
@@ -109,6 +111,10 @@ export default {
 
     .username {
         margin-bottom: 15px;
+    }
+
+    .errorMsg {
+        color: red
     }
 
 </style>
