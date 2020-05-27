@@ -13,7 +13,7 @@
                 <button class="btn btn-primary" @click.prevent="login">
                     Login
                 </button>
-                <div class="errorMsg" v-if="!!error"> You have entered invalid login information </div>
+                <div class="errorMsg" v-if="!!error"> You have entered invalid login information. </div>
             </form>
 
             <div class="SignUp">
