@@ -61,8 +61,10 @@
         </form>
 
         <MealPlanTnC />
-        
-        <button type="submit" form="form1" value="Submit" @click.prevent="canSubmit">Submit</button>
+        <br>
+        <div class="error" v-html="error"/>
+        <br>
+        <button type="submit" class="btn btn-primary" form="form1" value="Submit" @click.prevent="canSubmit">Submit</button>
     </div>
 </template>
 
@@ -80,6 +82,7 @@ export default {
             cost: 0,
             costPerMeal: 200,
             costRecessWeek: 500,
+            error: null
         }
     },
     methods: {
@@ -94,6 +97,7 @@ export default {
             }
         },
         canSubmit() {
+            
             var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
             var recessCheck = document.getElementById('recess').checked;
             var recessNoCheck = document.getElementById('norecess').checked;
@@ -102,18 +106,17 @@ export default {
             var termsAndCond = document.getElementById('agree').checked;
 
             if (mealsSelected <= 9) {
-                alert('Please ensure that you have indicated at least 9 meals/ week')
-                console.log("can't");
+                this.error = 'Please ensure that you have indicated at least 9 meals/ week'
+    
             } else if (!recessCheck && !recessNoCheck) {
-                alert('Please ensure that you have indicated recess week meal plan')
-                console.log("can't")
+                this.error = 'Please ensure that you have indicated recess week meal plan'
+                
             } else if (!veg && !noVeg) {
-                alert('Please indicate if you need vegetarian dietary requirement')
-            
+                this.error = 'Please indicate if you need vegetarian dietary requirement'
             } else if (!termsAndCond) {
-                alert('Please ensure that you have read the terms and conditions above')
-                console.log("can't")
-            } else {
+                this.error = 'Please ensure that you have read the terms and conditions above'
+            
+            } else if (this.error != null) {
                 this.$router.push('/HomePage')
                 alert('Meal Registeration successful')
             }
@@ -145,6 +148,10 @@ export default {
     .checkbox {
         border: 5px solid black;
         padding: 30px;
+    }
+
+    .error {
+        color: red;
     }
 
 </style>

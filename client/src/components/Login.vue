@@ -7,6 +7,7 @@
             <h3>Sign in with your organizational account</h3>
 
             <form>
+                <div class="error" v-html="error" />
                 <input type="text" class="username" v-model="email" placeholder="Enter your NUS email here...">
                 <input type="password" class="password" v-model="password" 
                 placeholder="Enter your password here...">
@@ -38,7 +39,8 @@ export default {
     data() {
         return {
             email: "",
-            password: ""
+            password: "",
+            error: null
         }
     },
     methods: {
@@ -51,8 +53,8 @@ export default {
                 this.$store.dispatch('setToken', response.data.token)
                 this.$store.dispatch('setUser', response.data.user)
                 this.$router.push('/HomePage')
-            } catch (err) {
-                console.log(err)
+            } catch (error) {
+                this.error = error.response.data.error
             }
         }
     }
@@ -109,6 +111,10 @@ export default {
 
     .username {
         margin-bottom: 15px;
+    }
+
+    .error {
+        color: red;
     }
 
 </style>
