@@ -88,7 +88,6 @@ export default {
         }
     },
     methods: {
-        
         updateCount() {
             var recessToggle = document.getElementById("recess").checked;
             var noOfMeals = document.querySelectorAll('input[name=meal]:checked').length;
@@ -128,8 +127,6 @@ export default {
         }
     }
 }
-
-
 </script>
 
 <style scoped>

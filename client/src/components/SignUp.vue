@@ -152,7 +152,7 @@ export default {
                  });
                 this.$store.dispatch('setToken', response.data.token)
                 this.$store.dispatch('setUser', response.data.user)
-                  setTimeout(() => {this.$router.push('/'); }, 3000)
+                  setTimeout(() => {this.$router.push('/HomePage'); }, 3000)
                 }
             },
         updateCheckBox(variable) {
