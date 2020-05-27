@@ -50,6 +50,8 @@
                 ></b-form-textarea>
         </div>
         <br>
+        <div class="error" v-html="error" />
+        <br>
         <b-button @click.prevent="submitFeedback">Submit Feedback</b-button>
     </div>
 </template>
@@ -82,7 +84,8 @@
         ],
         text: '',
         rating: null,
-        submitted: false
+        submitted: false,
+        error: null
       }
     },
     components: {
@@ -91,11 +94,11 @@
     methods: {
         submitFeedback() {
             if (this.radioSelected == '') {
-                alert('Please select Menu time')
+                this.error = 'Please select Menu time'
             } else if (this.dropDownSelect == null) {
-                alert('Please select Cuisine Type')
+                this.error = 'Please select Cuisine Type'
             } else if (this.rating == null) {
-                alert('Please indicate your rating preference in your feedback')
+                this.error = 'Please indicate your rating preference in your feedback'
             } else {
                 this.submitted = true
             }
@@ -107,5 +110,9 @@
 <style scoped>
     .checked {
         color: orange;
+    }
+
+    .error {
+        color: red;
     }
 </style>
