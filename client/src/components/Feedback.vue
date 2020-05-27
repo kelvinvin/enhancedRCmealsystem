@@ -78,6 +78,7 @@
           { value: 'Indian', text: 'Indian' },
           { value: 'Asian', text: 'Asian' },
           { value: 'Western', text: 'Western' },
+          { value: 'Vegetarian', text: 'Vegetarian' },
         ],
         text: '',
         rating: null,
