@@ -3,6 +3,9 @@
         <div v-if="submitted" class="alert alert-success">
             <strong>Success!</strong> Redirecting in 3 seconds..
         </div>
+        <div v-if="alreadyExists" class="alert alert-danger">
+            <strong>Error!</strong> Your account already exists. Please <a href="/ForgotPassword" >reset your password</a> if you have forgotten it.
+        </div>
         <ValidationObserver ref="observer">
         <b-form slot-scope="{ validate }" @submit.prevent="validate().then(register)">
         <ValidationProvider rules="required" name="Name">
@@ -134,27 +137,32 @@ export default {
         confirmation: '',
     },
     submitted : false,
-    check: false
+    check: false,
+    alreadyExists: false
   }),
     methods: {
         async register() {
-            const isValid = await this.$refs.observer.validate();
-            if (!this.check) {
-                alert('Please Read and Check the Terms and Conditions before submitting')
-            }
-            if (isValid && this.check) {
-                this.submitted = true;
-                const response = await AuthenticationService.register( {
-                      name: this.account.name,
-                      email: this.account.email,
-                      matric_id: this.account.matric_id,
-                      password: this.account.password
-                 });
-                this.$store.dispatch('setToken', response.data.token)
-                this.$store.dispatch('setUser', response.data.user)
-                  setTimeout(() => {this.$router.push('/HomePage'); }, 3000)
+            try {
+                const isValid = await this.$refs.observer.validate();
+                if (!this.check) {
+                    alert('Please Read and Check the Terms and Conditions before submitting')
                 }
-            },
+                if (isValid && this.check) {
+                    const response = await AuthenticationService.register( {
+                        name: this.account.name,
+                        email: this.account.email,
+                        matric_id: this.account.matric_id,
+                        password: this.account.password
+                    });
+                    this.$store.dispatch('setToken', response.data.token)
+                    this.$store.dispatch('setUser', response.data.user)
+                    this.submitted = true;
+                    setTimeout(() => {this.$router.push('/HomePage'); }, 3000)
+                }
+            } catch (err) {
+                this.alreadyExists = true;
+            }
+        },
         updateCheckBox(variable) {
             this.check = variable;
         }
