@@ -48,20 +48,13 @@
             <label for="no">No</label>
 
             <br>
-            <div>
-                <p>Do you have any dietary requirement:</p>
-                <b-form-select v-model="dropDownSelect" 
-                :options="dropDownOptions">
-                </b-form-select>
-            </div>
-            <br>
-            <div>
-                <p>Extra Credits:</p>
-                <b-form-select v-model="dropDownExtra" 
-                :options="dropDownExtraOptions" @change="extraCredits">
-                </b-form-select>
-            </div>
-            <br>
+
+            <p>Are you vegetarian?</p>
+            <input type="radio" name="options_veg" id="veg" @click="updateCount"> 
+            <label for="yes">Yes</label>
+            <input type="radio" @change="updateCount" name="options_veg" id="noVeg"> 
+            <label for="no">No</label>
+
 
             <p> Total amount: {{returnCost}} </p>
             
@@ -91,22 +84,7 @@ export default {
             cost: 0,
             costPerMeal: 200,
             costRecessWeek: 500,
-            error: null,
-            dropDownSelect: null,
-            dropDownOptions: [
-                { value: 'none', text: 'No Dietary Requirements' },
-                { value: 'halal', text: 'Halal' },
-                { value: 'vegetarian', text: 'Vegetarian' },
-            ],
-            dropDownExtra: null,
-            dropDownExtraOptions: [
-                { value: '0', text: 'No extra credits needed' },
-                { value: '5', text: '5' },
-                { value: '10', text: '10' },
-                { value: '15', text: '15' },
-                { value: '20', text: '20' },
-                { value: '25', text: '25' },
-            ],
+            error: null
         }
     },
     methods: {
@@ -114,19 +92,18 @@ export default {
             var recessToggle = document.getElementById("recess").checked;
             var noOfMeals = document.querySelectorAll('input[name=meal]:checked').length;
             if (recessToggle) {
-                this.cost = this.cost + this.costPerMeal * noOfMeals + this.costRecessWeek;
+                this.cost = this.costPerMeal * noOfMeals+ this.costRecessWeek;
             } else {
                 this.cost = this.costPerMeal * noOfMeals;
             }
-        },
-        extraCredits() {
-            this.cost = this.cost + this.dropDownExtraOptions.value * 4.50;
         },
         canSubmit() {
             
             var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
             var recessCheck = document.getElementById('recess').checked;
             var recessNoCheck = document.getElementById('norecess').checked;
+            var veg = document.getElementById('veg').checked;
+            var noVeg = document.getElementById('noVeg').checked;
             var termsAndCond = document.getElementById('agree').checked;
 
             if (mealsSelected <= 9) {
@@ -134,8 +111,8 @@ export default {
     
             } else if (!recessCheck && !recessNoCheck) {
                 this.error = 'Please ensure that you have indicated recess week meal plan'   
-            } else if (this.dropDownSelect == null) {
-                this.error = 'Please indicate if you have any dietary requirement'
+            } else if (!veg && !noVeg) {
+                this.error = 'Please indicate if you need vegetarian dietary requirement'
             } else if (!termsAndCond) {
                 this.error = 'Please ensure that you have read the terms and conditions above'
             } else if (this.error != null) {
@@ -167,7 +144,6 @@ export default {
 
     .checkbox {
         border: 5px solid black;
-        margin: 30px;
         padding: 30px;
     }
 
