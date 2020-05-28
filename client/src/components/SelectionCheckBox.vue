@@ -114,13 +114,14 @@ export default {
             var recessToggle = document.getElementById("recess").checked;
             var noOfMeals = document.querySelectorAll('input[name=meal]:checked').length;
             if (recessToggle) {
-                this.cost = this.cost + this.costPerMeal * noOfMeals + this.costRecessWeek;
+                this.cost = this.costPerMeal * noOfMeals + this.costRecessWeek;
             } else {
                 this.cost = this.costPerMeal * noOfMeals;
             }
         },
         extraCredits() {
-            this.cost = this.cost + this.dropDownExtraOptions.value * 4.50;
+            this.updateCount();
+            this.cost += this.dropDownExtra * 4.50;
         },
         canSubmit() {
             
