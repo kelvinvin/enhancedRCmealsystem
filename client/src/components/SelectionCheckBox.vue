@@ -119,13 +119,10 @@ export default {
                 this.cost = this.costPerMeal * noOfMeals;
             }
         },
-<<<<<<< HEAD
         extraCredits() {
             this.updateCount();
             this.cost += this.dropDownExtra * 4.50;
         },
-=======
->>>>>>> 7126559b105da81ff5b7e9a3075934c4204d82c0
         canSubmit() {
             
             var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
