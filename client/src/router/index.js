@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
-import About from '../views/About.vue'
 import ForgotPassword from '../components/ForgotPassword.vue'
 import SignUp from '../components/SignUp.vue'
 import HomePage from '../components/HomePage.vue'
 import MealSelection from '../views/MealSelection.vue'
+import Feedback from '../components/Feedback.vue'
+import MyMealPlan from '../components/MyMealPlan.vue'
 
 Vue.use(VueRouter)
 
@@ -14,11 +15,6 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Login',
     component: Login
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: About
   },
   {
     path: '/ForgotPassword',
@@ -39,7 +35,17 @@ Vue.use(VueRouter)
     path: '/HomePage',
     name: 'HomePage',
     component: HomePage
-  }
+  },
+  {
+    path: '/Feedback',
+    name: 'Feedback',
+    component: Feedback
+  },
+  {
+    path: '/MyMealPlan',
+    name: 'MyMealPlan',
+    component: MyMealPlan
+  },
 ]
 
 const router = new VueRouter({
