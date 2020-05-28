@@ -54,7 +54,14 @@
                 :options="dropDownOptions">
                 </b-form-select>
             </div>
-
+            <br>
+            <div>
+                <p>Extra Credits:</p>
+                <b-form-select v-model="dropDownExtra" 
+                :options="dropDownExtraOptions" @change="extraCredits">
+                </b-form-select>
+            </div>
+            <br>
 
             <p> Total amount: {{returnCost}} </p>
             
@@ -91,6 +98,15 @@ export default {
                 { value: 'halal', text: 'Halal' },
                 { value: 'vegetarian', text: 'Vegetarian' },
             ],
+            dropDownExtra: null,
+            dropDownExtraOptions: [
+                { value: '0', text: 'No extra credits needed' },
+                { value: '5', text: '5' },
+                { value: '10', text: '10' },
+                { value: '15', text: '15' },
+                { value: '20', text: '20' },
+                { value: '25', text: '25' },
+            ],
         }
     },
     methods: {
@@ -98,10 +114,13 @@ export default {
             var recessToggle = document.getElementById("recess").checked;
             var noOfMeals = document.querySelectorAll('input[name=meal]:checked').length;
             if (recessToggle) {
-                this.cost = this.costPerMeal * noOfMeals+ this.costRecessWeek;
+                this.cost = this.cost + this.costPerMeal * noOfMeals + this.costRecessWeek;
             } else {
                 this.cost = this.costPerMeal * noOfMeals;
             }
+        },
+        extraCredits() {
+            this.cost = this.cost + this.dropDownExtraOptions.value * 4.50;
         },
         canSubmit() {
             
@@ -148,6 +167,7 @@ export default {
 
     .checkbox {
         border: 5px solid black;
+        margin: 30px;
         padding: 30px;
     }
 
