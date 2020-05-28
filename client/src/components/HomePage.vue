@@ -8,14 +8,10 @@
                     <v-calendar is-expanded :attributes='attrs' 
                     @dayclick="menuOnDate"/>
                 </div>
-
                  <div class="mealAttr">
-
                  </div>
             </div>
             <div class="col">
-                <router-link to="/MealSelection">Register Meal Plan</router-link>
-                
             </div>
         </div>
     </div>
