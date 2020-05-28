@@ -10,28 +10,19 @@
                 </div>
 
                  <div class="mealAttr">
-                    <h4>Total Meals: </h4>
-                    <h4>Meals Consumed: </h4>
-                    <h4>Meals Left: </h4>
+
                  </div>
-                <div>
-                 <Feedback />
-                </div>
             </div>
             <div class="col">
                 <router-link to="/MealSelection">Register Meal Plan</router-link>
                 
             </div>
         </div>
-        <!-- <TableMenu class="table" v-if="dayClicked"></TableMenu>    -->
     </div>
 </template>
 
 <script>
-// import TableMenu from './TableMenu.vue'
-
 import MealsService from '@/services/MealsService'
-import Feedback from '../components/Feedback'
 
 export default {
     name: 'HomePage',
@@ -48,7 +39,6 @@ export default {
                 },
             ],
             meals: null,
-            // res: null
             thereIsMeal: false
         };
     },
@@ -76,7 +66,7 @@ export default {
         }
     },
     components: {
-        Feedback
+        
     },
     async mounted() {
         this.meals = (await MealsService.getMeals()).data
