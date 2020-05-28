@@ -1,9 +1,10 @@
 <template>
   <div id="nav">
       <span v-if="$store.state.isUserLoggedIn">
-      <router-link to="Homepage">Home</router-link> |
-      <router-link to="About">About</router-link> |
-      <router-link to="MealSelection">Meal Selection</router-link>
+      <v-btn @click.prevent="home">Home</v-btn> |
+      <v-btn @click.prevent="registerMeal">Register Meal</v-btn> |
+      <v-btn @click.prevent="mealPlan">My Meal Plan</v-btn> |
+      <v-btn @click.prevent="feedback">Feedback</v-btn>
         <v-btn id="logout" @click="logout">
           Log Out
         </v-btn>
@@ -19,7 +20,19 @@ export default {
             this.$store.dispatch('setToken', null)
             this.$store.dispatch('setUser', null)
             this.$router.push('/')
-        }
+        },
+        home() {
+            this.$router.push('/HomePage')
+        },
+        registerMeal() {
+            this.$router.push('/MealSelection')
+        },
+        mealPlan() {
+            this.$router.push('/MyMealPlan')
+        },
+        feedback() {
+            this.$router.push('/Feedback')
+        },
     }
 }
 </script>

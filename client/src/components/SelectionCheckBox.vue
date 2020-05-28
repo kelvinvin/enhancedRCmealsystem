@@ -48,12 +48,12 @@
             <label for="no">No</label>
 
             <br>
-
-            <p>Are you vegetarian?</p>
-            <input type="radio" name="options_veg" id="veg" @click="updateCount"> 
-            <label for="yes">Yes</label>
-            <input type="radio" @change="updateCount" name="options_veg" id="noVeg"> 
-            <label for="no">No</label>
+            <div>
+                <p>Do you have any dietary requirement:</p>
+                <b-form-select v-model="dropDownSelect" 
+                :options="dropDownOptions">
+                </b-form-select>
+            </div>
 
 
             <p> Total amount: {{returnCost}} </p>
@@ -84,7 +84,13 @@ export default {
             cost: 0,
             costPerMeal: 200,
             costRecessWeek: 500,
-            error: null
+            error: null,
+            dropDownSelect: null,
+            dropDownOptions: [
+                { value: 'none', text: 'No Dietary Requirements' },
+                { value: 'halal', text: 'Halal' },
+                { value: 'vegetarian', text: 'Vegetarian' },
+            ],
         }
     },
     methods: {
@@ -102,8 +108,6 @@ export default {
             var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
             var recessCheck = document.getElementById('recess').checked;
             var recessNoCheck = document.getElementById('norecess').checked;
-            var veg = document.getElementById('veg').checked;
-            var noVeg = document.getElementById('noVeg').checked;
             var termsAndCond = document.getElementById('agree').checked;
 
             if (mealsSelected <= 9) {
@@ -111,8 +115,8 @@ export default {
     
             } else if (!recessCheck && !recessNoCheck) {
                 this.error = 'Please ensure that you have indicated recess week meal plan'   
-            } else if (!veg && !noVeg) {
-                this.error = 'Please indicate if you need vegetarian dietary requirement'
+            } else if (this.dropDownSelect == null) {
+                this.error = 'Please indicate if you have any dietary requirement'
             } else if (!termsAndCond) {
                 this.error = 'Please ensure that you have read the terms and conditions above'
             } else if (this.error != null) {
