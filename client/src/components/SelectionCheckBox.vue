@@ -19,23 +19,23 @@
                     <th><p>Sunday</p></th>
                 </tr>
             
-                <tr><td><p><strong>Breakfast</strong></p></td>
-                <td><input type="checkbox" @change="updateCount" name="meal" value="mondayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name="meal" value="tuesdayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name="meal" value="wednesdayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name="meal" value="thursdayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name="meal" value="fridayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name="meal" value="saturdayBreakfast" /></td>
-                <td><input type="checkbox" @change="updateCount" name="meal" value="sundayBreakfast" disabled/></td></tr>
+            <tr><td><p><strong>Breakfast</strong></p></td>
+                <td><input type="checkbox" @change="updateCount" v-model="mondayBreakfast" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="tuesdayBreakfast" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="wednesdayBreakfast" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="thursdayBreakfast" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="fridayBreakfast" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="saturdayBreakfast" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="sundayBreakfast" name="meal" disabled/></td></tr>
 
-                <tr><td><p><strong>Dinner</strong></p></td>
-                    <td><input type="checkbox" @change="updateCount" name="meal" value="mondayDinner" /></td>
-                    <td><input type="checkbox" @change="updateCount" name="meal" value="tuesdayDinner" /></td>
-                    <td><input type="checkbox" @change="updateCount" name="meal" value="wednesdayBreakfast" /></td>
-                    <td><input type="checkbox" @change="updateCount" name="meal" value="thursdayDinner" /></td>
-                    <td><input type="checkbox" @change="updateCount" name="meal" value="fridayDinner" /></td>
-                    <td><input type="checkbox" @change="updateCount" name="meal" value="saturdayDinner" disabled/></td>
-                    <td><input type="checkbox" @change="updateCount" name="meal" value="sundayDinner" /></td></tr>
+            <tr><td><p><strong>Dinner</strong></p></td>
+                <td><input type="checkbox" @change="updateCount" v-model="mondayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="tuesdayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="wednesdayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="thursdayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="fridayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="saturdayDinner" name="meal" disabled/></td>
+                <td><input type="checkbox" @change="updateCount" v-model="sundayDinner" name="meal"></td></tr>
             </table>
 
             Please indicate if you would like to consume during recess week.
@@ -62,8 +62,7 @@
                 </b-form-select>
             </div>
             <br>
-            <p> Total amount: {{returnCost}} </p>
-            
+            <p> Total amount: {{returnCost}} </p>            
         </form>
 
         <MealPlanTnC />
@@ -106,6 +105,20 @@ export default {
                 { value: '20', text: '20' },
                 { value: '25', text: '25' },
             ],
+            mondayBreakfast: false,
+            mondayDinner: false,
+            tuesdayBreakfast: false,
+            tuesdayDinner: false,
+            wednesdayBreakfast: false,
+            wednesdayDinner: false,
+            thursdayBreakfast: false,
+            thursdayDinner: false,
+            fridayBreakfast: false,
+            fridayDinner: false,
+            saturdayBreakfast: false,
+            saturdayDinner: false,
+            sundayBreakfast: false,
+            sundayDinner: false,
         }
     },
     methods: {
@@ -123,15 +136,12 @@ export default {
             this.cost += this.dropDownExtra * 4.50;
         },
         canSubmit() {
-            
             var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
             var recessCheck = document.getElementById('recess').checked;
             var recessNoCheck = document.getElementById('norecess').checked;
             var termsAndCond = document.getElementById('agree').checked;
-
-            if (mealsSelected <= 9) {
-                this.error = 'Please ensure that you have indicated at least 9 meals/ week'
-    
+            if (mealsSelected < 9) {
+                this.error = 'Please ensure that you have indicated at least 9 meals/week'
             } else if (!recessCheck && !recessNoCheck) {
                 this.error = 'Please ensure that you have indicated recess week meal plan'   
             } else if (this.dropDownSelect == null) {

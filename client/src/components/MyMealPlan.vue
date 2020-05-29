@@ -56,6 +56,8 @@
             <div class="col">
             </div>
         </div>
+        You have 10 meal credits left.
+        <!-- link to user in database -->
     </div>
 </template>
 

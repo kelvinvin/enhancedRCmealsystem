@@ -76,11 +76,13 @@
         radioSelected: '',
         dropDownSelect: null,
         dropDownOptions: [
-          { value: 'Malay', text: 'Malay' },
-          { value: 'Indian', text: 'Indian' },
-          { value: 'Asian', text: 'Asian' },
-          { value: 'Western', text: 'Western' },
-          { value: 'Vegetarian', text: 'Vegetarian' },
+          { value: 'malay', text: 'Malay' },
+          { value: 'indian', text: 'Indian' },
+          { value: 'asian', text: 'Asian' },
+          { value: 'western', text: 'Western' },
+          { value: 'vegetarian', text: 'Vegetarian' },
+          { value: 'noodles', text: 'Noodles' },
+          { value: 'mealEnhancement', text: 'Meal Enhancements'}
         ],
         text: '',
         rating: null,
