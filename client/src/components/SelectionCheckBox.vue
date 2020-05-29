@@ -62,7 +62,6 @@
                 </b-form-select>
             </div>
             <br>
-
             <p> Total amount: {{returnCost}} </p>
             
         </form>
@@ -118,6 +117,10 @@ export default {
             } else {
                 this.cost = this.costPerMeal * noOfMeals;
             }
+        },
+        extraCredits() {
+            this.updateCount();
+            this.cost += this.dropDownExtra * 4.50;
         },
         canSubmit() {
             
