@@ -3,7 +3,6 @@
       <span v-if="$store.state.isUserLoggedIn">
       <v-btn @click.prevent="home">Home</v-btn> |
       <v-btn @click.prevent="registerMeal">Register Meal</v-btn> |
-      <v-btn @click.prevent="mealPlan">My Meal Plan</v-btn> |
       <v-btn @click.prevent="feedback">Feedback</v-btn>
         <v-btn id="logout" @click="logout">
           Log Out
@@ -27,12 +26,9 @@ export default {
         registerMeal() {
             this.$router.push('/MealSelection')
         },
-        mealPlan() {
-            this.$router.push('/MyMealPlan')
-        },
         feedback() {
             this.$router.push('/Feedback')
-        },
+        }
     }
 }
 </script>
