@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     })
 
     Feedback.associate = function(models) {
-        Feedback.belongsTo(models.User);
+        Feedback.belongsTo(models.User, { foreignKey: 'id' });
     };
     return Feedback
 }

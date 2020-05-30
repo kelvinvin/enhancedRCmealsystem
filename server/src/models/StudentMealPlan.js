@@ -72,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     })
     StudentMealPlan.associate = function(models) {
-        StudentMealPlan.belongsTo(models.User);
+        StudentMealPlan.belongsTo(models.User, { foreignKey: 'id' });
     };
     return StudentMealPlan
 }

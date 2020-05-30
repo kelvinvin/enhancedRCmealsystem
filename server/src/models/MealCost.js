@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     })
     MealCost.associate = function(models) {
-        MealCost.hasOne(models.IndividualMealPlan);
+        MealCost.hasMany(models.SemesterDays);
     };
     return MealCost
 }
