@@ -52,7 +52,11 @@ export default {
                 })
                 this.$store.dispatch('setToken', response.data.token)
                 this.$store.dispatch('setUser', response.data.user)
-                this.$router.push('/HomePage')
+                if (response.data.role === 'ADMIN') {
+                    this.$router.push('/admin');
+                } else {
+                    this.$router.push('/MealSelection')
+                }
             } catch (error) {
                 this.error = error.response.data.error
             }

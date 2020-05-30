@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import SelectionCheckBox from '../components/SelectionCheckBox'
+import SelectionCheckBox from '../components/student/SelectionCheckBox'
 
 export default {
   name: 'MealSelection',
