@@ -161,6 +161,7 @@ export default {
                 }
             } catch (err) {
                 this.alreadyExists = true;
+                console.log(err);
             }
         },
         updateCheckBox(variable) {

@@ -11,9 +11,7 @@ module.exports = {
             })
         }
     },
-// }
 
-// module.exports = {
     async addMeal (req, res) {
         try {
             const meal = await Meal.create(req.body)
