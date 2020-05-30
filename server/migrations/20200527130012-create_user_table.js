@@ -24,6 +24,10 @@ module.exports = {
         password: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+            isAdmin: {
+            type: Sequelize.INTEGER,
+            allowNull: false
         }
     })
   },

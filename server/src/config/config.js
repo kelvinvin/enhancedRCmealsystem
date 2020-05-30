@@ -1,7 +1,7 @@
 module.exports = {
     port: process.env.PORT || 8081,
     db: {
-        database: process.env.DB_NAME || 'ehms', 
+        database: process.env.DB_NAME || 'ehms2', 
         user: process.env.DB_USER || 'root',
         password: process.env.DB_PASS || '',
         options: {
