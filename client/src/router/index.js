@@ -3,10 +3,10 @@ import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import ForgotPassword from '../components/ForgotPassword.vue'
 import SignUp from '../components/SignUp.vue'
-import HomePage from '../components/HomePage.vue'
+import HomePage from '../components/student/HomePage.vue'
+import AdminHomePage from '../components/admin/AdminHomePage.vue'
 import MealSelection from '../views/MealSelection.vue'
-import Feedback from '../components/Feedback.vue'
-import MyMealPlan from '../components/MyMealPlan.vue'
+import Feedback from '../components/student/Feedback.vue'
 
 Vue.use(VueRouter)
 
@@ -34,7 +34,9 @@ Vue.use(VueRouter)
   {
     path: '/HomePage',
     name: 'HomePage',
-    component: HomePage
+    component: HomePage,
+    meta: {
+      requireAuth: true, adminAuth: false, studentAuth: true }
   },
   {
     path: '/Feedback',
@@ -42,10 +44,11 @@ Vue.use(VueRouter)
     component: Feedback
   },
   {
-    path: '/MyMealPlan',
-    name: 'MyMealPlan',
-    component: MyMealPlan
-  },
+    path: '/admin',
+    name: 'AdminHomePage',
+    component: AdminHomePage,
+      meta: { requireAuth: true, adminAuth: true, studentAuth: false }
+  }
 ]
 
 const router = new VueRouter({

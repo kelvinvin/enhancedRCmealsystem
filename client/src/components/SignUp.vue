@@ -96,7 +96,7 @@
 <script>
 import { ValidationObserver, ValidationProvider, extend } from 'vee-validate';
 import AuthenticationService from '@/services/AuthenticationService';
-import RegisterTnC from './RegisterTnC';
+import RegisterTnC from './student/RegisterTnC';
 
 extend('domain', {
   validate: value => {
@@ -157,7 +157,7 @@ export default {
                     this.$store.dispatch('setToken', response.data.token)
                     this.$store.dispatch('setUser', response.data.user)
                     this.submitted = true;
-                    setTimeout(() => {this.$router.push('/HomePage'); }, 3000)
+                    setTimeout(() => {this.$router.push('/'); }, 3000)
                 }
             } catch (err) {
                 this.alreadyExists = true;
