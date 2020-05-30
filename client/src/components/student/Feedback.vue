@@ -61,7 +61,7 @@
   import 'bootstrap/dist/css/bootstrap.css';
   import datePicker from 'vue-bootstrap-datetimepicker';
   import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
-  import FeedbackService from '../../services/FeedbackService'
+  import FeedbackService from '@/services/FeedbackService'
 
 // Rating Initialization
     
