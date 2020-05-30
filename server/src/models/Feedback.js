@@ -28,5 +28,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER
         }
     })
+
+    Feedback.associate = function(models) {
+        Feedback.belongsTo(models.User);
+    };
     return Feedback
 }

@@ -50,5 +50,11 @@ module.exports = (sequelize, DataTypes) => {
         return bcrypt.compareAsync(password, this.password)
     }
 
+    User.associate = function(models) {
+        User.hasOne(models.StudentMealPlan);
+        User.hasMany(models.Feedback);
+        User.hasOne(models.StudentPayment);
+    };
+
     return User
 }

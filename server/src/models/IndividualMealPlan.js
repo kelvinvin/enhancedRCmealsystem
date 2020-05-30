@@ -31,5 +31,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER
         }
     })
+    IndividualMealPlan.associate = function(models) {
+        IndividualMealPlan.belongsTo(models.MealCost);
+    };
     return IndividualMealPlan
 }

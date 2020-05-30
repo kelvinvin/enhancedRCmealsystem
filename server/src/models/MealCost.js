@@ -8,5 +8,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DOUBLE,
         }
     })
+    MealCost.associate = function(models) {
+        MealCost.hasOne(models.IndividualMealPlan);
+    };
     return MealCost
 }

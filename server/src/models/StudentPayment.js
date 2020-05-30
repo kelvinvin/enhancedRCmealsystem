@@ -16,5 +16,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER
         }
     })
+
+    StudentPayment.associate = function(models) {
+        StudentPayment.belongsTo(models.User);
+    };
     return StudentPayment
 }
