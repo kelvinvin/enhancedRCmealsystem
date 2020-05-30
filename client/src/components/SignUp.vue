@@ -152,7 +152,8 @@ export default {
                         name: this.account.name,
                         email: this.account.email,
                         matric_id: this.account.matric_id,
-                        password: this.account.password
+                        password: this.account.password,
+                        isAdmin: 0
                     });
                     this.$store.dispatch('setToken', response.data.token)
                     this.$store.dispatch('setUser', response.data.user)

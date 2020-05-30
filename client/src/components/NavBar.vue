@@ -3,7 +3,9 @@
       <span v-if="$store.state.isUserLoggedIn">
       <v-btn @click.prevent="home">Home</v-btn> |
       <v-btn @click.prevent="registerMeal">Register Meal</v-btn> |
-      <v-btn @click.prevent="feedback">Feedback</v-btn>
+      <v-btn @click.prevent="feedback">Feedback</v-btn> |
+      <v-btn @click.prevent="adminHomePage">Admin</v-btn> |
+      <v-btn @click.prevent="adminFeedback">Admin Feedback</v-btn> 
         <v-btn id="logout" @click="logout">
           Log Out
         </v-btn>
@@ -28,6 +30,12 @@ export default {
         },
         feedback() {
             this.$router.push('/Feedback')
+        },
+        adminHomePage() {
+            this.$router.push('/admin')
+        },
+        adminFeedback() {
+            this.$router.push('/adminFeedback')
         }
     }
 }

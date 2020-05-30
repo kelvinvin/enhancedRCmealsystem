@@ -1,12 +1,12 @@
 <template>
     <div class="container">
-        This is the admin page.
+        This is the feedback page.
     </div>
 </template>
 
 <script>
 export default {
-    name: 'AdminHomePage',
+    name: 'ViewFeedback',
 }
 </script>
 
