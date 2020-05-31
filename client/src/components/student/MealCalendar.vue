@@ -1,19 +1,7 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-            </div>
-            <div class="col-6">
-                <div>
-                    <v-calendar is-expanded :attributes='attrs' 
-                    @dayclick="menuOnDate"/>
-                </div>
-                 <div class="mealAttr">
-                 </div>
-            </div>
-            <div class="col">
-            </div>
-        </div>
+    <div>
+        <v-calendar is-expanded :attributes='attrs' 
+        @dayclick="menuOnDate"/>
     </div>
 </template>
 
@@ -65,10 +53,5 @@ export default {
 <style>
     .table {
         margin-top: 50px;
-    }
-
-    .mealAttr {
-        margin-top: 10px;
-        padding: 10px;
     }
 </style>
