@@ -15,9 +15,7 @@ module.exports = {
     async submitFeedback (req, res) {
         try {
             const feedback = await Feedback.create(req.body)
-            res.send({
-                feedback
-            })
+            res.send(feedback)
         } catch {
             res.status(400).send({
                 error: 'Feedback cannot be submitted'
