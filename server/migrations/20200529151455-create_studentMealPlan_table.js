@@ -3,76 +3,73 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("StudentMealPlan", {
-      studentMealPlan_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-      },
-      recessWeek: {
-          type: Sequelize.INTEGER,
-          allowNull: false
-      },
-      dietaryRequirement: {
-          type: Sequelize.INTEGER,
-          allowNull: false
-      },
-      breakfastMonday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      breakfastTuesday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      breakfastWednesday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      breakfastThursday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      breakfastFriday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      breakfastSaturday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      dinnerSunday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      dinnerMonday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      dinnerTuesday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      dinnerWednesday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      dinnerThursday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      dinnerFriday: {
-          type: Sequelize.INTEGER,
-          default: false
-      },
-      extraCredit: {
-          type: Sequelize.INTEGER
-      },
-      semesterYear: {
-          type: Sequelize.STRING
-      },
-      id: {
-          type: Sequelize.INTEGER
-      }
+        studentMealPlan_id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        recessWeek: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+        dietaryRequirement: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        breakfastMonday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        breakfastTuesday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        breakfastWednesday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        breakfastThursday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        breakfastFriday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        breakfastSaturday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        dinnerSunday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        dinnerMonday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        dinnerTuesday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        dinnerWednesday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        dinnerThursday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        dinnerFriday: {
+            type: Sequelize.INTEGER,
+            // default: '0'
+        },
+        extraCredit: {
+            type: Sequelize.INTEGER
+        },
+        id: {
+            type: Sequelize.INTEGER
+        }
   })
 },
 

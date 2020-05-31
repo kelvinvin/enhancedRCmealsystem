@@ -97,6 +97,7 @@
     methods: {
         submitFeedback() {
             try {
+                const authUser = this.$store.state.user
                 if (this.radioSelected == '') {
                     this.error = 'Please select Menu time'
                 } else if (this.dropDownSelect == null) {
@@ -110,7 +111,8 @@
                         breakfastOrDinner: this.radioSelected == 'Breakfast' ? '0' : '1',
                         rating: this.rating,
                         cuisineType: this.dropDownSelect,
-                        comment: this.text
+                        comment: this.text,
+                        id: authUser.id
                     })
                 }
             } catch (error) {

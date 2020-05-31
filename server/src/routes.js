@@ -1,6 +1,7 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const MealsController = require('./controllers/MealsController')
 const FeedbackController = require('./controllers/FeedbackController')
+const StudentMealPlanController = require('./controllers/StudentMealPlanController')
 
 module.exports = (app) => {
     app.post('/register', 
@@ -20,4 +21,10 @@ module.exports = (app) => {
 
     app.post('/Feedback',
         FeedbackController.submitFeedback)
+        
+    app.get('/MealSelection',
+        StudentMealPlanController.getStudentMealPlans)
+
+    app.post('/MealSelection',
+        StudentMealPlanController.registerMealPlan)
 }

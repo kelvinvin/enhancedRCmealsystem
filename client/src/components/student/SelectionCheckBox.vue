@@ -30,35 +30,38 @@
 
             <tr><td><p><strong>Dinner</strong></p></td>
                 <td><input type="checkbox" @change="updateCount" v-model="mondayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="tuesdayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="wednesdayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="udateCount" v-model="wednesdayDinner" name="meal"></td>
                 <td><input type="checkbox" @change="updateCount" v-model="thursdayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="fridayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="updateCoupdateCount" v-model="tuesdayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="upnt" v-model="fridayDinner" name="meal"></td>
                 <td><input type="checkbox" @change="updateCount" v-model="saturdayDinner" name="meal" disabled/></td>
                 <td><input type="checkbox" @change="updateCount" v-model="sundayDinner" name="meal"></td></tr>
             </table>
+            
 
             Please indicate if you would like to consume during recess week.
             Note that you have to opt for full-week meals in this category.
             <br>
-            <p>I would like to opt for recess week consumption: </p>
-            <input type="radio" name="options" id="recess" @click="updateCount"> 
-            <label for="yes">Yes</label>
-            <input type="radio" @change="updateCount" name="options" id="norecess"> 
-            <label for="no">No</label>
-
+            <div>
+                <p>I would like to opt for recess week consumption: </p>
+                <b-form-select v-model="recessSelect" 
+                :options="recessOptions">
+                </b-form-select>
+              
+            </div>
             <br>
             <div>
                 <p>Do you have any dietary requirement:</p>
-                <b-form-select v-model="dropDownSelect" 
-                :options="dropDownOptions">
+                <b-form-select v-model="dietaryReqSelect" 
+                :options="dietaryReqOptions">
                 </b-form-select>
+                
             </div>
             <br>
             <div>
                 <p>Extra Credits:</p>
-                <b-form-select v-model="dropDownExtra" 
-                :options="dropDownExtraOptions" @change="extraCredits">
+                <b-form-select v-model="creditSelect" 
+                :options="creditOptions" @change="extraCredits">
                 </b-form-select>
             </div>
             <br>
@@ -69,7 +72,7 @@
         <br>
         <div class="error" v-html="error"/>
         <br>
-        <button type="submit" class="btn btn-primary" form="form1" value="Submit" @click.prevent="canSubmit">
+        <button type="submit" class="btn btn-primary" form="form1" value="Submit" @click.prevent="registerMealPlan">
             Register Meal Plan
         </button>
     </div>
@@ -78,6 +81,7 @@
 
 <script>
 import MealPlanTnC from './MealPlanTnC.vue';
+import StudentMealPlan from '@/services/StudentMealPlanService'
 
 export default {
     name: "SelectionCheckBox",
@@ -90,14 +94,19 @@ export default {
             costPerMeal: 200,
             costRecessWeek: 500,
             error: null,
-            dropDownSelect: null,
-            dropDownOptions: [
+            recessSelect: false,
+            recessOptions: [
+                { value: 'false', text: 'No' },
+                { value: 'true', text: 'Yes' },
+            ],
+            dietaryReqSelect: null,
+            dietaryReqOptions: [
                 { value: 'none', text: 'No Dietary Requirements' },
                 { value: 'halal', text: 'Halal' },
                 { value: 'vegetarian', text: 'Vegetarian' },
             ],
-            dropDownExtra: null,
-            dropDownExtraOptions: [
+            creditSelect: null,
+            creditOptions: [
                 { value: '0', text: 'No extra credits needed' },
                 { value: '5', text: '5' },
                 { value: '10', text: '10' },
@@ -123,9 +132,8 @@ export default {
     },
     methods: {
         updateCount() {
-            var recessToggle = document.getElementById("recess").checked;
             var noOfMeals = document.querySelectorAll('input[name=meal]:checked').length;
-            if (recessToggle) {
+            if (this.recessSelect) {
                 this.cost = this.costPerMeal * noOfMeals + this.costRecessWeek;
             } else {
                 this.cost = this.costPerMeal * noOfMeals;
@@ -133,22 +141,39 @@ export default {
         },
         extraCredits() {
             this.updateCount();
-            this.cost += this.dropDownExtra * 4.50;
+            this.cost += this.creditSelect * 4.50;
         },
-        canSubmit() {
+        registerMealPlan() {
             var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
-            var recessCheck = document.getElementById('recess').checked;
-            var recessNoCheck = document.getElementById('norecess').checked;
             var termsAndCond = document.getElementById('agree').checked;
             if (mealsSelected < 9) {
                 this.error = 'Please ensure that you have indicated at least 9 meals/week'
-            } else if (!recessCheck && !recessNoCheck) {
+            } else if (this.recessSelect == null) {
                 this.error = 'Please ensure that you have indicated recess week meal plan'   
-            } else if (this.dropDownSelect == null) {
+            } else if (this.dietaryReqSelect == null) {
                 this.error = 'Please indicate if you have any dietary requirement'
             } else if (!termsAndCond) {
                 this.error = 'Please ensure that you have read the terms and conditions above'
-            } else if (this.error != null) {
+            } else {
+                const authUser = this.$store.state.user
+                StudentMealPlan.registerMealPlan({
+                    recessWeek: this.recessSelect,
+                    dietaryRequirement: this.dietaryReqSelect,
+                    breakfastMonday: this.mondayBreakfast,
+                    breakfastTuesday: this.tuesdayBreakfast,
+                    breakfastWednesday: this.wednesdayBreakfast,
+                    breakfastThursday: this.thursdayBreakfast,
+                    breakfastFriday: this.fridayBreakfast,
+                    breakfastSaturday: this.saturdayBreakfast,
+                    dinnerSunday: this.sundayDinner,
+                    dinnerMonday: this.mondayDinner,
+                    dinnerTuesday: this.tuesdayDinner,
+                    dinnerWednesday: this.wednesdayDinner,
+                    dinnerThursday: this.thursdayDinner,
+                    dinnerFriday: this.fridayDinner,
+                    extraCredit: this.creditSelect,
+                    id: authUser.id
+                })
                 this.$router.push('/HomePage')
                 alert('Meal Registeration successful')
             }

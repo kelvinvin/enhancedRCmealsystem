@@ -10,62 +10,59 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         dietaryRequirement: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         breakfastMonday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         breakfastTuesday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         breakfastWednesday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         breakfastThursday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         breakfastFriday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         breakfastSaturday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         dinnerSunday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         dinnerMonday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         dinnerTuesday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         dinnerWednesday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         dinnerThursday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         dinnerFriday: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: '0'
         },
         extraCredit: {
             type: DataTypes.INTEGER
-        },
-        semesterYear: {
-            type: DataTypes.STRING
         },
         id: {
             type: DataTypes.INTEGER
