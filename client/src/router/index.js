@@ -9,7 +9,7 @@ import ForgotPassword from '../views/forgotPassword.vue'
 import Register from '../views/register.vue'
 import Homepage from '../views/student/homepage.vue'
 import MealSelection from '../views/student/mealSelection.vue'
-import Feedback from '../views/student/submitFeedback.vue'
+import submitFeedback from '../views/student/submitFeedback.vue'
 
 // <-- Admin views section -->
 import AdminHomepage from '../views/admin/adminHome.vue'
@@ -49,9 +49,9 @@ Vue.use(VueRouter)
       requireAuth: true, adminAuth: false, studentAuth: true }
   },
   {
-    path: '/feedback',
-    name: 'Feedback',
-    component: Feedback,
+    path: '/submitfeedback',
+    name: 'submitFeedback',
+    component: submitFeedback,
     meta: {
       requireAuth: true, adminAuth: false, studentAuth: true }
   },

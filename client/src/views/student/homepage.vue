@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
-    <MealCalendar/>
-    <MyMealPlan/>
-  </div>
+    <div id="app">
+        <div class="container"> 
+            <div class="MealCalendar"><MealCalendar/></div>
+            <div class="MyMealPlan"><MyMealPlan/></div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -18,5 +20,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    .MealCalendar {
+      margin: 20px;
+      padding: 10px;
+    }
 </style>

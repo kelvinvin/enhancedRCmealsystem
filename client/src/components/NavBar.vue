@@ -30,7 +30,7 @@ export default {
             this.$router.push('/MealSelection')
         },
         feedback() {
-            this.$router.push('/Feedback')
+            this.$router.push('/submitFeedback')
         },
         adminHomePage() {
             this.$router.push('/admin')

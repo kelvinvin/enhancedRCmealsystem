@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="container">
     <Feedback/>
   </div>
 </template>
@@ -8,12 +8,16 @@
 import Feedback from '@/components/student/Feedback'
 
 export default {
-  name: 'viewFeedback',
+  name: 'submitFeedback',
   components: {
     Feedback
   }
 }
 </script>
 
-<style>
+<style scoped>
+    .container {
+        margin: auto;
+        max-width: 960px;
+    }
 </style>

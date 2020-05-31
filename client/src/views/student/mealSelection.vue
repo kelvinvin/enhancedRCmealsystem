@@ -1,7 +1,7 @@
 <template>
-  <div id="selection">
-    <SelectionCheckBox />
-  </div>
+    <div class="mealSelectForm">
+        <SelectionCheckBox/>
+    </div>
 </template>
 
 <script>
@@ -15,5 +15,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+    .mealSelectForm {
+        margin: auto;
+        max-width: 960px;
+        border: 5px solid black;
+        padding: 30px;
+    }
 </style>
