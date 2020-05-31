@@ -1,13 +1,18 @@
 const {StudentMealPlan} = require('../models/')
 
 module.exports = {
-    async getStudentMealPlans (req, res) {
+    async getStudentMealPlan (req, res) {
         try {
-            const studentMealPlan = await StudentMealPlan.findAll()
+            const {UserId} = req.body
+            const studentMealPlan = await StudentMealPlan.findAll({
+                where: {
+                    UserId: UserId
+                }
+            })
             res.send(studentMealPlan)
         } catch (err) {
             res.status(500).send({
-                error: 'An error has occured trying to get student meal plans'
+                error: 'An error has occured trying to get student meal plan'
             })
         }
     },

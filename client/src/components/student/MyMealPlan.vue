@@ -54,8 +54,18 @@
 </template>
 
 <script>
+import StudentMealPlanService from '@/services/StudentMealPlanService'
 export default {
-    name: "MyMealPlan"
+    name: "MyMealPlan",
+    data() {
+        return {
+            myMealPlan: null
+        };
+    },
+    async mounted() {
+        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan()).data
+        console.log(this.myMealPlan)
+    }
 }
 </script>
 
