@@ -14,20 +14,14 @@
             <div class="col">
             </div>
         </div>
-        <MyMealPlan></MyMealPlan>
     </div>
 </template>
 
 <script>
 import MealsService from '@/services/MealsService'
-import MyMealPlan from './MyMealPlan'
-
 
 export default {
-    name: 'HomePage',
-    components: {
-        MyMealPlan
-    },
+    name: 'MealCalendar',
     data() {
         return {
             attrs: [
@@ -61,11 +55,6 @@ export default {
                 this.thereIsMeal = false
             }
         },
-        logout() {
-            this.$store.dispatch('setToken', null)
-            this.$store.dispatch('setUser', null)
-            this.$router.push('/')
-        }
     },
     async mounted() {
         this.meals = (await MealsService.getMeals()).data

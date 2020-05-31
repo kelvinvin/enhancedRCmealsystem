@@ -4,12 +4,13 @@
       <v-btn @click.prevent="home">Home</v-btn> |
       <v-btn @click.prevent="registerMeal">Register Meal</v-btn> |
       <v-btn @click.prevent="feedback">Feedback</v-btn> |
+      <!-- <span v-if="$store.state.user.isAdmin"> -->
       <v-btn @click.prevent="adminHomePage">Admin</v-btn> |
-      <v-btn @click.prevent="adminFeedback">Admin Feedback</v-btn> 
-        <v-btn id="logout" @click="logout">
-          Log Out
-        </v-btn>
-        </span>
+      <v-btn @click.prevent="viewFeedback">Admin Feedback</v-btn> |
+      <v-btn @click.prevent="viewPayment">Admin Payment</v-btn>
+      <!-- </span> -->
+        <v-btn id="logout" @click="logout"> Log Out </v-btn>
+      </span>
     <router-view/>
   </div>
 </template>
@@ -23,7 +24,7 @@ export default {
             this.$router.push('/')
         },
         home() {
-            this.$router.push('/HomePage')
+            this.$router.push('/Homepage')
         },
         registerMeal() {
             this.$router.push('/MealSelection')
@@ -34,8 +35,11 @@ export default {
         adminHomePage() {
             this.$router.push('/admin')
         },
-        adminFeedback() {
-            this.$router.push('/adminFeedback')
+        viewFeedback() {
+            this.$router.push('/viewFeedback')
+        },
+        viewPayment() {
+            this.$router.push('/viewPayments')
         }
     }
 }

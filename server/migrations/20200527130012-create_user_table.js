@@ -25,7 +25,7 @@ module.exports = {
             type: Sequelize.STRING,
             allowNull: false
         },
-            isAdmin: {
+        isAdmin: {
             type: Sequelize.INTEGER,
             allowNull: false
         }
