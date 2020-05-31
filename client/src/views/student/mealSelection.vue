@@ -5,16 +5,15 @@
 </template>
 
 <script>
-import SelectionCheckBox from '../components/student/SelectionCheckBox'
+import SelectionCheckBox from '@/components/student/SelectionCheckBox'
 
 export default {
-  name: 'MealSelection',
+  name: 'mealSelection',
   components: {
-    SelectionCheckBox,
+    SelectionCheckBox
   }
 }
 </script>
 
 <style>
-
 </style>
