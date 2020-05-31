@@ -28,10 +28,5 @@ export default new Vuex.Store({
         setUser ({commit}, user) {
             commit('setUser', user)
         }
-    },
-    computed: {
-        getRole() {
-            return this.state.user.data.role;
-        }
     }
 })
