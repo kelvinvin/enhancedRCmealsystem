@@ -17,7 +17,7 @@
             </form>
 
             <div class="SignUp">
-                <router-link to="/SignUp">Sign Up</router-link>
+                <router-link to="/register">Sign Up</router-link>
             </div>
             
             <div class="ForgotPassword">

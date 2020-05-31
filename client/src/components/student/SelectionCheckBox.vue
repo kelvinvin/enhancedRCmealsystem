@@ -172,7 +172,7 @@ export default {
                     dinnerThursday: this.thursdayDinner,
                     dinnerFriday: this.fridayDinner,
                     extraCredit: this.creditSelect,
-                    id: authUser.id
+                    UserId: authUser.id
                 })
                 this.$router.push('/HomePage')
                 alert('Meal Registeration successful')

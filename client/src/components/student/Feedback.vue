@@ -97,7 +97,6 @@ import FeedbackService from '@/services/FeedbackService'
     methods: {
         submitFeedback() {
             try {
-                const authUser = this.$store.state.user
                 if (this.radioSelected == '') {
                     this.error = 'Please select Menu time'
                 } else if (this.dropDownSelect == null) {
@@ -113,7 +112,7 @@ import FeedbackService from '@/services/FeedbackService'
                         rating: this.rating,
                         cuisineType: this.dropDownSelect,
                         comment: this.text,
-                        id: authUser.id
+                        UserId: authUser.id
                     })
                 }
             } catch (error) {
