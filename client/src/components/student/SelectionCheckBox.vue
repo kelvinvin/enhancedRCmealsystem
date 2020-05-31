@@ -30,10 +30,10 @@
 
             <tr><td><p><strong>Dinner</strong></p></td>
                 <td><input type="checkbox" @change="updateCount" v-model="mondayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="udateCount" v-model="wednesdayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="tuesdayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="wednesdayDinner" name="meal"></td>
                 <td><input type="checkbox" @change="updateCount" v-model="thursdayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="updateCoupdateCount" v-model="tuesdayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="upnt" v-model="fridayDinner" name="meal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="fridayDinner" name="meal"></td>
                 <td><input type="checkbox" @change="updateCount" v-model="saturdayDinner" name="meal" disabled/></td>
                 <td><input type="checkbox" @change="updateCount" v-model="sundayDinner" name="meal"></td></tr>
             </table>
