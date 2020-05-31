@@ -4,9 +4,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("Feedback", {
       feedback_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
+          type: Sequelize.INTEGER,
+          autoIncrement: true,
+          primaryKey: true
       },
       date: {
           type: Sequelize.DATEONLY,
@@ -27,9 +27,6 @@ module.exports = {
       comment: {
           type: Sequelize.STRING,
       },
-      id: {
-          type: Sequelize.INTEGER
-      }
   })
 },
 

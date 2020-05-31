@@ -64,12 +64,9 @@ module.exports = (sequelize, DataTypes) => {
         extraCredit: {
             type: DataTypes.INTEGER
         },
-        id: {
-            type: DataTypes.INTEGER
-        }
     })
     StudentMealPlan.associate = function(models) {
-        StudentMealPlan.belongsTo(models.User, { foreignKey: 'id' });
+        StudentMealPlan.belongsTo(models.User);
     };
     return StudentMealPlan
 }

@@ -56,7 +56,7 @@ export default {
                 if (response.data.role === 'ADMIN') {
                     this.$router.push('/admin');
                 } else {
-                    this.$router.push('/MealSelection')
+                    this.$router.push('/HomePage')
                 }
             } catch (error) {
                 this.error = error.response.data.error

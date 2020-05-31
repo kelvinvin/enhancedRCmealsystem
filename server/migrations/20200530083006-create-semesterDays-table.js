@@ -13,9 +13,9 @@ module.exports = {
         totalWeeksWithoutRecWeek: {
             type: Sequelize.INTEGER,
         },
-        breakfastOrDinner: {
-            type: Sequelize.INTEGER,
-        }
+        // breakfastOrDinner: {
+        //     type: Sequelize.INTEGER,
+        // }
     })
   },
 

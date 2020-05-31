@@ -10,12 +10,12 @@ module.exports = (sequelize, DataTypes) => {
         totalWeeksWithoutRecWeek: {
             type: DataTypes.INTEGER,
         },
-        breakfastOrDinner: {
-            type: DataTypes.INTEGER,
-        }
+        // breakfastOrDinner: {
+        //     type: DataTypes.INTEGER,
+        // }
     })
     SemesterDays.associate = function(models) {
-        SemesterDays.belongsTo(models.MealCost, { foreignKey: 'breakfastOrDinner'});
+        SemesterDays.belongsTo(models.MealCost);
         SemesterDays.hasOne(models.StudentPayment);
     };
     return SemesterDays

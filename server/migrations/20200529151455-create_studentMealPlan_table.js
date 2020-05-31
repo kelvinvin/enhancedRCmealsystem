@@ -67,9 +67,6 @@ module.exports = {
         extraCredit: {
             type: Sequelize.INTEGER
         },
-        id: {
-            type: Sequelize.INTEGER
-        }
   })
 },
 

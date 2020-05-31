@@ -24,13 +24,10 @@ module.exports = (sequelize, DataTypes) => {
         comment: {
             type: DataTypes.STRING,
         },
-        id: {
-            type: DataTypes.INTEGER
-        }
     })
 
     Feedback.associate = function(models) {
-        Feedback.belongsTo(models.User, { foreignKey: 'id' });
+        Feedback.belongsTo(models.User);
     };
     return Feedback
 }

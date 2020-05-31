@@ -15,9 +15,6 @@ module.exports = {
           type: Sequelize.INTEGER,
           default: false
       },
-      id: {
-          type: Sequelize.INTEGER
-      }
   })
 },
 
