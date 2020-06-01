@@ -47,7 +47,8 @@
             </tbody>
         </table>
         <h4>
-        You have 10 meal credits left. {{myMealPlan}}
+        You have 10 meal credits left. 
+        <br> <p id="demo"></p>
         </h4>
         <!-- link to user in database -->
     </div>
@@ -64,7 +65,8 @@ export default {
         };
     },
     async mounted() {
-        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan({userID: this.$store.state.user.id})).data 
+        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan({userID: this.$store.state.user.id})).data[0]
+        document.getElementById("demo").innerHTML = this.myMealPlan.dinnerTuesday;
     }
 }
 </script>
@@ -72,4 +74,3 @@ export default {
 <style>
 
 </style>
-

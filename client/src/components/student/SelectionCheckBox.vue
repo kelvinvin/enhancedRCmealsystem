@@ -1,5 +1,5 @@
 <template>
-    <div class="checkbox"> 
+    <div class="checkbox" id="mealForm"> 
         <header><h1>Meal Selection</h1></header>
         <p>Please indicate the days and meals that you require this semester.
             <br>
@@ -82,11 +82,19 @@
 <script>
 import MealPlanTnC from './MealPlanTnC.vue';
 import StudentMealPlan from '@/services/StudentMealPlanService'
+import StudentMealPlanService from '@/services/StudentMealPlanService'
 
 export default {
     name: "SelectionCheckBox",
     components: {
         MealPlanTnC
+    },
+    async mounted() {
+        var registrationExisting = !!(await StudentMealPlanService.getStudentMealPlan({userID: this.$store.state.user.id})).data[0]
+        console.log(registrationExisting)
+        if (registrationExisting) {
+            document.getElementById("mealForm").innerHTML = "You have already registered for this semester's meal plan";
+        }
     },
     data() {
         return {
@@ -174,8 +182,8 @@ export default {
                     extraCredit: this.creditSelect,
                     UserId: authUser.id
                 })
-                this.$router.push('/HomePage')
-                alert('Meal Registeration successful')
+                this.$router.push('/homepage')
+                alert('Meal Registration successful')
             }
         }
     },
@@ -193,8 +201,7 @@ export default {
         padding: 5px;
         margin-top: 10px;
         margin-bottom: 40px;
-        margin-left:-100px;
-        width: 150%;
+        width: 100%;
         align-self:center;
         text-align:center;
     }
