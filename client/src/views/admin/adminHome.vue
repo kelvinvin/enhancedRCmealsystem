@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-        <Cost/>
+        <CostAndDays/>
     </div>
     <div class="uploadMeal">
         <UploadMeal/>
@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import Cost from '@/components/admin/Cost'
+import CostAndDays from '@/components/admin/CostAndDays'
 import UploadMeal from '@/components/admin/UploadMeal'
 
 export default {
   name: 'adminHome',
   components: {
-      Cost,
+      CostAndDays,
       UploadMeal
   },
  
@@ -30,4 +30,5 @@ export default {
     .uploadMeal {
         max-width: 70%;
     }
+
 </style>

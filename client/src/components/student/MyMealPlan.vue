@@ -11,7 +11,7 @@
             <tbody>
                 <tr>
                 <th scope="row">Monday</th>
-                <td><img v-if="breakfastMonday=='1'" src="tick.jpg"></td>
+                <td><img src="tick.jpg"></td>
                 <td>-</td>
                 </tr>
                 <tr>
