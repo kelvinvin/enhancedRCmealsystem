@@ -11,7 +11,7 @@
             <tbody>
                 <tr>
                 <th scope="row">Monday</th>
-                <td><img src="tick.png"></td>
+                <td><img  src="tick.jpg"></td>
                 <td>-</td>
                 </tr>
                 <tr>
@@ -48,6 +48,7 @@
         </table>
         <h4>
         You have {{myMealPlan[0].extraCredit}} meal credits left.
+        {{myMealPlan}}
         </h4>
         <!-- link to user in database -->
     </div>
