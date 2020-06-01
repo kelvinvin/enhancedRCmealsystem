@@ -63,7 +63,8 @@ export default {
         };
     },
     async mounted() {
-        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan()).data
+        const userAuth = this.$store.state.user.id
+        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan(userAuth)).data
         console.log(this.myMealPlan)
     }
 }

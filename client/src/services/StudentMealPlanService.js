@@ -1,8 +1,12 @@
 import Api from '@/services/Api'
 
 export default {
-    getStudentMealPlan() {
-        return Api().get('HomePage')
+    getStudentMealPlan(userAuth) {
+        return Api().get('HomePage', {
+            params: {
+                UserId: userAuth
+            }
+        })
     },
     registerMealPlan(content) {
         return Api().post('MealSelection', content)
