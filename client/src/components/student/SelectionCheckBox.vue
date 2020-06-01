@@ -91,7 +91,6 @@ export default {
     },
     async mounted() {
         var registrationExisting = !!(await StudentMealPlanService.getStudentMealPlan({userID: this.$store.state.user.id})).data[0]
-        console.log(registrationExisting)
         if (registrationExisting) {
             document.getElementById("mealForm").innerHTML = "You have already registered for this semester's meal plan";
         }
