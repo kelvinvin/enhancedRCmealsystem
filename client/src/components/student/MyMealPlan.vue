@@ -11,12 +11,12 @@
             <tbody>
                 <tr>
                 <th scope="row">Monday</th>
-                <td><img  src="tick.jpg"></td>
+                <td><img v-if="breakfastMonday=='1'" src="tick.jpg"></td>
                 <td>-</td>
                 </tr>
                 <tr>
                 <th scope="row">Tuesday</th>
-                <td>-</td>
+                <td v-if="breakfastTuesday=='1'"><img src="tick.jpg"></td>
                 <td>-</td>
                 </tr>
                 <tr>
@@ -62,6 +62,18 @@ export default {
     data() {
         return {
             myMealPlan: null,
+            breakfastMonday: this.myMealPlan[0].breakfastMonday,
+            breakfastTuesday: this.myMealPlan[0].breakfastTuesday,
+            breakfastWednesday: this.myMealPlan[0].breakfastWednesday,
+            breakfastThursday: this.myMealPlan[0].breakfastThursday,
+            breakfastFriday: this.myMealPlan[0].breakfastFriday,
+            breakfastSaturday: this.myMealPlan[0].breakfastSaturday,
+            dinnerSunday: this.myMealPlan[0].dinnerSunday,
+            dinnerMonday: this.myMealPlan[0].dinnerMonday,
+            dinnerTuesday: this.myMealPlan[0].dinnerTuesday,
+            dinnerWednesday: this.myMealPlan[0].dinnerWednesday,
+            dinnerThursday: this.myMealPlan[0].dinnerThursday,
+            dinnerFriday: this.myMealPlan[0].dinnerFriday,
         };
     },
     async mounted() {
