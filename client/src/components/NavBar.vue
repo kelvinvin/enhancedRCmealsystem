@@ -54,22 +54,22 @@ export default {
             this.$router.push('/')
         },
         home() {
-            this.$router.push('/Homepage')
+            this.$router.push('/homepage')
         },
         registerMeal() {
-            this.$router.push('/MealSelection')
+            this.$router.push('/mealselection')
         },
         feedback() {
-            this.$router.push('/submitFeedback')
+            this.$router.push('/submitfeedback')
         },
         adminHomePage() {
             this.$router.push('/admin')
         },
         viewFeedback() {
-            this.$router.push('/viewFeedback')
+            this.$router.push('/viewfeedback')
         },
         viewPayment() {
-            this.$router.push('/viewPayments')
+            this.$router.push('/viewpayments')
         },
     },
     created() {

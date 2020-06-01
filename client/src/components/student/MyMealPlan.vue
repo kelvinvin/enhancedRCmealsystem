@@ -77,7 +77,7 @@ export default {
         };
     },
     async mounted() {
-        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan({userID: this.$store.state.user.id})).data 
+        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan({userID: this.$store.state.user.id})).data[0]
     }
 }
 </script>
@@ -85,4 +85,3 @@ export default {
 <style>
 
 </style>
-
