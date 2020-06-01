@@ -11,7 +11,7 @@
             <tbody>
                 <tr>
                 <th scope="row">Monday</th>
-                <td>-</td>
+                <td><img src="tick.png"></td>
                 <td>-</td>
                 </tr>
                 <tr>
