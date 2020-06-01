@@ -22,10 +22,16 @@
         </div>
             <br>
             <!-- Menu type -->
-        <div>
+        <div v-if="radioSelected=='Breakfast'">
             <p>Select Cuisine type:</p>
             <b-form-select v-model="dropDownSelect" 
-            :options="dropDownOptions">
+            :options="dropDownOptionsBreakfast">
+            </b-form-select>
+        </div>
+        <div v-if="radioSelected=='Dinner'">
+            <p>Select Cuisine type:</p>
+            <b-form-select v-model="dropDownSelect" 
+            :options="dropDownOptionsDinner">
             </b-form-select>
         </div>
             <br>
@@ -76,14 +82,24 @@ import FeedbackService from '@/services/FeedbackService'
         },
         radioSelected: '',
         dropDownSelect: null,
-        dropDownOptions: [
-          { value: 'malay', text: 'Malay' },
-          { value: 'indian', text: 'Indian' },
-          { value: 'asian', text: 'Asian' },
-          { value: 'western', text: 'Western' },
-          { value: 'vegetarian', text: 'Vegetarian' },
-          { value: 'noodles', text: 'Noodles' },
-          { value: 'mealEnhancement', text: 'Meal Enhancements'}
+        dropDownOptionsBreakfast: [
+          { value: 'SELF SERVICE', text: 'SELF SERVICE' },
+          { value: 'WESTERN', text: 'WESTERN' },
+          { value: 'NOODLE', text: 'NOODLE' },
+          { value: 'ASIAN', text: 'ASIAN' },
+          { value: 'ASIAN VEGETARIAN', text: 'ASIAN VEGETARIAN' },
+          { value: 'MALAY', text: 'MALAY' },
+          { value: 'HALAL VEGETARIAN', text: 'HALAL VEGETARIAN'},
+          { value: 'GRAB & GO', text: 'GRAB & GO'}
+        ],
+        dropDownOptionsDinner: [
+          { value: 'SELF SERVICE', text: 'SELF SERVICE' },
+          { value: 'WESTERN', text: 'WESTERN' },
+          { value: 'NOODLE', text: 'NOODLE' },
+          { value: 'ASIAN', text: 'ASIAN' },
+          { value: 'VEGETARIAN', text: 'VEGETARIAN' },
+          { value: 'MALAY', text: 'MALAY' },
+          { value: 'INDIAN', text: 'INDIAN'}
         ],
         text: '',
         rating: null,
