@@ -10,12 +10,14 @@
             <v-btn class="primary" dark @click.prevent="initialize">CLICK TO INITIALIZE OR UPDATE</v-btn>  <div class="updateCostForm" v-if="openInitialize">
             <div>
                 <v-text-field label="Enter breakfast cost to be updated" 
+                v-model="breakfastCost"
                 hide-details="auto"></v-text-field>
                 <p>Current breakfast cost: (fetch here)</p>
                 <v-btn class="ma-2" outlined color="indigo" @click.prevent="updateBreakfastCost">Update</v-btn>
             </div>
             <div>
                 <v-text-field label="Enter dinner cost to be updated" 
+                v-model="dinnerCost"
                 hide-details="auto"></v-text-field>
                 <p>Current dinner cost: (fetch here)</p>
                 <v-btn class="ma-2" outlined color="indigo" @click.prevent="updateDinnerCost">Update</v-btn>
@@ -37,6 +39,8 @@
 </template>
 
 <script>
+import CostService from '@/services/CostService'
+
 export default {
     name: 'CostAndDays',
     data() {
@@ -52,7 +56,17 @@ export default {
             this.openInitialize = true;
         },
         updateBreakfastCost() {
-        }
+            CostService.updateBreakfastCost({
+                breakfastOrDinner: '0',
+                cost: this.breakfastCost
+            })
+        },
+        updateDinnerCost() {
+            CostService.updateDinnerCost({
+                breakfastOrDinner: '1',
+                cost: this.dinnerCost
+            })
+        },
     },
     // Todo: Add methods for updateBreakfast and updateDinner 
 }
