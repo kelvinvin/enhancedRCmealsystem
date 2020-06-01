@@ -3,10 +3,10 @@ const {StudentMealPlan} = require('../models/')
 module.exports = {
     async getStudentMealPlan (req, res) {
         try {
-            const studentMealPlan = await StudentMealPlan.findOne(
+            const studentMealPlan = await StudentMealPlan.findAll(
             {
                 where: {
-                    UserId: req.body
+                    UserId: req.body.userID
                 }
             })
             res.send(studentMealPlan)

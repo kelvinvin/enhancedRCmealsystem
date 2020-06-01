@@ -10,6 +10,7 @@ import Register from '../views/register.vue'
 import Homepage from '../views/student/homepage.vue'
 import MealSelection from '../views/student/mealSelection.vue'
 import submitFeedback from '../views/student/submitFeedback.vue'
+import MealPlans from'../components/MealPlans.vue'
 
 // <-- Admin views section -->
 import AdminHomepage from '../views/admin/adminHome.vue'
@@ -28,6 +29,11 @@ Vue.use(VueRouter)
     path: '/forgotpassword',
     name: 'ForgotPassword',
     component: ForgotPassword
+  },
+  {
+    path: '/MealPlans',
+    name: 'MealPlans',
+    component: MealPlans
   },
   {
     path: '/register',

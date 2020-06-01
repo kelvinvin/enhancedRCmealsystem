@@ -22,7 +22,7 @@ module.exports = (app) => {
     app.post('/Feedback',
         FeedbackController.submitFeedback)
         
-    app.get('/MealSelection',
+    app.post('/MealPlans',
         StudentMealPlanController.getStudentMealPlan)
 
     app.post('/MealSelection',

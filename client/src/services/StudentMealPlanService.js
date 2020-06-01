@@ -2,7 +2,7 @@ import Api from '@/services/Api'
 
 export default {
     getStudentMealPlan(userID) {
-        return Api().get('MealSelection', userID)
+        return Api().post('MealPlans', userID)
     },
     registerMealPlan(content) {
         return Api().post('MealSelection', content)
