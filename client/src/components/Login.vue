@@ -21,7 +21,7 @@
             </div>
             
             <div class="ForgotPassword">
-                <router-link to="/ForgotPassword">Forgot Password</router-link>
+                <router-link to="/forgotpassword">Forgot Password</router-link>
             </div>
         </div>
 
@@ -52,7 +52,6 @@ export default {
                 })
                 this.$store.dispatch('setToken', response.data.token)
                 this.$store.dispatch('setUser', response.data.user)
-                window.localStorage.setItem('role', response.data.role)
                 if (response.data.role === 'ADMIN') {
                     this.$router.push('/admin');
                 } else {

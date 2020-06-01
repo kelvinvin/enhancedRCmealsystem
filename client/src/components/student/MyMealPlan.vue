@@ -47,7 +47,7 @@
             </tbody>
         </table>
         <h4>
-        You have 10 meal credits left.
+        You have 10 meal credits left. {{myMealPlan}}
         </h4>
         <!-- link to user in database -->
     </div>
@@ -55,6 +55,7 @@
 
 <script>
 import StudentMealPlanService from '@/services/StudentMealPlanService'
+
 export default {
     name: "MyMealPlan",
     data() {
@@ -63,9 +64,7 @@ export default {
         };
     },
     async mounted() {
-        const userAuth = this.$store.state.user.id
-        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan(userAuth)).data
-        console.log(this.myMealPlan)
+        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan({UserId: this.$store.state.user.id})).data
     }
 }
 </script>
