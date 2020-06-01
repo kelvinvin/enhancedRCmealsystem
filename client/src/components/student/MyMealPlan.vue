@@ -11,7 +11,7 @@
             <tbody>
                 <tr>
                 <th scope="row">Monday</th>
-                <td>-</td>
+                <td><img src="tick.png"></td>
                 <td>-</td>
                 </tr>
                 <tr>
@@ -47,8 +47,7 @@
             </tbody>
         </table>
         <h4>
-        You have 10 meal credits left. 
-        <br> <p id="demo"></p>
+        You have {{myMealPlan[0].extraCredit}} meal credits left.
         </h4>
         <!-- link to user in database -->
     </div>
@@ -61,12 +60,11 @@ export default {
     name: "MyMealPlan",
     data() {
         return {
-            myMealPlan: null
+            myMealPlan: null,
         };
     },
     async mounted() {
         this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan({userID: this.$store.state.user.id})).data[0]
-        document.getElementById("demo").innerHTML = this.myMealPlan.dinnerTuesday;
     }
 }
 </script>
