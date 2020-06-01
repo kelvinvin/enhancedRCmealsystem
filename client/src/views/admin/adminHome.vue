@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <AdminHomePage/>
   </div>
 </template>
@@ -11,9 +11,11 @@ export default {
   name: 'adminHome',
   components: {
     AdminHomePage
-  }
+  },
+ 
 }
 </script>
 
-<style>
+<style scoped>
+ 
 </style>

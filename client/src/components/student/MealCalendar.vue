@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .table {
         margin-top: 50px;
     }

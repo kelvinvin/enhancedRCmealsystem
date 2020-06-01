@@ -64,7 +64,7 @@ export default {
         };
     },
     async mounted() {
-        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan({UserId: this.$store.state.user.id})).data
+        this.myMealPlan = (await StudentMealPlanService.getStudentMealPlan({userID: this.$store.state.user.id})).data
     }
 }
 </script>
