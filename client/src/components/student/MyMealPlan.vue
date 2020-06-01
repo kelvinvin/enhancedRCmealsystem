@@ -47,7 +47,7 @@
             </tbody>
         </table>
         <h4>
-        You have 10 meal credits left. {{myMealPlan}}
+        You have {{myMealPlan[0].extraCredit}} meal credits left.
         </h4>
         <!-- link to user in database -->
     </div>
@@ -60,7 +60,7 @@ export default {
     name: "MyMealPlan",
     data() {
         return {
-            myMealPlan: null
+            myMealPlan: null,
         };
     },
     async mounted() {
