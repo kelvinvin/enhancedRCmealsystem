@@ -1,21 +1,33 @@
 <template>
-  <div>
-    <AdminHomePage/>
+  <div class="container">
+    <div>
+        <Cost/>
+    </div>
+    <div class="uploadMeal">
+        <UploadMeal/>
+    </div>
   </div>
 </template>
 
 <script>
-import AdminHomePage from '@/components/admin/AdminHomePage'
+import Cost from '@/components/admin/Cost'
+import UploadMeal from '@/components/admin/UploadMeal'
 
 export default {
   name: 'adminHome',
   components: {
-    AdminHomePage
+      Cost,
+      UploadMeal
   },
  
 }
 </script>
 
 <style scoped>
- 
+    .container {
+        margin:auto;
+    }
+    .uploadMeal {
+        max-width: 70%;
+    }
 </style>

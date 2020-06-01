@@ -10,13 +10,18 @@
             <div class="container" id="toolbar">
               <span v-if="$store.state.isUserLoggedIn">
                 <v-toolbar-title>Hi {{userId}}! Welcome to EHMS Portal!</v-toolbar-title>
-                <v-btn class="btn" @click.prevent="home">Home</v-btn> |
-                <v-btn class="btn" @click.prevent="registerMeal">Register Meal</v-btn> |
-                <v-btn class="btn" @click.prevent="feedback">Feedback</v-btn> |
-                <v-btn class="btn" @click.prevent="adminHomePage">Admin</v-btn> |
-                <v-btn class="btn" @click.prevent="viewFeedback">Admin Feedback</v-btn> |
-                <v-btn class="btn" @click.prevent="viewPayment">Admin Payment</v-btn> | 
-                <v-btn class="btn" id="logout" @click="logout"> Log Out </v-btn>
+                <!-- <span v-if="isAdmin=='0'"> -->
+                  <v-btn @click.prevent="home">Home</v-btn> |
+                  <v-btn @click.prevent="registerMeal">Register Meal</v-btn> |
+                  <v-btn @click.prevent="feedback">Feedback</v-btn> |
+                <!-- </span> -->
+                <!-- <span v-if="isAdmin=='1'"> -->
+                <v-btn @click.prevent="adminHomePage">Admin</v-btn> |
+                <v-btn @click.prevent="viewFeedback">Admin Feedback</v-btn> |
+                <v-btn @click.prevent="viewPayment">Admin Payment</v-btn> | 
+                <!-- </span> -->
+              
+                <v-btn id="logout" @click="logout"> Log Out </v-btn>
               </span>
             </div>
         <v-spacer></v-spacer>
@@ -38,7 +43,8 @@
 export default {
     data() {
         return {
-            userId: this.$store.state.user.name
+            userId: null,
+            // isAdmin: null
         }
     },
     methods: {
@@ -64,7 +70,11 @@ export default {
         },
         viewPayment() {
             this.$router.push('/viewPayments')
-        }
+        },
+    },
+    created() {
+        this.userId = this.$store.state.user.name
+    //     this.isAdmin = this.$store.state.user.isAdmin
     }
 }
 </script>
