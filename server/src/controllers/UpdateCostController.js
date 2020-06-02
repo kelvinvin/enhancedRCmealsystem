@@ -11,7 +11,6 @@ module.exports = {
             if (!exist) {
                 const breakfastCost = await MealCost.create({
                     breakfastOrDinner: req.body.breakfastOrDinner,
-                    cost: req.body.cost
                 })
             }
             const breakfastCost = await MealCost.update(

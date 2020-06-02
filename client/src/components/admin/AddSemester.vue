@@ -50,11 +50,9 @@ export default {
     },
     methods: {
         async addSemYear() {
-            console.log(this.semYear)
             try {
             const isValid = await this.$refs.observer.validate();
             if (isValid) {
-                console.log(this.semYear)
                 SemesterYear.addSemester({semesterYear: this.semYear})
             } 
             } catch (err) {
