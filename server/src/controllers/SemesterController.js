@@ -1,4 +1,4 @@
-const {SemesterDays} = require('../models/')
+const {SemesterDays} = require('../models')
 
 module.exports = {
     async addSemester (req, res) {
@@ -20,4 +20,15 @@ module.exports = {
             })
         }
     },
+
+    async getSemesters (req, res) {
+        try {
+            const semesters = await SemesterDays.findAll()
+            res.send(semesters)
+        } catch (err) {
+            res.status(500).send({
+                error: 'Cannot retrieve semester years'
+            })
+        }
+    }
 }

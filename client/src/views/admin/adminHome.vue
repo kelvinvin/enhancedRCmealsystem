@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-        <CostAndDays/>
+        <InitializeSem/>
     </div>
     <div class="uploadMeal">
         <UploadMeal/>
@@ -13,14 +13,14 @@
 </template>
 
 <script>
-import CostAndDays from '@/components/admin/CostAndDays'
+import InitializeSem from '@/components/admin/InitializeSem'
 import UploadMeal from '@/components/admin/UploadMeal'
 // import AddSemester from '@/components/admin/AddSemester'
 
 export default {
   name: 'adminHome',
   components: {
-      CostAndDays,
+      InitializeSem,
       UploadMeal,
       // AddSemester
   },

@@ -31,9 +31,6 @@
         </v-btn>
       </v-toolbar>
     </div>
-  
-    
-    <router-view/>
   </div>
   
   

@@ -1,12 +1,21 @@
 <template>
-    <div class="container">
+    <div class="container">   
         <div class="jumbotron">
-            <h1 class="display-4">Insert semester year here (to be fetched)</h1>
+            <!-- Select Semester drop down -->
+            <p>Select Academic Year:</p>
+            <b-form-select v-model="AcadYear" 
+            :options="AcadYearOptions">
+            </b-form-select>
+
+            <!-- Data fetched from database -->
+            <h1 class="display-4">Academic Year: {{AcadYear}}</h1>
             <p class="lead">Breakfast Cost/ meal: (fetch cost here)</p>
             <p class="lead">Dinner Cost/ meal: (fetch cost here)</p>
             <p class="lead">Total weeks with recess week: (fetch here)</p>
             <p class="lead">Total weeks without recess week: (fetch here)</p>
             <hr class="my-4">
+
+            <!-- Initialize -->
             <v-btn class="primary" id="initializeBtn" dark @click.prevent="initialize">INITIALIZE COST AND WEEKS</v-btn> 
             <br> 
             <v-btn class="primary" id="initializeBtn" dark @click.prevent="semester">INITIALIZE NEW SEMESTER</v-btn>
@@ -44,10 +53,11 @@
 
 <script>
 import CostService from '@/services/CostService'
+import SemesterYear from '@/services/SemesterYear'
 import AddSemester from './AddSemester'
 
 export default {
-    name: 'CostAndDays',
+    name: 'InitializeSem',
     components: {
         AddSemester
     },
@@ -57,7 +67,9 @@ export default {
             dinnerCost: null,
             openInitialize: false,
             semesterYear: false,
-            error: null
+            error: null,
+            AcadYear: null,
+            AcadYearOptions: [],
         }
     },
     methods: {
@@ -80,6 +92,10 @@ export default {
             })
         },
     },
+    async mounted() {
+        this.AcadYearOptions = (await SemesterYear.getSemesters()).data
+            .map(element => element.semesterYear)
+    }
     // Todo: Add methods for updateBreakfast and updateDinner 
 }
 </script>
