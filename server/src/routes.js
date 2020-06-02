@@ -3,6 +3,7 @@ const MealsController = require('./controllers/MealsController')
 const FeedbackController = require('./controllers/FeedbackController')
 const StudentMealPlanController = require('./controllers/StudentMealPlanController')
 const UpdateCostController = require('./controllers/UpdateCostController')
+const AddSemesterController = require('./controllers/AddSemesterController')
 
 module.exports = (app) => {
     app.post('/register', 
@@ -31,4 +32,7 @@ module.exports = (app) => {
 
     app.post('/admin',
         UpdateCostController.updateCost)
+
+    app.post('/admin/addSemester',
+        AddSemesterController.addSemester)
 }

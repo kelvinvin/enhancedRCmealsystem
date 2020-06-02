@@ -44,7 +44,7 @@
                 <b-form-radio v-model="rating" name="rating" value="2">2</b-form-radio>
                 <b-form-radio v-model="rating" name="rating" value="1">1</b-form-radio>
             </b-form-group>
-        </div>            
+        </div>        
             <!-- Feedback box section -->
         <div>
             <b-form-textarea
@@ -103,6 +103,7 @@ import FeedbackService from '@/services/FeedbackService'
         ],
         text: '',
         rating: null,
+        rate: null,
         submitted: false,
         error: null
       }

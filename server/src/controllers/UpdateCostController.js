@@ -23,7 +23,7 @@ module.exports = {
             res.send(breakfastCost)
         } catch (err) {
             res.status(500).send({
-                error: 'An error has occured trying to get student meal plan'
+                error: 'An error has occured trying to update cost of meals'
             })
         }
     },

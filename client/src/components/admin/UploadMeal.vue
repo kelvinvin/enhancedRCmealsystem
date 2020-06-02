@@ -55,7 +55,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import datePicker from 'vue-bootstrap-datetimepicker';
 import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
-import FeedbackService from '@/services/FeedbackService'
 
 // Rating Initialization
     
@@ -98,30 +97,7 @@ import FeedbackService from '@/services/FeedbackService'
       datePicker
     },
     methods: {
-        submitFeedback() {
-            try {
-                if (this.radioSelected == '') {
-                    this.error = 'Please select Menu time'
-                } else if (this.dropDownSelect == null) {
-                    this.error = 'Please select Cuisine Type'
-                } else if (this.rating == null) {
-                    this.error = 'Please indicate your rating preference in your feedback'
-                } else {
-                    this.submitted = true;
-                    const authUser = this.$store.state.user;
-                    FeedbackService.submitFeedback({
-                        date: this.date,
-                        breakfastOrDinner: this.radioSelected == 'Breakfast' ? '0' : '1',
-                        rating: this.rating,
-                        cuisineType: this.dropDownSelect,
-                        comment: this.text,
-                        UserId: authUser.id
-                    })
-                }
-            } catch (error) {
-                this.error = error.response.data.error
-            }
-        }
+   
     },
   }
 </script>
