@@ -7,4 +7,7 @@ export default {
     updateDinnerCost(content) {
         return Api().post('admin', content)
     },
+    getCosts() {
+        return Api().get('admin')
+    }
 }

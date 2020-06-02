@@ -33,6 +33,9 @@ module.exports = (app) => {
     app.post('/admin',
         UpdateCostController.updateCost)
 
+    app.get('/admin',
+        UpdateCostController.getCosts)
+
     app.post('/admin/addSemester',
         SemesterController.addSemester)
     

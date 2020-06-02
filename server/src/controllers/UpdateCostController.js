@@ -26,4 +26,15 @@ module.exports = {
             })
         }
     },
+
+    async getCosts (req, res) {
+        try {
+            const allCosts = await MealCost.findAll()
+            res.send(allCosts)
+        } catch (err) {
+            res.status(500).send({
+                error: 'An error has occurred trying to retrieve costs'
+            })
+        }
+    }
 }

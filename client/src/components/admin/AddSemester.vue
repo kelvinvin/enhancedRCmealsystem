@@ -1,25 +1,26 @@
 <template>
     <div class="container">
         <div>
-        <ValidationObserver ref="observer">
-        <b-form slot-scope="{ validate }" @submit.prevent="validate().then(addSemYear)">
-        <ValidationProvider rules="domain" name="Name">
-            <b-form-group slot-scope="{ valid, errors }" label="Enter Semester Year - Format: YYYY Sem 1/2">
-                <b-form-input
-                type="text"
-                v-model="semYear"
-                :state="errors[0] ? false : (valid ? true : null)"
-                placeholder="eg: 2019 Sem 1">
-                </b-form-input>
-                <b-form-invalid-feedback>
-                {{ errors[0] }}
-                </b-form-invalid-feedback>
-            </b-form-group>
-        </ValidationProvider>
-        <b-button block type="submit" variant="primary" 
-        value="submit">Submit</b-button>
-        </b-form>
-        </ValidationObserver>
+            <ValidationObserver ref="observer">
+            <b-form slot-scope="{ validate }" @submit.prevent="validate().then(addSemYear)">
+            <ValidationProvider rules="domain" name="Name">
+                <b-form-group slot-scope="{ valid, errors }" label="Enter Semester Year - Format: YYYY Sem 1/2">
+                    <b-form-input
+                    type="text"
+                    v-model="semYear"
+                    :state="errors[0] ? false : (valid ? true : null)"
+                    placeholder="eg: 2019 Sem 1">
+                    </b-form-input>
+                    <b-form-invalid-feedback>
+                    {{ errors[0] }}
+                    </b-form-invalid-feedback>
+                </b-form-group>
+            </ValidationProvider>
+            <b-button block type="submit" variant="primary" 
+            value="submit">Submit</b-button>
+            </b-form>
+            </ValidationObserver>
+            
         </div>
     </div>
 </template>
@@ -41,7 +42,7 @@ export default {
     data() {
         return {
             semYear: null,
-            err: null
+            error: null
         }
     },
     components: {
@@ -54,9 +55,11 @@ export default {
             const isValid = await this.$refs.observer.validate();
             if (isValid) {
                 SemesterYear.addSemester({semesterYear: this.semYear})
+                window.location.reload()
             } 
-            } catch (err) {
-                console.log(err)
+            } catch (error) {
+                this.error = 'Unable to add academic year'
+                console.log(this.error)
             }
         }
     }
@@ -64,5 +67,4 @@ export default {
 </script>
 
 <style scoped> 
-
 </style>
