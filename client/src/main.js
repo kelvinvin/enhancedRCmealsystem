@@ -15,7 +15,7 @@ import { sync } from 'vuex-router-sync'
 import datePicker from 'vue-bootstrap-datetimepicker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
-
+import VueTableDynamic from 'vue-table-dynamic'
 
 Vue.config.productionTip = false
 
@@ -33,6 +33,7 @@ Vue.use(VCalendar, {
   // ...other defaults
 })
 Vue.use(datePicker);
+Vue.use(VueTableDynamic)
 
 sync(store, router)
 

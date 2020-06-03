@@ -46,13 +46,7 @@
                 </tr>  
             </tbody>
         </table>
-        <h4>
-        You have {{myMealPlan.extraCredit}} meal credits left.
-        {{myMealPlan.dinnerFriday}}
-        </h4>
-        <button @click.prevent="myFunction">
-            Update
-        </button>
+        <div id="creditsMsg">You have <span id="creditsCount">{{myMealPlan.extraCredit}}</span> meal credits left.</div>
         <!-- link to user in database -->
     </div>
 </template>
@@ -83,5 +77,11 @@ export default {
 </script>
 
 <style>
+    #creditsMsg {
+        font-size: 20px
+    }
 
+    #creditsCount {
+        font-weight: bold
+    }
 </style>

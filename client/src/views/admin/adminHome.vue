@@ -23,8 +23,7 @@ export default {
       InitializeSem,
       UploadMeal,
       // AddSemester
-  },
- 
+  }
 }
 </script>
 
