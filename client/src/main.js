@@ -15,6 +15,7 @@ import { sync } from 'vuex-router-sync'
 import datePicker from 'vue-bootstrap-datetimepicker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
+import vuetify from './plugins/vuetify';
 
 
 Vue.config.productionTip = false
@@ -39,6 +40,7 @@ sync(store, router)
 new Vue({
   router,
   store,
+  vuetify,
   render: h => h(App)
 }).$mount('#app')
 

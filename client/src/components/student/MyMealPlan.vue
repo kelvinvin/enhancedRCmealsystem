@@ -50,9 +50,6 @@
         You have {{myMealPlan.extraCredit}} meal credits left.
         {{myMealPlan.dinnerFriday}}
         </h4>
-        <button @click.prevent="myFunction">
-            Update
-        </button>
         <!-- link to user in database -->
     </div>
 </template>
