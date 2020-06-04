@@ -15,11 +15,10 @@
           <v-btn @click.prevent="feedback">Feedback</v-btn> |
         </span>
         <span v-if="isAdmin == '1'">
-          <v-btn @click.prevent="adminHomePage">Admin</v-btn> |
-          <v-btn @click.prevent="viewFeedback">Admin Feedback</v-btn> |
-          <v-btn @click.prevent="viewPayment">Admin Payment</v-btn> |
+          <v-btn @click.prevent="adminHomePage">Home</v-btn> |
+          <v-btn @click.prevent="viewFeedback">View Feedback</v-btn> |
+          <v-btn @click.prevent="viewPayment">View Payment</v-btn> |
         </span>
-
         <v-btn id="logout" @click="logout"> Log Out </v-btn>
       </span>
     </div>
@@ -31,7 +30,7 @@ export default {
   data() {
     return {
       userId: null,
-      // isAdmin: null
+      isAdmin: null
     };
   },
   methods: {
