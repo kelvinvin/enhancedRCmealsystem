@@ -17,6 +17,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 import vuetify from './plugins/vuetify';
 
+
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue);
@@ -33,7 +34,6 @@ Vue.use(VCalendar, {
   // ...other defaults
 })
 Vue.use(datePicker);
-Vue.use(VueTableDynamic)
 
 sync(store, router)
 

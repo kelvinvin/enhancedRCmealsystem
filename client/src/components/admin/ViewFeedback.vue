@@ -1,37 +1,49 @@
-
-
 <template>
     <div class="container">
-        <div class="base-demo" style="width: 400px">
-            <vue-table-dynamic :params="params"></vue-table-dynamic>
-        </div>
+      <v-data-table
+      :headers="headers"
+      :items="feedbacks"
+      :items-per-page="10"
+      :sort-by="['feedback_id']"
+      :sort-desc="[false]"
+      class="elevation-1"
+      ></v-data-table>
     </div>
 </template>
 
 <script>
 import FeedbackService from '@/services/FeedbackService'
-import VueTableDynamic from 'vue-table-dynamic'
-
+var moment = require('moment');
 export default {
     name: "ViewFeedback",
- data() {
-    return {
-      params: {
-        data: [
-          ['Index', 'Data1', 'Data2', 'Data3'],
-          [1, 'b3ba90', '7c95f7', '9a38aaaaaaaaaaa53'],
-          [2, 'ec0b78', 'ba045d', 'ecf03c'],
-          [3, '63788d', 'a8c325', 'aab418']
+    async mounted() {
+        this.feedbackData = (await FeedbackService.getFeedback()).data
+        for (var i = 0 ; i < this.feedbackData.length; i++) {
+          var feedbackObj = this.feedbackData[i];         
+          feedbackObj.createdAt = moment(feedbackObj.createdAt).format('MM/DD/YYYY');
+          feedbackObj.breakfastOrDinner = feedbackObj.breakfastOrDinner ? "Dinner" : "Breakfast";
+          this.feedbacks.push(feedbackObj);
+        }
+    },
+    data () {
+      return {
+        headers: [
+          {
+            text: 'ID',
+            align: 'start',
+            sortable: false,
+            value: 'feedback_id',
+          },
+          { text: 'Submitted on', value: 'createdAt' },
+          { text: 'Date', value: 'date' },
+          { text: 'Timing', value: 'breakfastOrDinner' },
+          { text: 'Cuisine Type', value: 'cuisineType' },
+          { text: 'Rating', value: 'rating', sortable: false },
+          { text: 'Comment', value: 'comment', sortable: false },
         ],
-        header: 'row',
-        border: true
+        feedbacks: [
+        ],
       }
     }
-  },
-
-    async mounted() {
-        this.params = (await FeedbackService.getFeedback()).data
-    },  
-    components: { VueTableDynamic }
 }
 </script>
