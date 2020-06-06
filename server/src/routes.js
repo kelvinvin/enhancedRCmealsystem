@@ -41,4 +41,7 @@ module.exports = (app) => {
     
     app.get('/admin/addSemester',
         SemesterController.getSemesters)
+
+    app.post('/admin/getWeeks',
+        SemesterController.getWeeks)
 }

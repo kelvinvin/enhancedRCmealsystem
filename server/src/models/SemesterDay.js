@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const SemesterDays = sequelize.define('SemesterDays', {
+    const SemesterDay = sequelize.define('SemesterDay', {
         semesterYear: {
             type: DataTypes.STRING,
             primaryKey: true
@@ -10,13 +10,9 @@ module.exports = (sequelize, DataTypes) => {
         totalWeeksWithoutRecWeek: {
             type: DataTypes.INTEGER,
         },
-        // breakfastOrDinner: {
-        //     type: DataTypes.INTEGER,
-        // }
     })
-    SemesterDays.associate = function(models) {
-        SemesterDays.belongsTo(models.MealCost);
-        SemesterDays.hasOne(models.StudentPayment);
+    SemesterDay.associate = function(models) {
+        SemesterDay.hasOne(models.StudentPayment);
     };
-    return SemesterDays
+    return SemesterDay
 }

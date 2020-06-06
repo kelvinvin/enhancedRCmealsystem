@@ -1,17 +1,19 @@
-const {SemesterDays} = require('../models')
+const {SemesterDay} = require('../models')
 
 module.exports = {
     async addSemester (req, res) {
         try {
-            const exist = await SemesterDays.findOne({
+            const exist = await SemesterDay.findOne({
                 where: {
                     semesterYear: req.body.semesterYear
                 }
             })
             if (!exist) {
-                const post = await SemesterDays.create({
+                const post = await SemesterDay.create({
                     semesterYear: req.body.semesterYear,
-                })
+                    totalWeeksWithRecWeek: req.body.totalWeeksWithRecWeek,
+                    totalWeeksWithoutRecWeek: req.body.totalWeeksWithoutRecWeek
+            })
                 res.send(post)
             }
         } catch (err) {
@@ -23,12 +25,27 @@ module.exports = {
 
     async getSemesters (req, res) {
         try {
-            const semesters = await SemesterDays.findAll()
+            const semesters = await SemesterDay.findAll()
             res.send(semesters)
         } catch (err) {
             res.status(500).send({
                 error: 'Cannot retrieve semester years'
             })
         }
-    }
+    },
+
+    async getWeeks(req, res) {
+        try {
+            const response = await SemesterDay.findOne({
+                where: {
+                    semesterYear: req.body.semesterYear
+                }
+            })
+            res.send(response)
+        } catch (err) {
+            res.status(506).send({
+                error: 'Cannot retrieve rec week'
+            })
+        } 
+    },
 }

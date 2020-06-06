@@ -4,15 +4,15 @@
             <!-- Select Semester drop down -->
             <p>Select Academic Year:</p>
             <b-form-select v-model="AcadYear" 
-            :options="AcadYearOptions">
+            :options="AcadYearOptions" @change="fetchWeeks">
             </b-form-select>
 
             <!-- Data fetched from database -->
-            <h1 class="display-4">Academic Year: {{AcadYear}}</h1>
+            <h1 class="display-4">{{AcadYear}}</h1>
             <p class="lead">Breakfast Cost/ meal: {{fetchedBreakfastCost}}</p>
             <p class="lead">Dinner Cost/ meal: {{fetchedDinnerCost}}</p>
-            <p class="lead">Total weeks with recess week: (fetch here)</p>
-            <p class="lead">Total weeks without recess week: (fetch here)</p>
+            <p class="lead">Total weeks with recess week: {{recWeeks}}</p>
+            <p class="lead">Total weeks without recess week: {{noRecWeeks}}</p>
             <hr class="my-4">
 
             <!-- Initialize -->
@@ -20,8 +20,6 @@
             @click.prevent="initialize=!initialize">INITIALIZE COST</v-btn> 
             <v-btn class="primary" id="initializeBtn" dark 
             @click.prevent="semester=!semester">INITIALIZE NEW SEMESTER</v-btn>
-            <v-btn class="primary" id="initializeBtn" dark 
-            @click.prevent="toggleWeeks=!toggleWeeks">INITIALIZE WEEKS IN SEMESTER</v-btn>
 
             <div class="updateCostForm" v-if="initialize">
                 <div>
@@ -37,23 +35,10 @@
                     <v-btn class="ma-2" outlined color="indigo" @click.prevent="updateDinnerCost">Update</v-btn>
                 </div>
             </div>
-                <div id="semesterID" v-if="semester">
-                    <AddSemester/> 
-                </div>
-                <div v-if="toggleWeeks">
-                    <i>Please ensure that you have already selected the academic year above</i>
-                    <div>
-                        <v-text-field label="Enter total semester weeks including recess week" 
-                        hide-details="auto"></v-text-field>
-                        <v-btn class="ma-2" outlined color="indigo" @click.prevent="RecessTotalWeeks">Update</v-btn>
-                    </div>
-                    <div>
-                        <v-text-field label="Enter total semester weeks excluding recess week" 
-                        hide-details="auto"></v-text-field>
-                        <v-btn class="ma-2" outlined color="indigo" @click.prevent="NoRecessTotalWeeks">Update</v-btn>
-                </div> 
+            <div id="semesterID" v-if="semester">
+                <AddSemester/> 
             </div>
-        </div>
+        </div>        
     </div>
 </template>
 
@@ -73,12 +58,13 @@ export default {
             dinnerCost: null,
             initialize: false,
             semester: false,
-            toggleWeeks: false,
             error: null,
             AcadYear: null,
             AcadYearOptions: [],
             fetchedBreakfastCost: null,
             fetchedDinnerCost: null,
+            recWeeks: null,
+            noRecWeeks: null,
         }
     },
     methods: {
@@ -96,6 +82,11 @@ export default {
             })
             window.location.reload()
         },
+        async fetchWeeks(value) {
+            const weeks = (await SemesterYear.getWeeks({semesterYear: value})).data
+            this.recWeeks = weeks.totalWeeksWithRecWeek
+            this.noRecWeeks = weeks.totalWeeksWithoutRecWeek
+        }
     },
     async mounted() {
         this.AcadYearOptions = (await SemesterYear.getSemesters()).data
@@ -105,7 +96,6 @@ export default {
         this.fetchedBreakfastCost = cost[0]
         this.fetchedDinnerCost = cost[1]
     }
-    // Todo: Add methods for updateBreakfast and updateDinner 
 }
 </script>
 

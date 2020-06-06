@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("SemesterDays", {
+    return queryInterface.createTable("SemesterDay", {
         semesterYear: {
             type: Sequelize.STRING,
             primaryKey: true
@@ -13,13 +13,10 @@ module.exports = {
         totalWeeksWithoutRecWeek: {
             type: Sequelize.INTEGER,
         },
-        // breakfastOrDinner: {
-        //     type: Sequelize.INTEGER,
-        // }
     })
   },
 
   down: (queryInterface, Sequelize) => {
-      return queryInterface.dropTable("SemesterDays")
+      return queryInterface.dropTable("SemesterDay")
   }
 };

@@ -8,4 +8,8 @@ export default {
     getSemesters() {
         return Api().get('admin/addSemester')
     },
+
+    getWeeks(sem) {
+        return Api().post('admin/getWeeks', sem)
+    },
 }

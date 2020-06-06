@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
 
     StudentPayment.associate = function(models) {
         StudentPayment.belongsTo(models.User);
-        StudentPayment.belongsTo(models.SemesterDays);
+        StudentPayment.belongsTo(models.SemesterDay);
     };
     return StudentPayment
 }

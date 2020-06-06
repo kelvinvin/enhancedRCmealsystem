@@ -8,8 +8,5 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DOUBLE,
         }
     })
-    MealCost.associate = function(models) {
-        MealCost.hasMany(models.SemesterDays);
-    };
     return MealCost
 }
