@@ -4,24 +4,21 @@
     app
     src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
   >
-    <div class="container" id="toolbar">
-      <span v-if="$store.state.isUserLoggedIn">
-        <v-app-bar-title
-          >Hi {{ userId }}! Welcome to EHMS Portal!
-        </v-app-bar-title>
-        <span v-if="isAdmin == '0'">
+    <span class="container" v-if="$store.state.isUserLoggedIn"  id="toolbar">
+        <img @click="home()" src="../assets/nusMeals.png" />
+        <v-app-bar-title> Hi {{ userId }}! </v-app-bar-title>
+        <span class="middle" v-if="isAdmin == '0'">
           <v-btn @click.prevent="home">Home</v-btn> |
           <v-btn @click.prevent="registerMeal">Register Meal</v-btn> |
           <v-btn @click.prevent="feedback">Feedback</v-btn> |
         </span>
-        <span v-if="isAdmin == '1'">
+        <span class="middle" v-if="isAdmin == '1'">
           <v-btn @click.prevent="adminHomePage">Home</v-btn> |
           <v-btn @click.prevent="viewFeedback">View Feedback</v-btn> |
           <v-btn @click.prevent="viewPayment">View Payment</v-btn> |
         </span>
         <v-btn id="logout" @click="logout"> Log Out </v-btn>
-      </span>
-    </div>
+    </span>
   </v-app-bar>
 </template>
 
@@ -30,7 +27,7 @@ export default {
   data() {
     return {
       userId: null,
-      isAdmin: null
+      isAdmin: null,
     };
   },
   methods: {
@@ -67,8 +64,9 @@ export default {
 
 <style scoped>
 #toolbar {
-  display: flex;
-  justify-content: center;
+  display: inline-block;
+  margin-left: 0px;
+  margin-right: 0px
 }
 
 #nav {
@@ -82,5 +80,12 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+img {
+    float:left;
+    margin-right:5px;
+    width: 10%;
+    cursor: pointer;
 }
 </style>
