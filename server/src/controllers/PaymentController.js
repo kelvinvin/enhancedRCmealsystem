@@ -6,6 +6,7 @@ module.exports = {
             const payment = await StudentPayment.create({
                 amount: req.body.amount,
                 SemesterDaySemesterYear: req.body.SemesterDaySemesterYear,
+                paymentMade: 0,
                 UserId: req.body.UserId
         })
             res.send(payment)

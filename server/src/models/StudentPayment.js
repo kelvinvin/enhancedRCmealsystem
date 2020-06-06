@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         paymentMade: {
             type: DataTypes.INTEGER,
-            default: false
+            // default: false
         },
     })
 

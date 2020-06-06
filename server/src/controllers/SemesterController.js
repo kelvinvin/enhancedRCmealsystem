@@ -48,4 +48,17 @@ module.exports = {
             })
         } 
     },
+
+    async getCurrentSem(req, res) {
+        try {
+            const response = await SemesterDay.findOne({
+                order: [[ 'createdAt', 'DESC']]
+            })
+            res.send(response)
+        } catch (err) {
+            res.status(507).send({
+                error: 'Cannot retrieve current sem'
+            })
+        } 
+    }
 }

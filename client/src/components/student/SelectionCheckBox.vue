@@ -5,7 +5,7 @@
             <br>
             Note that you have to choose at least 9 meals/ week.
         </p>
-
+        {{recWeek}}
         <form action="#" method="get" id="form1">
             I would like to consume every:
             <table>
@@ -65,7 +65,9 @@
                 </b-form-select>
             </div>
             <br>
-            <p> Total amount: {{returnCost}} </p>            
+            <p>Total amount: </p> 
+            <i>Amount shown in based on 18 weeks semester</i>
+            <p>${{returnCost}}</p>
         </form>
 
         <MealPlanTnC />
@@ -85,6 +87,7 @@ import StudentMealPlan from '@/services/StudentMealPlanService'
 import StudentMealPlanService from '@/services/StudentMealPlanService'
 import PaymentService from '@/services/PaymentService'
 import CostService from '@/services/CostService'
+import SemesterYear from '@/services/SemesterYear'
 
 export default {
     name: "SelectionCheckBox",
@@ -96,11 +99,16 @@ export default {
         if (registrationExisting) {
             document.getElementById("mealForm").innerHTML = "You have already registered for this semester's meal plan";
         }
-
         const cost = (await CostService.getCosts()).data
             .map(element => element.cost)
         this.breakfastCost = cost[0]
         this.dinnerCost = cost[1]
+
+        const res = (await SemesterYear.getCurrentSem()).data
+        this.currentSemester = res.semesterYear
+        this.recWeek = res.totalWeeksWithRecWeek
+        this.noRecWeek = res.totalWeeksWithoutRecWeek
+
     },
     data() {
         return {
@@ -145,6 +153,10 @@ export default {
 
             breakfastCost: null,
             dinnerCost: null,
+
+            currentSemester: null,
+            recWeek: null,
+            noRecWeek: null,
         }
     },
     methods: {
@@ -153,11 +165,11 @@ export default {
             var noOfDinner = document.querySelectorAll('input[name=dinMeal]:checked').length;
 
             if (this.recessSelect) {
-                this.cost = this.breakfastCost * noOfBreakfast * 14
-                + this.dinnerCost * noOfDinner * 14;
+                this.cost = (this.breakfastCost * noOfBreakfast 
+                + this.dinnerCost * noOfDinner) * this.recWeek;
             } else {
-                this.cost = this.breakfastCost * noOfBreakfast * 12
-                + this.dinnerCost * noOfDinner * 12;
+                this.cost = (this.breakfastCost * noOfBreakfast
+                + this.dinnerCost * noOfDinner) * this.noRecWeek;
             }
         },
         extraCredits() {
@@ -165,7 +177,9 @@ export default {
             this.cost += this.creditSelect * this.dinnerCost;
         },
         registerMealPlan() {
-            var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
+            var bfMealsSelected = document.querySelectorAll('input[name=bfMeal]:checked').length;
+            var dinMealsSelected = document.querySelectorAll('input[name=dinMeal]:checked').length;
+            var mealsSelected = bfMealsSelected + dinMealsSelected
             var termsAndCond = document.getElementById('agree').checked;
             if (mealsSelected < 9) {
                 this.error = 'Please ensure that you have indicated at least 9 meals/week'
@@ -195,8 +209,11 @@ export default {
                     extraCredit: this.creditSelect,
                     UserId: authUser.id
                 })
-                PaymentService.registerAmount({
 
+                PaymentService.registerAmount({
+                    amount: this.cost,
+                    SemesterDaySemesterYear: this.currentSemester,
+                    UserId: authUser.id
                 })
 
                 this.$router.push('/homepage')

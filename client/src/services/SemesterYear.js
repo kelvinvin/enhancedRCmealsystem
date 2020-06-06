@@ -12,4 +12,8 @@ export default {
     getWeeks(sem) {
         return Api().post('admin/getWeeks', sem)
     },
+
+    getCurrentSem() {
+        return Api().get('admin/getCurrentSem')
+    }
 }
