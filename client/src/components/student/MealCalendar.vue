@@ -1,8 +1,19 @@
 <template>
-    <div>
-        <v-calendar is-expanded :attributes='attrs' 
-        @dayclick="menuOnDate"/>
-    </div>
+    <v-row justify="space-around">
+        <v-date-picker
+        v-model="picker"
+        :landscape="landscape"
+        :reactive="reactive"
+        :full-width="fullWidth"
+        :show-current="showCurrent"
+        :type="month ? 'month' : 'date'"
+        :multiple="multiple"
+        :readonly="readonly"
+        :disabled="disabled"
+        :events="enableEvents ? functionEvents : null"
+        @click:date="menuOnDate"
+        ></v-date-picker>
+  </v-row>
 </template>
 
 <script>
@@ -12,19 +23,19 @@ export default {
     name: 'MealCalendar',
     data() {
         return {
-            attrs: [
-                {
-                key: 'today',
-                highlight: true,
-                popover: {
-                    label: "Today's date"
-                },
-                dates: new Date(),
-                },
-            ],
             meals: null,
-            thereIsMeal: false
-        };
+            thereIsMeal: false,
+            picker: new Date().toISOString().substr(0, 10),
+            landscape: false,
+            reactive: false,
+            fullWidth: true,
+            showCurrent: true,
+            month: false,
+            multiple: false,
+            readonly: false,
+            disabled: false,
+            enableEvents: false,
+        }
     },
     methods: {
         menuOnDate(event) {
@@ -32,7 +43,7 @@ export default {
             this.thereIsMeal = false
             // check meal database if menu exists
             this.meals.forEach(meal => {
-                if (event.id == meal.date) {
+                if (event == meal.date) {
                     this.thereIsMeal = true
                     return window.open(meal.PDFUrl);
                 }
