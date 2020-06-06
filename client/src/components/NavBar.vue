@@ -4,11 +4,12 @@
     app
     src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
   >
-    <div class="container" id="toolbar">
-      <span v-if="$store.state.isUserLoggedIn">
-        <v-app-bar-title
-          >Hi {{ userId }}! Welcome to EHMS Portal!
-        </v-app-bar-title>
+    <div class="container" v-if="$store.state.isUserLoggedIn"  id="toolbar">
+      <span id="logo">
+        <img src="../assets/nusMeals.png" />
+      </span>
+      <span id="middle">
+        <v-app-bar-title> Hi {{ userId }}! </v-app-bar-title>
         <span v-if="isAdmin == '0'">
           <v-btn @click.prevent="home">Home</v-btn> |
           <v-btn @click.prevent="registerMeal">Register Meal</v-btn> |
@@ -30,7 +31,7 @@ export default {
   data() {
     return {
       userId: null,
-      isAdmin: null
+      isAdmin: null,
     };
   },
   methods: {
@@ -67,8 +68,10 @@ export default {
 
 <style scoped>
 #toolbar {
-  display: flex;
-  justify-content: center;
+  display: contents;
+  /* justify-content: center; */
+  /* margin-left: 0px;
+  margin-right: 0px */
 }
 
 #nav {
@@ -82,5 +85,19 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+#logo{
+  width: 30%
+}
+
+#logo img {
+  width: 40%;
+  /* max-height: 50%; */
+  display: block;
+}
+
+#middle{
+  text-align:center
 }
 </style>
