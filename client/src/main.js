@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import VCalendar from 'v-calendar'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -24,15 +23,6 @@ Vue.use(BootstrapVue);
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.use(Vuetify);
-Vue.use(VCalendar, {
-  // ...some defaults
-  screens: {
-    tablet: '576px',
-    laptop: '992px',
-    desktop: '1200px',
-  },
-  // ...other defaults
-})
 Vue.use(datePicker);
 
 sync(store, router)

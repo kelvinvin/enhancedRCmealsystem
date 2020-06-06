@@ -3,7 +3,7 @@
         <div>
             <ValidationObserver ref="observer">
             <b-form slot-scope="{ validate }" @submit.prevent="validate().then(addSemYear)">
-            <ValidationProvider rules="domain" name="Name">
+            <ValidationProvider rules="semester" name="Name">
                 <b-form-group slot-scope="{ valid, errors }" label="Enter Semester Year - Format: YYYY Sem 1/2">
                     <b-form-input
                     type="text"
@@ -29,7 +29,7 @@
 import SemesterYear from '@/services/SemesterYear'
 import { ValidationObserver, ValidationProvider, extend } from 'vee-validate';
 
-extend('domain', {
+extend('semester', {
   validate: value => {
     var semesterValidation = /^\d{4} Sem (1|2)$/;
     return semesterValidation.test(value);
