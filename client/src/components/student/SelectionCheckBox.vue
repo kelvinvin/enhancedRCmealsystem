@@ -20,22 +20,22 @@
                 </tr>
             
             <tr><td><p><strong>Breakfast</strong></p></td>
-                <td><input type="checkbox" @change="updateCount" v-model="mondayBreakfast" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="tuesdayBreakfast" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="wednesdayBreakfast" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="thursdayBreakfast" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="fridayBreakfast" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="saturdayBreakfast" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="sundayBreakfast" name="meal" disabled/></td></tr>
+                <td><input type="checkbox" @change="updateCount" v-model="mondayBreakfast" name="bfMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="tuesdayBreakfast" name="bfMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="wednesdayBreakfast" name="bfMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="thursdayBreakfast" name="bfMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="fridayBreakfast" name="bfMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="saturdayBreakfast" name="bfMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="sundayBreakfast" name="bfMeal" disabled/></td></tr>
 
             <tr><td><p><strong>Dinner</strong></p></td>
-                <td><input type="checkbox" @change="updateCount" v-model="mondayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="tuesdayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="wednesdayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="thursdayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="fridayDinner" name="meal"></td>
-                <td><input type="checkbox" @change="updateCount" v-model="saturdayDinner" name="meal" disabled/></td>
-                <td><input type="checkbox" @change="updateCount" v-model="sundayDinner" name="meal"></td></tr>
+                <td><input type="checkbox" @change="updateCount" v-model="mondayDinner" name="dinMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="tuesdayDinner" name="dinMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="wednesdayDinner" name="dinMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="thursdayDinner" name="dinMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="fridayDinner" name="dinMeal"></td>
+                <td><input type="checkbox" @change="updateCount" v-model="saturdayDinner" name="dinMeal" disabled/></td>
+                <td><input type="checkbox" @change="updateCount" v-model="sundayDinner" name="dinMeal"></td></tr>
             </table>
             
 
@@ -83,6 +83,8 @@
 import MealPlanTnC from './MealPlanTnC.vue';
 import StudentMealPlan from '@/services/StudentMealPlanService'
 import StudentMealPlanService from '@/services/StudentMealPlanService'
+import PaymentService from '@/services/PaymentService'
+import CostService from '@/services/CostService'
 
 export default {
     name: "SelectionCheckBox",
@@ -94,6 +96,11 @@ export default {
         if (registrationExisting) {
             document.getElementById("mealForm").innerHTML = "You have already registered for this semester's meal plan";
         }
+
+        const cost = (await CostService.getCosts()).data
+            .map(element => element.cost)
+        this.breakfastCost = cost[0]
+        this.dinnerCost = cost[1]
     },
     data() {
         return {
@@ -135,20 +142,27 @@ export default {
             saturdayDinner: false,
             sundayBreakfast: false,
             sundayDinner: false,
+
+            breakfastCost: null,
+            dinnerCost: null,
         }
     },
     methods: {
         updateCount() {
-            var noOfMeals = document.querySelectorAll('input[name=meal]:checked').length;
+            var noOfBreakfast = document.querySelectorAll('input[name=bfMeal]:checked').length;
+            var noOfDinner = document.querySelectorAll('input[name=dinMeal]:checked').length;
+
             if (this.recessSelect) {
-                this.cost = this.costPerMeal * noOfMeals + this.costRecessWeek;
+                this.cost = this.breakfastCost * noOfBreakfast * 14
+                + this.dinnerCost * noOfDinner * 14;
             } else {
-                this.cost = this.costPerMeal * noOfMeals;
+                this.cost = this.breakfastCost * noOfBreakfast * 12
+                + this.dinnerCost * noOfDinner * 12;
             }
         },
         extraCredits() {
             this.updateCount();
-            this.cost += this.creditSelect * 4.50;
+            this.cost += this.creditSelect * this.dinnerCost;
         },
         registerMealPlan() {
             var mealsSelected = document.querySelectorAll('input[name=meal]:checked').length;
@@ -181,6 +195,10 @@ export default {
                     extraCredit: this.creditSelect,
                     UserId: authUser.id
                 })
+                PaymentService.registerAmount({
+
+                })
+
                 this.$router.push('/homepage')
                 alert('Meal Registration successful')
             }
@@ -190,7 +208,7 @@ export default {
         returnCost() {
             return this.cost;
         }
-    }
+    },
 }
 </script>
 

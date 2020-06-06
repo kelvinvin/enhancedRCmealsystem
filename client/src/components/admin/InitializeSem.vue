@@ -17,9 +17,9 @@
 
             <!-- Initialize -->
             <v-btn class="primary" id="initializeBtn" dark 
-            @click.prevent="initialize=!initialize">INITIALIZE COST</v-btn> 
+            @click.prevent="initializeCost">INITIALIZE COST</v-btn> 
             <v-btn class="primary" id="initializeBtn" dark 
-            @click.prevent="semester=!semester">INITIALIZE NEW SEMESTER</v-btn>
+            @click.prevent="initializeSemester">INITIALIZE NEW SEMESTER</v-btn>
 
             <div class="updateCostForm" v-if="initialize">
                 <div>
@@ -68,6 +68,14 @@ export default {
         }
     },
     methods: {
+        initializeCost() {
+            this.semester = false
+            this.initialize = !this.initialize
+        },
+        initializeSemester() {
+            this.initialize = false
+            this.semester = !this.semester
+        },
         updateBreakfastCost() {
             CostService.updateBreakfastCost({
                 breakfastOrDinner: '0',
