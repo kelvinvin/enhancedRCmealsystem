@@ -1,16 +1,79 @@
 <template>
-  <v-simple-table fixed-header height="300px">
+  <v-simple-table fixed-header height="600px">
     <template v-slot:default>
       <thead>
         <tr>
-          <th class="text-left">Meal</th>
-          <th class="text-left">Student(s) Registered</th>
+          <th class="text-center">Breakfast</th>
+          <th class="text-center">Registered</th>
+          <th class="text-center">Dinner</th>
+          <th class="text-center">Registered</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in fetchedData" :key="item.meal">
-          <td>{{ item.meal }}</td>
-          <td>{{ item.count }}</td>
+        <tr>
+          <td>Monday</td>
+          <td> {{ fetchedData.bfMon }} </td>
+          <td>Monday</td>
+          <td> {{ fetchedData.diMon }} </td>
+        </tr>
+        <tr>
+          <td>Tuesday</td>
+          <td> {{ fetchedData.bfTue }} </td>
+          <td>Tuesday</td>
+          <td> {{ fetchedData.diTue }} </td>
+        </tr>
+        <tr>
+          <td>Wednesday</td>
+          <td> {{ fetchedData.bfWed }} </td>
+          <td>Wednesday</td>
+          <td> {{ fetchedData.diWed }} </td>
+        </tr>
+        <tr>
+          <td>Thursday</td>
+          <td> {{ fetchedData.bfThu }} </td>
+          <td>Thursday</td>
+          <td> {{ fetchedData.diThu }} </td>
+        </tr>
+        <tr>
+          <td>Friday</td>
+          <td> {{ fetchedData.bfFri }} </td>
+          <td>Friday</td>
+          <td> {{ fetchedData.diFri }} </td>
+        </tr>
+        <tr>
+          <td>Saturday</td>
+          <td> {{ fetchedData.bfSat }} </td>
+          <td>Sunday</td>
+          <td> {{ fetchedData.diSun }} </td>
+        </tr>
+      </tbody>
+      <br>
+      <thead>
+        <tr>
+          <th class="text-center">Recess Week</th>
+          <th class="text-center">Registered</th>
+          <th class="text-center">Dietary Requirement</th>
+          <th class="text-center">Registered</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>With recess week</td>
+          <td> {{fetchedData.totalRec}} </td>
+          <td>None</td>
+          <td> {{fetchedData.none}} </td>
+        </tr>
+        <tr>
+          <td>Without recess week</td>
+          <td> {{fetchedData.totalNoRec}} </td>
+          <td>Halal</td>
+          <td> {{fetchedData.halal}} </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>Vegetarian</td>
+          <td> {{fetchedData.vegetarian}} </td>
         </tr>
       </tbody>
     </template>
@@ -18,14 +81,18 @@
 </template>
 
 <script>
+import ConsumptionService from '@/services/ConsumptionService'
+
   export default {
     data () {
       return {
-        fetchedData: [
-          
-        ],
+        fetchedData: null,
       }
     },
+    async mounted() {
+      this.fetchedData = (await ConsumptionService.getConsumption()).data
+      console.log(this.fetchedData)
+    }
   }
 </script>
 

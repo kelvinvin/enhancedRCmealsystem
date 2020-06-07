@@ -117,8 +117,8 @@ export default {
             error: null,
             recessSelect: false,
             recessOptions: [
-                { value: 'false', text: 'No' },
-                { value: 'true', text: 'Yes' },
+                { value: '0', text: 'No' },
+                { value: '1', text: 'Yes' },
             ],
             dietaryReqSelect: null,
             dietaryReqOptions: [
@@ -163,7 +163,7 @@ export default {
             var noOfBreakfast = document.querySelectorAll('input[name=bfMeal]:checked').length;
             var noOfDinner = document.querySelectorAll('input[name=dinMeal]:checked').length;
 
-            if (this.recessSelect) {
+            if (this.recessSelect == '1') {
                 this.cost = (this.breakfastCost * noOfBreakfast 
                 + this.dinnerCost * noOfDinner) * this.recWeek;
             } else {
