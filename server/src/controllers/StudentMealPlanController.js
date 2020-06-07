@@ -26,5 +26,5 @@ module.exports = {
                 error: 'An error has occured trying to register meal plan'
             })
         } 
-    }
+    },
 }
