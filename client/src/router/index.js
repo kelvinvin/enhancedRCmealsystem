@@ -11,6 +11,8 @@ import Homepage from '../views/student/homepage.vue'
 import MealSelection from '../views/student/mealSelection.vue'
 import submitFeedback from '../views/student/submitFeedback.vue'
 import MealPlans from'../components/MealPlans.vue'
+import Consumption from'../views/student/consumption.vue'
+
 
 // <-- Admin views section -->
 import AdminHomepage from '../views/admin/adminHome.vue'
@@ -34,6 +36,11 @@ Vue.use(VueRouter)
     path: '/MealPlans',
     name: 'MealPlans',
     component: MealPlans
+  },
+  {
+    path: '/consumption',
+    name: 'Consumption',
+    component: Consumption,
   },
   {
     path: '/register',
@@ -78,7 +85,7 @@ Vue.use(VueRouter)
     name: 'ViewPayments',
     component: ViewPayments,
       meta: { requireAuth: true, adminAuth: true, studentAuth: false }
-  }
+  },
 ]
 
 const router = new VueRouter({

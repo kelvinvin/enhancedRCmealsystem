@@ -5,6 +5,7 @@ const StudentMealPlanController = require('./controllers/StudentMealPlanControll
 const UpdateCostController = require('./controllers/UpdateCostController')
 const SemesterController = require('./controllers/SemesterController')
 const PaymentController = require('./controllers/PaymentController')
+const ConsumptionController = require('./controllers/ConsumptionController')
 
 module.exports = (app) => {
     app.post('/register', 
@@ -30,6 +31,12 @@ module.exports = (app) => {
 
     app.post('/MealSelection',
         StudentMealPlanController.registerMealPlan)
+
+    app.post('/consumption',
+        ConsumptionController.submitConsumption)
+
+    app.get('/consumption',
+        ConsumptionController.getConsumptions)
 
     app.post('/admin',
         UpdateCostController.updateCost)

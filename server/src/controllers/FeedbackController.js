@@ -1,4 +1,4 @@
-const {Feedback, User} = require('../models/')
+const {Feedback} = require('../models/')
 module.exports = {
     async getFeedbacks (req, res) {
         try {

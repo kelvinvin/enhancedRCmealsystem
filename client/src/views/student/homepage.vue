@@ -15,7 +15,7 @@ export default {
   name: 'homepage',
   components: {
     MealCalendar,
-    MyMealPlan
+    MyMealPlan,
   }
 }
 </script>

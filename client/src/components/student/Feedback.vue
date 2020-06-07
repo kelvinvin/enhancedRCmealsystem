@@ -10,32 +10,19 @@
                 <date-picker v-model="date" :config="options"></date-picker>
             </div>
         </div>
-            <br>
-            <!-- Options for bfast/ dinner -->
-        <div>
-            
-            <b-form-group label="Select Menu Time:">
-                <b-form-radio v-model="radioSelected" name="menu-time" value="Breakfast">Breakfast</b-form-radio>
-                <b-form-radio v-model="radioSelected" name="menu-time" value="Dinner">Dinner</b-form-radio>
-            </b-form-group>
-            <div class="mt-3">Selected: <strong>{{ radioSelected }}</strong></div>
-        </div>
-            <br>
-            <!-- Menu type -->
-        <div v-if="radioSelected=='Breakfast'">
-            <p>Select Cuisine type:</p>
-            <b-form-select v-model="dropDownSelect" 
-            :options="dropDownOptionsBreakfast">
-            </b-form-select>
-        </div>
-        <div v-if="radioSelected=='Dinner'">
-            <p>Select Cuisine type:</p>
-            <b-form-select v-model="dropDownSelect" 
-            :options="dropDownOptionsDinner">
-            </b-form-select>
-        </div>
-            <br>
-            <!-- Rating -->
+        <br>
+<!-- Options for bfast/ dinner -->
+        <div><b-form-group label="Select Menu Time:">
+            <b-form-radio v-model="mealTiming" name="menu-time" value="0">Breakfast</b-form-radio>
+            <b-form-radio v-model="mealTiming" name="menu-time" value="1">Dinner</b-form-radio>
+        </b-form-group></div> 
+        <br>
+<!-- Menu type -->
+        <div v-if="mealTiming!=-1">
+        <p>Select Cuisine type:</p>
+        <b-form-select v-model="dropDownSelect" :options="mealTiming ? dropDownOptionsDinner : dropDownOptionsBreakfast">
+        </b-form-select></div><br>
+<!-- Rating -->
         <div>
             <b-form-group label="Rating:">
                 <b-form-radio v-model="rating" name="rating" value="5">5</b-form-radio>
@@ -80,7 +67,7 @@ import FeedbackService from '@/services/FeedbackService'
           format: 'DD/MM/YYYY',
           useCurrent: false,
         },
-        radioSelected: '',
+        mealTiming: -1,
         dropDownSelect: null,
         dropDownOptionsBreakfast: [
           { value: 'SELF SERVICE', text: 'SELF SERVICE' },
@@ -114,7 +101,7 @@ import FeedbackService from '@/services/FeedbackService'
     methods: {
         submitFeedback() {
             try {
-                if (this.radioSelected == '') {
+                if (this.mealTiming == -1) {
                     this.error = 'Please select Menu time'
                 } else if (this.dropDownSelect == null) {
                     this.error = 'Please select Cuisine Type'
@@ -125,7 +112,7 @@ import FeedbackService from '@/services/FeedbackService'
                     const authUser = this.$store.state.user;
                     FeedbackService.submitFeedback({
                         date: this.date,
-                        breakfastOrDinner: this.radioSelected == 'Breakfast' ? '0' : '1',
+                        breakfastOrDinner: this.mealTiming,
                         rating: this.rating,
                         cuisineType: this.dropDownSelect,
                         comment: this.text,

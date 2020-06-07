@@ -14,7 +14,7 @@
     <br />
     <!-- Options for bfast/ dinner -->
     <div>
-      <b-form-group required label="Select Menu Time:">
+      <b-form-group label="Select Menu Time:">
         <b-form-radio v-model="mealTiming" name="menu-time" value="0"
           >Breakfast</b-form-radio
         >

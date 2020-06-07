@@ -11,6 +11,7 @@
           <v-btn @click.prevent="home">Home</v-btn> |
           <v-btn @click.prevent="registerMeal">Register Meal</v-btn> |
           <v-btn @click.prevent="feedback">Feedback</v-btn> |
+          <v-btn @click.prevent="consumption">Consume</v-btn> |
         </span>
         <span class="middle" v-if="isAdmin == '1'">
           <v-btn @click.prevent="adminHomePage">Home</v-btn> |
@@ -53,6 +54,9 @@ export default {
     },
     viewPayment() {
       this.$router.push("/viewpayments");
+    },
+    consumption() {
+      this.$router.push("/consumption");
     },
   },
   created() {
