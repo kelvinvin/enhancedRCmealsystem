@@ -4,7 +4,7 @@ const FeedbackController = require('./controllers/FeedbackController')
 const StudentMealPlanController = require('./controllers/StudentMealPlanController')
 const UpdateCostController = require('./controllers/UpdateCostController')
 const SemesterController = require('./controllers/SemesterController')
-const PaymentController = require('./controllers/PaymentController')
+const PaymentController = require('./controllers/StudentPaymentController')
 const ConsumptionController = require('./controllers/ConsumptionController')
 
 module.exports = (app) => {
@@ -13,6 +13,9 @@ module.exports = (app) => {
 
     app.post('/login',
         AuthenticationController.login)
+
+    app.post('/findMatric',
+        AuthenticationController.findMatric)
 
     app.get('/HomePage',
         MealsController.getMeals)
@@ -59,5 +62,9 @@ module.exports = (app) => {
     app.post('/mealselection/payment',
         PaymentController.registerAmount)
 
+    app.patch('/mealselection/payment',
+        PaymentController.makePayment)
 
+    app.get('/mealselection/payment',
+        PaymentController.getPayment)
 }

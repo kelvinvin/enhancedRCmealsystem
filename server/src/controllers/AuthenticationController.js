@@ -10,6 +10,16 @@ function jwtSignUser (user) {
 }
 
 module.exports = {
+    async findMatric (req, res) {
+        try {
+            const user = await User.findByPk(req.UserId)
+            res.send(user.matricId)
+        } catch {
+            res.status(400).send({
+                error: 'No matricID found'
+            })
+        }
+    },
     async register (req, res) {
         try {
             const user = await User.create(req.body)
@@ -18,7 +28,6 @@ module.exports = {
                 user: userJson,
                 token: jwtSignUser(userJson)
             })
-            // console.log($(userJson))
         } catch {
             res.status(400).send({
                 error: 'This email account is already in use.'

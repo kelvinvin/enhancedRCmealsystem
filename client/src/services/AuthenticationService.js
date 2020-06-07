@@ -6,5 +6,8 @@ export default {
     },
     login (credentials) {
         return Api().post('login', credentials)
+    },
+    findMatric(userId) {
+        return Api().post('/findMatric', userId)
     }
 }

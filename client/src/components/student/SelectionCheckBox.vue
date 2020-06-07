@@ -64,8 +64,7 @@
                 </b-form-select>
             </div>
             <br>
-            <p>Total amount: </p> 
-            <i>Amount shown in based on 18 weeks semester</i>
+            <i>Total cost based on this semester</i>
             <p>${{returnCost}}</p>
         </form>
 
@@ -210,6 +209,7 @@ export default {
                 PaymentService.registerAmount({
                     amount: this.cost,
                     SemesterDaySemesterYear: this.currentSemester,
+                    paymentMade: false,
                     UserId: authUser.id
                 })
 

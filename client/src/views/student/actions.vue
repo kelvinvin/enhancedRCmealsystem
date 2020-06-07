@@ -2,17 +2,20 @@
     <div id="app">
         <div class="container"> 
             <div class="Consumption"><Consumption/></div>
+            <div class="MakePayment"><MakePayment/></div>
         </div>
     </div>
 </template>
 
 <script>
 import Consumption from '@/components/student/Consumption'
+import MakePayment from '@/components/student/MakePayment'
 
 export default {
-  name: 'consumption',
+  name: 'actions',
   components: {
-    Consumption
+    Consumption,
+    MakePayment
   }
 }
 </script>

@@ -11,7 +11,7 @@ import Homepage from '../views/student/homepage.vue'
 import MealSelection from '../views/student/mealSelection.vue'
 import submitFeedback from '../views/student/submitFeedback.vue'
 import MealPlans from'../components/MealPlans.vue'
-import Consumption from'../views/student/consumption.vue'
+import Actions from'../views/student/actions.vue'
 
 
 // <-- Admin views section -->
@@ -39,9 +39,9 @@ Vue.use(VueRouter)
     component: MealPlans
   },
   {
-    path: '/consumption',
-    name: 'Consumption',
-    component: Consumption,
+    path: '/actions',
+    name: 'Actions',
+    component: Actions,
   },
   {
     path: '/register',
