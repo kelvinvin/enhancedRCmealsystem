@@ -6,6 +6,7 @@
       :items-per-page="10"
       :sort-by="['feedback_id']"
       :sort-desc="[false]"
+      multi-sort
       class="elevation-1"
       ></v-data-table>
     </div>

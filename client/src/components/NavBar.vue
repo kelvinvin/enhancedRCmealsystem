@@ -17,6 +17,7 @@
           <v-btn @click.prevent="adminHomePage">Home</v-btn> |
           <v-btn @click.prevent="viewFeedback">View Feedback</v-btn> |
           <v-btn @click.prevent="viewPayment">View Payment</v-btn> |
+          <v-btn @click.prevent="initialize">Initialize</v-btn> |
         </span>
         <v-btn id="logout" @click="logout"> Log Out </v-btn>
     </span>
@@ -57,6 +58,9 @@ export default {
     },
     consumption() {
       this.$router.push("/consumption");
+    },
+    initialize() {
+      this.$router.push("/initialize");
     },
   },
   created() {

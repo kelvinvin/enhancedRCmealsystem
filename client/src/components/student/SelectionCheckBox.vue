@@ -5,7 +5,6 @@
             <br>
             Note that you have to choose at least 9 meals/ week.
         </p>
-        {{recWeek}}
         <form action="#" method="get" id="form1">
             I would like to consume every:
             <table>
@@ -61,7 +60,7 @@
             <div>
                 <p>Extra Credits:</p>
                 <b-form-select v-model="creditSelect" 
-                :options="creditOptions" @change="extraCredits">
+                :options="creditOptions" @change="updateCount">
                 </b-form-select>
             </div>
             <br>
@@ -127,7 +126,7 @@ export default {
                 { value: 'halal', text: 'Halal' },
                 { value: 'vegetarian', text: 'Vegetarian' },
             ],
-            creditSelect: null,
+            creditSelect: 0,
             creditOptions: [
                 { value: '0', text: 'No extra credits needed' },
                 { value: '5', text: '5' },
@@ -171,10 +170,8 @@ export default {
                 this.cost = (this.breakfastCost * noOfBreakfast
                 + this.dinnerCost * noOfDinner) * this.noRecWeek;
             }
-        },
-        extraCredits() {
-            this.updateCount();
-            this.cost += this.creditSelect * this.dinnerCost;
+
+            this.cost += this.creditSelect * this.dinnerCost
         },
         registerMealPlan() {
             var bfMealsSelected = document.querySelectorAll('input[name=bfMeal]:checked').length;

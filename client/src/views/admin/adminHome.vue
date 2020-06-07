@@ -1,28 +1,23 @@
 <template>
   <div class="container">
     <div>
-        <InitializeSem/>
+        <WeeklyConsumption/>
     </div>
     <div class="uploadMeal">
         <UploadMeal/>
     </div>
-    <!-- <div>
-        <AddSemester/>
-    </div> -->
   </div>
 </template>
 
 <script>
-import InitializeSem from '@/components/admin/InitializeSem'
+import WeeklyConsumption from '@/components/admin/WeeklyConsumption'
 import UploadMeal from '@/components/admin/UploadMeal'
-// import AddSemester from '@/components/admin/AddSemester'
 
 export default {
   name: 'adminHome',
   components: {
-      InitializeSem,
+      WeeklyConsumption,
       UploadMeal,
-      // AddSemester
   }
 }
 </script>
@@ -30,9 +25,6 @@ export default {
 <style scoped>
     .container {
         margin:auto;
-    }
-    .uploadMeal {
-        max-width: 70%;
     }
 
 </style>

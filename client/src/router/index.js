@@ -18,6 +18,7 @@ import Consumption from'../views/student/consumption.vue'
 import AdminHomepage from '../views/admin/adminHome.vue'
 import ViewFeedback from '../views/admin/viewFeedback.vue'
 import ViewPayments from '../views/admin/viewPayments.vue'
+import Initialize from '../views/admin/initialize.vue'
 
 Vue.use(VueRouter)
 
@@ -84,6 +85,12 @@ Vue.use(VueRouter)
     path: '/viewpayments',
     name: 'ViewPayments',
     component: ViewPayments,
+      meta: { requireAuth: true, adminAuth: true, studentAuth: false }
+  },
+  {
+    path: '/initialize',
+    name: 'Initialize',
+    component: Initialize,
       meta: { requireAuth: true, adminAuth: true, studentAuth: false }
   },
 ]
