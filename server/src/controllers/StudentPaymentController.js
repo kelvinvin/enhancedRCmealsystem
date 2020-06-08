@@ -1,4 +1,5 @@
 const { StudentPayment } = require('../models')
+const {User} = require('../models/')
 
 module.exports = {
     async registerAmount (req, res) {
@@ -31,7 +32,11 @@ module.exports = {
     async getPayment (req, res) {
         try {
             const payment = await StudentPayment.findAll({
-                // include: User
+                include: [{
+                    model: User,
+                    attributes: ['matric_id'],
+                    required: true
+                }]
             });
             res.send(payment)
         } catch (err) {

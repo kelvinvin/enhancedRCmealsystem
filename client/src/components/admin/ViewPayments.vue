@@ -9,24 +9,16 @@
       class="elevation-1"
       ></v-data-table>
       <br>
-      {{ payments }}
     </div>
 </template>
 
 <script>
 import PaymentService from '@/services/PaymentService'
-// var moment = require('moment');
 
 export default {
     name: "ViewPayments",
     async mounted() {
         this.payments = (await PaymentService.getPayment()).data
-        // for (var i = 0 ; i < this.paymentData.length; i++) {
-        //   var paymentObj = this.paymentData[i];         
-        //   paymentObj.createdAt = moment(paymentObj.createdAt).format('MM/DD/YYYY');
-        //   paymentObj.breakfastOrDinner = paymentObj.breakfastOrDinner ? "Dinner" : "Breakfast";
-        //   this.payments.push(paymentObj);
-        // }
     },
     data () {
       return {
@@ -40,7 +32,7 @@ export default {
           { text: 'Paid on', value: 'createdAt' },
           { text: 'Amount', value: 'amount' },
           { text: 'Paid?', value: 'paymentMade' },
-          { text: 'User_id', value: 'UserId'}
+          { text: 'MatricID', value: 'User.matric_id'}
         ],
         payments: [
         ],

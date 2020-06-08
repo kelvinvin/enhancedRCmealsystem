@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         breakfastOrDinner: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            get() {
+                const rawValue = this.getDataValue(breakfastOrDinner);
+                return rawValue ? 5 : 3;
+              }
         },
         rating: {
             type: DataTypes.INTEGER,
