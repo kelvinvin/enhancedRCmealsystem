@@ -18,10 +18,18 @@
         </b-form-group></div> 
         <br>
 <!-- Menu type -->
-        <div v-if="mealTiming!=-1">
-        <p>Select Cuisine type:</p>
-        <b-form-select v-model="dropDownSelect" :options="mealTiming ? dropDownOptionsDinner : dropDownOptionsBreakfast">
-        </b-form-select></div><br>
+        <div v-if="mealTiming==0">
+            <p>Select Cuisine type:</p>
+            <b-form-select v-model="dropDownSelect" 
+            :options="dropDownOptionsBreakfast">
+            </b-form-select>
+        </div>
+        <div v-if="mealTiming==1">
+            <p>Select Cuisine type:</p>
+            <b-form-select v-model="dropDownSelect" 
+            :options="dropDownOptionsDinner">
+            </b-form-select>
+        </div>
 <!-- Rating -->
         <div>
             <b-form-group label="Rating:">
@@ -67,7 +75,7 @@ import FeedbackService from '@/services/FeedbackService'
           format: 'DD/MM/YYYY',
           useCurrent: false,
         },
-        mealTiming: -1,
+        mealTiming: 0,
         dropDownSelect: null,
         dropDownOptionsBreakfast: [
           { value: 'SELF SERVICE', text: 'SELF SERVICE' },

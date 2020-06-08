@@ -25,16 +25,19 @@
     </div>
     <br/>
     <!-- Menu type -->
-    <div v-if="mealTiming!=-1">
-      <p>Select Cuisine type:</p>
-      <b-form-select
-        v-model="dropDownSelect"
-        :options="
-          mealTiming ? dropDownOptionsDinner : dropDownOptionsBreakfast
-        "
-      >
-      </b-form-select>
-    </div>
+ <!-- Menu type -->
+        <div v-if="mealTiming==0">
+            <p>Select Cuisine type:</p>
+            <b-form-select v-model="dropDownSelect" 
+            :options="dropDownOptionsBreakfast">
+            </b-form-select>
+        </div>
+        <div v-if="mealTiming==1">
+            <p>Select Cuisine type:</p>
+            <b-form-select v-model="dropDownSelect" 
+            :options="dropDownOptionsDinner">
+            </b-form-select>
+        </div>
     <br />
     <div class="mealComponents">
       <!-- Meal components section -->
