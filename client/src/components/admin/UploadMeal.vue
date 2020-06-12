@@ -61,6 +61,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import datePicker from "vue-bootstrap-datetimepicker";
 import "pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css";
 import MealsService from '@/services/MealsService';
+var moment = require('moment');
 
 // Rating Initialization
 
@@ -125,7 +126,7 @@ export default {
     async addMeal() {
       try {
           const req = {
-            date: this.date,
+            date: moment(this.date).format('YYYY-MM-DD'),
             mealComp1: this.mealComp1,
             mealComp2: this.mealComp2,
             mealComp3: this.mealComp3,

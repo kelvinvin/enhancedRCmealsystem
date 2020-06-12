@@ -10,7 +10,6 @@ import Register from '../views/register.vue'
 import Homepage from '../views/student/homepage.vue'
 import MyMealPlan from '../views/student/myMealPlan.vue'
 import submitFeedback from '../views/student/submitFeedback.vue'
-import MealPlans from'../components/MealPlans.vue'
 import Actions from'../views/student/actions.vue'
 
 
@@ -32,11 +31,6 @@ Vue.use(VueRouter)
     path: '/forgotpassword',
     name: 'ForgotPassword',
     component: ForgotPassword
-  },
-  {
-    path: '/MealPlans',
-    name: 'MealPlans',
-    component: MealPlans
   },
   {
     path: '/actions',

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         date: {
             type: DataTypes.DATEONLY,
-            allowNull: false
+            allowNull: false,
         },
         mealComp1: {
             type: DataTypes.STRING
