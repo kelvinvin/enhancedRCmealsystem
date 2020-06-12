@@ -1,16 +1,19 @@
 <template>
     <div class="mealSelectForm">
-        <SelectionCheckBox/>
+        <div class="SelectionCheckBox"><SelectionCheckBox/></div>
+        <div class="MyMealPlan"><MyMealPlan/></div>
     </div>
 </template>
 
 <script>
 import SelectionCheckBox from '@/components/student/SelectionCheckBox'
+import MyMealPlan from '@/components/student/MyMealPlan'
 
 export default {
-  name: 'mealSelection',
+  name: 'myMealPlan',
   components: {
-    SelectionCheckBox
+    SelectionCheckBox,
+    MyMealPlan
   }
 }
 </script>

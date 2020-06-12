@@ -8,7 +8,7 @@ import Login from '../views/login.vue'
 import ForgotPassword from '../views/forgotPassword.vue'
 import Register from '../views/register.vue'
 import Homepage from '../views/student/homepage.vue'
-import MealSelection from '../views/student/mealSelection.vue'
+import MyMealPlan from '../views/student/myMealPlan.vue'
 import submitFeedback from '../views/student/submitFeedback.vue'
 import MealPlans from'../components/MealPlans.vue'
 import Actions from'../views/student/actions.vue'
@@ -49,9 +49,9 @@ Vue.use(VueRouter)
     component: Register
   },
   {
-    path: '/mealselection',
-    name: 'MealSelection',
-    component: MealSelection,
+    path: '/myMealPlan',
+    name: 'MyMealPlan',
+    component: MyMealPlan,
     meta: {
       requireAuth: true, adminAuth: false, studentAuth: true }
   },

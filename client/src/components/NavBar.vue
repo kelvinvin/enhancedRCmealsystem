@@ -9,7 +9,7 @@
         <v-app-bar-title> Hi {{ userId }}! </v-app-bar-title>
         <span class="middle" v-if="isAdmin == '0'">
           <v-btn @click.prevent="home">Home</v-btn> |
-          <v-btn @click.prevent="registerMeal">Register Meal</v-btn> |
+          <v-btn @click.prevent="myMealPlan">My Meal Plan</v-btn> |
           <v-btn @click.prevent="feedback">Feedback</v-btn> |
           <v-btn @click.prevent="actions">Actions</v-btn> |
         </span>
@@ -41,8 +41,8 @@ export default {
     home() {
       this.$router.push("/homepage");
     },
-    registerMeal() {
-      this.$router.push("/mealselection");
+    myMealPlan() {
+      this.$router.push("/myMealPlan");
     },
     feedback() {
       this.$router.push("/submitfeedback");

@@ -1,5 +1,6 @@
 <template>
     <v-row justify="space-around">
+        <h2> Click on a date to open its respective menu </h2>
         <v-date-picker
         v-model="picker"
         :landscape="landscape"
