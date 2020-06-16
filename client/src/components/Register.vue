@@ -158,7 +158,7 @@ export default {
                     this.$store.dispatch('setToken', response.data.token)
                     this.$store.dispatch('setUser', response.data.user)
                     this.submitted = true;
-                    setTimeout(() => {this.$router.push('/'); }, 3000)
+                    setTimeout(() => {this.$router.push('/homepage'); }, 3000)
                 }
             } catch (err) {
                 this.alreadyExists = true;

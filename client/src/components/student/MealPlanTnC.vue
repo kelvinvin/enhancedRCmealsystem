@@ -1,6 +1,21 @@
 <template>
-    <div class="box overflow-auto">
-                        Meal Plan Options
+    <div>
+    <input type="checkbox" name="tncCheckBox" value="check" id="agree"> I have read and agree to the
+    <v-dialog v-model="dialog" width="900px">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+        text
+        v-bind="attrs"
+        v-on="on"
+        >
+          Terms and Conditions
+        </v-btn>
+      </template>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Terms and Conditions</span>
+        </v-card-title>
+        <v-card-text> Meal Plan Options
             Food Services offers four residential meal plans
             (Signature, Gold, Silver, and Bronze) and one commuter
             meal plan. The Bronze plan is available only to campus
@@ -138,16 +153,24 @@
             business days, you are liable for up to $500 of
             unauthorized transactions.
             The total amount of your liability is not to exceed $500.
-                <br>
-    
-                <input type="checkbox" name="tncCheckBox" value="check" id="agree"> I have read and agree to the Terms and Conditions
-                
+          </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="dialog = false">OK</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
         </div>
 </template>
 
 <script>
 export default {
-    name: 'RegisterTnC'
+    name: 'RegisterTnC',
+    data() {
+        return {
+            dialog: false,
+        }
+    }
 }
 </script>
 
