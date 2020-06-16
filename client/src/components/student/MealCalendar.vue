@@ -19,10 +19,22 @@
     </v-row>
     <v-row>
       <v-container class="grey lighten-5">
-        <div v-show="breakfastsFound.length == 0 && dinnersFound.length== 0" class="message"> No meals found </div>
-        <div v-show="breakfastsFound.length != 0" class="message">Breakfast</div>
+        <div
+          v-show="breakfastsFound.length == 0 && dinnersFound.length == 0"
+          class="message"
+        >
+          No meals found
+        </div>
+        <div v-show="breakfastsFound.length != 0" class="message">
+          Breakfast
+        </div>
         <v-row v-show="breakfastsFound.length != 0" no-gutters>
-          <v-col v-for="meal in breakfastsFound" :key="meal" cols="12" sm="2">
+          <v-col
+            v-for="meal in breakfastsFound"
+            :key="meal.Meal_Id"
+            cols="12"
+            sm="2"
+          >
             <v-card
               color="yellow lighten-2"
               id="header"
@@ -43,7 +55,12 @@
 
         <div v-show="dinnersFound.length != 0" class="message">Dinner</div>
         <v-row v-show="dinnersFound.length != 0" no-gutters>
-          <v-col v-for="meal in dinnersFound" :key="meal" cols="12" sm="2">
+          <v-col
+            v-for="meal in dinnersFound"
+            :key="meal.Meal_Id"
+            cols="12"
+            sm="2"
+          >
             <v-card
               color="blue lighten-2"
               id="header"
@@ -110,7 +127,7 @@ export default {
             this.dinnersFound.push(meal);
           } else {
             console.log(
-              "Error, meal " + meal.Meal_id + "is neither dinner nor breakfast"
+              "Error, meal " + meal.Meal_id + " is neither dinner nor breakfast"
             );
           }
         }

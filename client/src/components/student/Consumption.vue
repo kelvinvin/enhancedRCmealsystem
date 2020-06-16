@@ -1,33 +1,40 @@
 <template>
   <div class="container">
-<!-- Success message -->
+    <!-- Success message -->
     <div v-if="submitted" class="alert alert-success">
       <strong>Success!</strong> Your consumption has been successfully recorded!
     </div>
-    <br>
-<!-- Options for bfast/ dinner -->
-    <div><b-form-group label="Select Menu Time:">
-        <b-form-radio v-model="mealTiming" name="menu-time" value="0">Breakfast</b-form-radio>
-        <b-form-radio v-model="mealTiming" name="menu-time" value="1">Dinner</b-form-radio>
-    </b-form-group></div> 
-    <br>
-<!-- Menu type -->
-        <div v-if="mealTiming==0">
-            <p>Select Cuisine type:</p>
-            <b-form-select v-model="dropDownSelect" 
-            :options="dropDownOptionsBreakfast">
-            </b-form-select>
-        </div>
-        <div v-if="mealTiming==1">
-            <p>Select Cuisine type:</p>
-            <b-form-select v-model="dropDownSelect" 
-            :options="dropDownOptionsDinner">
-            </b-form-select>
-        </div>
-<!-- Error -->
-    <div class="error" v-html="error"/>
-    <br>
-<!-- Submit button -->
+    <br />
+    <!-- Options for bfast/ dinner -->
+    <div>
+      <b-form-group label="Select Menu Time:">
+        <b-form-radio v-model="mealTiming" name="menu-time" value="0"
+          >Breakfast</b-form-radio
+        >
+        <b-form-radio v-model="mealTiming" name="menu-time" value="1"
+          >Dinner</b-form-radio
+        >
+      </b-form-group>
+    </div>
+    <br />
+    <!-- Menu type -->
+    <div v-if="mealTiming == 0">
+      <p>Select Cuisine type:</p>
+      <b-form-select
+        v-model="dropDownSelect"
+        :options="dropDownOptionsBreakfast"
+      >
+      </b-form-select>
+    </div>
+    <div v-if="mealTiming == 1">
+      <p>Select Cuisine type:</p>
+      <b-form-select v-model="dropDownSelect" :options="dropDownOptionsDinner">
+      </b-form-select>
+    </div>
+    <!-- Error -->
+    <div class="error" v-html="error" />
+    <br />
+    <!-- Submit button -->
     <b-button @click.prevent="submitConsumption">Tap in!</b-button>
   </div>
 </template>
