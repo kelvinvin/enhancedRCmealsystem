@@ -24,7 +24,7 @@
         <v-row v-show="breakfastsFound.length != 0" no-gutters>
           <v-col v-for="meal in breakfastsFound" :key="meal" cols="12" sm="2">
             <v-card
-              color=
+              color="yellow lighten-2"
               id="header"
               class="pa-2"
               outlined
