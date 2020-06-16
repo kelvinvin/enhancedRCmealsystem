@@ -61,7 +61,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import datePicker from "vue-bootstrap-datetimepicker";
 import "pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css";
 import MealsService from '@/services/MealsService';
-var moment = require('moment');
 
 // Rating Initialization
 
@@ -85,7 +84,7 @@ export default {
     return {
       date: new Date(),
       options: {
-        format: "DD/MM/YYYY",
+        format: "MM/DD/YYYY",
         useCurrent: false,
       },
       mealTiming: -1,
@@ -126,7 +125,7 @@ export default {
     async addMeal() {
       try {
           const req = {
-            date: moment(this.date).format('YYYY-MM-DD'),
+            date: this.date,
             mealComp1: this.mealComp1,
             mealComp2: this.mealComp2,
             mealComp3: this.mealComp3,
@@ -138,9 +137,9 @@ export default {
           console.log(req);
           await MealsService.addMeal(req);
           this.submitted = true;
-          setTimeout(() => {
-            location.reload();
-          }, 3000);
+          // setTimeout(() => {
+          //   location.reload();
+          // }, 3000);
       } catch (err) {
         this.alreadyExists = true;
         console.log(err);
