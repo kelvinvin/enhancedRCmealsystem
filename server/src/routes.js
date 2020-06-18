@@ -32,6 +32,9 @@ module.exports = (app) => {
     app.post('/MealPlans',
         StudentMealPlanController.getStudentMealPlan)
 
+    app.get('/MealPlans',
+        StudentMealPlanController.getRegistered)
+
     app.post('/MealSelection',
         StudentMealPlanController.registerMealPlan)
 
@@ -39,7 +42,7 @@ module.exports = (app) => {
         ConsumptionController.submitConsumption)
 
     app.get('/consumption',
-        ConsumptionController.getConsumptions)
+        ConsumptionController.getConsumption)
 
     app.post('/admin',
         UpdateCostController.updateCost)
