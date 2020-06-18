@@ -1,55 +1,54 @@
 <template>
   <div class="container">
-    <v-carousel height="975px" width="1600px" hide-delimiters :show-arrow="false" cycle>
+    <v-carousel height="800px" width="1200px" hide-delimiters :show-arrow="false" cycle>
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
         :src="item.src"
         reverse-transition="fade-transition"
         transition="fade-transition"
-      ></v-carousel-item>
+      >
+        <v-jumbotron>
+          <v-form>
+            <v-container fill-height style="width: 400px">
+              <v-layout align-center>
+                <v-flex text-xs-center>
+                  <v-text-field
+                    filled
+                    solo
+                    label="Email"
+                    type="text"
+                    class="username"
+                    v-model="email"
+                  ></v-text-field>
+                  <v-text-field
+                    solo
+                    filled
+                    label="Password"
+                    class="password"
+                    v-model="password"
+                    :append-icon="showPass ? 'visibility' : 'visibility_off'"
+                    :type="showPass ? 'text' : 'password'"
+                    @click:append="showPass = !showPass"
+                  ></v-text-field>
+                  <v-btn color="primary" large @click.prevent="login">Login</v-btn>
+                  <div class="SignUp">
+                    <v-btn small @click.prevent="signUp">Sign Up</v-btn>
+                  </div>
+                  <v-alert v-if="!!error" type="error">You have entered invalid login information</v-alert>
+
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-form>
+        </v-jumbotron>
+      </v-carousel-item>
     </v-carousel>
-    <div class="words">
-      <h1>National University of</h1>
-      <h1>Singapore</h1>
-
-      <h3>Sign in with your organizational account</h3>
-
-      <form>
-        <input
-          type="text"
-          class="username"
-          v-model="email"
-          placeholder="Enter your NUS email here..."
-        />
-        <input
-          type="password"
-          class="password"
-          v-model="password"
-          placeholder="Enter your password here..."
-        />
-        <v-btn color="primary" large @click.prevent="login">
-          Login
-        </v-btn>
-        <div class="errorMsg" v-if="!!error">
-          You have entered invalid login information.
-        </div>
-      </form>
-
-      <div class="SignUp">
-        <router-link to="/register">Sign Up</router-link>
-      </div>
-
-      <div class="ForgotPassword">
-        <router-link to="/forgotpassword">Forgot Password</router-link>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
 import AuthenticationService from "@/services/AuthenticationService";
-// import background1 from "@/assets/background1.jpg"
 
 export default {
   name: "Login",
@@ -58,28 +57,34 @@ export default {
       email: "",
       password: "",
       error: null,
+      showPass: false,
+      gradient: "to top right, rgba(63,81,181, .7), rgba(25,32,72, .7)",
       items: [
         {
-          src: require("@/assets/background1.jpg"),
+          src: require("@/assets/background1.jpg")
         },
         {
-          src: require("@/assets/background2.jpg"),
+          src: require("@/assets/background2.jpg")
         },
         {
-          src: require("@/assets/background3.jpg"),
+          src: require("@/assets/background3.jpg")
         },
         {
-          src: require("@/assets/background4.jpg"),
-        },
-      ],
+          src: require("@/assets/background4.jpg")
+        }
+      ]
     };
   },
   methods: {
+    signUp() {
+      return this.$router.push('/register')
+    },
+    
     async login() {
       try {
         const response = await AuthenticationService.login({
           email: this.email,
-          password: this.password,
+          password: this.password
         });
         this.$store.dispatch("setToken", response.data.token);
         this.$store.dispatch("setUser", response.data.user);
@@ -91,57 +96,12 @@ export default {
       } catch (error) {
         this.error = error.response.data.error;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-.words {
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: right;
-  float: right;
-  width: 30%;
-}
-
-.words h1 {
-  font-size: 30px;
-}
-
-.words h3 {
-  font-size: 20px;
-}
-
-input[type="text"],
-select {
-  width: 100%;
-  border: 5px solid black;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: 4px;
-  box-sizing: border-box;
-}
-
-input[type="password"],
-select {
-  width: 100%;
-  border: 5px solid black;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: 4px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-}
-
-.picture img {
-  float: left;
-  margin-left: 5px 5px 5px 30px;
-  width: 65%;
-  height: 30%px;
-}
-
 .SignUp {
   margin: 20px 0;
 }
@@ -152,5 +112,6 @@ select {
 
 .errorMsg {
   color: red;
+  background-color: white;
 }
 </style>
