@@ -15,7 +15,7 @@ export default {
   name: 'actions',
   components: {
     Consumption,
-    MakePayment
+    MakePayment,
   }
 }
 </script>

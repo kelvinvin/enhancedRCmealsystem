@@ -15,11 +15,14 @@ import datePicker from 'vue-bootstrap-datetimepicker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 import vuetify from './plugins/vuetify';
+import VueApexCharts from 'vue-apexcharts'
 
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue);
+Vue.use(VueApexCharts)
+Vue.component('apexchart', VueApexCharts)
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.use(Vuetify);

@@ -1,30 +1,34 @@
 <template>
   <div class="container">
     <div>
-        <WeeklyConsumption/>
+      <WeeklyConsumption />
     </div>
     <div class="uploadMeal">
-        <UploadMeal/>
+      <UploadMeal />
+    </div>
+    <div class="consumptionLine">
+      <ConsumptionLine />
     </div>
   </div>
 </template>
 
 <script>
-import WeeklyConsumption from '@/components/admin/WeeklyConsumption'
-import UploadMeal from '@/components/admin/UploadMeal'
+import WeeklyConsumption from "@/components/admin/WeeklyConsumption";
+import UploadMeal from "@/components/admin/UploadMeal";
+import ConsumptionLine from "@/components/graphics/linechart";
 
 export default {
-  name: 'adminHome',
+  name: "adminHome",
   components: {
-      WeeklyConsumption,
-      UploadMeal,
-  }
-}
+    WeeklyConsumption,
+    UploadMeal,
+    ConsumptionLine
+  },
+};
 </script>
 
 <style scoped>
-    .container {
-        margin:auto;
-    }
-
+.container {
+  margin: auto;
+}
 </style>

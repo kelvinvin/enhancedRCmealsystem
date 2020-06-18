@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import ConsumptionService from '@/services/ConsumptionService'
+import StudentMealPlanService from '@/services/StudentMealPlanService'
 
   export default {
     data () {
@@ -90,7 +90,7 @@ import ConsumptionService from '@/services/ConsumptionService'
       }
     },
     async mounted() {
-      this.fetchedData = (await ConsumptionService.getConsumption()).data
+      this.fetchedData = (await StudentMealPlanService.getRegistered()).data
       console.log(this.fetchedData)
     }
   }

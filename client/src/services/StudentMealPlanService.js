@@ -6,5 +6,8 @@ export default {
     },
     registerMealPlan(content) {
         return Api().post('MealSelection', content)
-    }
+    },
+    getRegistered() {
+        return Api().get('MealPlans')
+    },
 }
