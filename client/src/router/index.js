@@ -26,6 +26,8 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Login',
     component: Login,
+    meta: {
+    requireAuth: false }
   },
   {
     path: '/forgotpassword',
@@ -35,7 +37,9 @@ Vue.use(VueRouter)
   {
     path: '/actions',
     name: 'Actions',
-    component: Actions,
+    component: Actions,    
+    meta: {
+      requireAuth: true, adminAuth: false, studentAuth: true }
   },
   {
     path: '/register',
@@ -114,8 +118,16 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
-  } else {
-    next()
+  } else if (!to.meta.requireAuth) {
+    if (!store.state.isUserLoggedIn) {
+      next()
+    } else {
+      if (authUser.isAdmin == 1) {
+        next({name:'AdminHomepage'})
+      } else {
+        next({name:'Homepage'})
+      }
+    }
   }
 });
 

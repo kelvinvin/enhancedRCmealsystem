@@ -123,5 +123,4 @@ export default {
     #semesterID {
         margin-top: 50px;
     }
-
 </style>
