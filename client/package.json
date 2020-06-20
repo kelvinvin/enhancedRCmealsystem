@@ -9,6 +9,7 @@
     "start": "./node_modules/nodemon/bin/nodemon.js src/app.js --exec 'npm run lint && node"
   },
   "dependencies": {
+    "@mdi/js": "^5.3.45",
     "apexcharts": "^3.19.2",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",

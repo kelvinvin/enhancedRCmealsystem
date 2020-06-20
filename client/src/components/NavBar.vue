@@ -1,27 +1,18 @@
 <template>
-  <v-app-bar
-    dark
-    app
-    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-  >
-    <span class="container" v-if="$store.state.isUserLoggedIn"  id="toolbar">
+  <div>
+    <v-app-bar
+      dark
+      app
+      fixed
+      height="48px"
+      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+    >
+      <div class="container" v-if="$store.state.isUserLoggedIn" id="toolbar">
         <img @click="home()" src="../assets/nusMeals.png" />
-        <v-app-bar-title> Hi {{ userId }}! </v-app-bar-title>
-        <span class="middle" v-if="isAdmin == '0'">
-          <v-btn @click.prevent="home">Home</v-btn> |
-          <v-btn @click.prevent="myMealPlan">My Meal Plan</v-btn> |
-          <v-btn @click.prevent="feedback">Feedback</v-btn> |
-          <v-btn @click.prevent="actions">Actions</v-btn> |
-        </span>
-        <span class="middle" v-if="isAdmin == '1'">
-          <v-btn @click.prevent="adminHomePage">Home</v-btn> |
-          <v-btn @click.prevent="viewFeedback">View Feedback</v-btn> |
-          <v-btn @click.prevent="viewPayment">View Payment</v-btn> |
-          <v-btn @click.prevent="initialize">Initialize</v-btn> |
-        </span>
-        <v-btn id="logout" @click="logout"> Log Out </v-btn>
-    </span>
-  </v-app-bar>
+        <v-app-bar-title>Hi {{ userId }}!</v-app-bar-title>
+      </div>
+    </v-app-bar>
+  </div>
 </template>
 
 <script>
@@ -29,44 +20,11 @@ export default {
   data() {
     return {
       userId: null,
-      isAdmin: null,
     };
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch("setToken", null);
-      this.$store.dispatch("setUser", null);
-      this.$router.push("/");
-    },
-    home() {
-      this.$router.push("/homepage");
-    },
-    myMealPlan() {
-      this.$router.push("/myMealPlan");
-    },
-    feedback() {
-      this.$router.push("/submitfeedback");
-    },
-    adminHomePage() {
-      this.$router.push("/admin");
-    },
-    viewFeedback() {
-      this.$router.push("/viewfeedback");
-    },
-    viewPayment() {
-      this.$router.push("/viewpayments");
-    },
-    actions() {
-      this.$router.push("/actions");
-    },
-    initialize() {
-      this.$router.push("/initialize");
-    },
   },
   created() {
     this.userId = this.$store.state.user.name;
-    this.isAdmin = this.$store.state.user.isAdmin;
-  },
+  }
 };
 </script>
 
@@ -74,26 +32,13 @@ export default {
 #toolbar {
   display: inline-block;
   margin-left: 0px;
-  margin-right: 0px
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  margin-right: 0px;
 }
 
 img {
-    float:left;
-    margin-right:5px;
-    width: 10%;
-    cursor: pointer;
+  float: left;
+  margin-right: 5px;
+  width: 10%;
+  cursor: pointer;
 }
 </style>

@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <Register/>
+    <Register />
   </div>
 </template>
 
 <script>
-import Register from '@/components/Register'
+import Register from "@/components/Register";
 
 export default {
-  name: 'register',
+  name: "register",
   components: {
     Register
   }
-}
+};
 </script>
 
 <style scoped>

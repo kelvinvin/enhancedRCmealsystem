@@ -1,7 +1,8 @@
 <template>
-  <v-app>
-    <div v-if="$store.state.isUserLoggedIn">
-      <NavBar />
+  <v-app id="main" :style="{background: $vuetify.theme.themes.light.background}">
+    <div>
+      <NavBar v-if="$store.state.isUserLoggedIn"/>
+      <SideBar v-if="$store.state.isUserLoggedIn"/>
     </div>
     <v-main>
       <v-content>
@@ -15,6 +16,7 @@
 <script>
 import NavBar from "./components/NavBar";
 import Footer from "./components/footer";
+import SideBar from "./components/SideNavBar"
 
 export default {
   name: "App",
@@ -22,6 +24,7 @@ export default {
   components: {
     NavBar,
     Footer,
+    SideBar
   },
 
   data: () => ({
