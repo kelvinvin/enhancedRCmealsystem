@@ -1,30 +1,29 @@
 <template>
-  <v-app id="main" :style="{background: $vuetify.theme.themes.light.background}">
-    <div>
-      <NavBar v-if="$store.state.isUserLoggedIn"/>
-      <SideBar v-if="$store.state.isUserLoggedIn"/>
-    </div>
-    <v-main>
-      <v-content>
-        <router-view />
-      </v-content>
-    </v-main>
+  <v-app
+    id="main"
+    :style="{ background: $vuetify.theme.themes.light.background }"
+  >
+      <!-- <NavBar v-if="$store.state.isUserLoggedIn"/> -->
+      <SideBar v-if="$store.state.isUserLoggedIn" />
+    <v-content>
+      <router-view />
+    </v-content>
     <Footer />
   </v-app>
 </template>
 
 <script>
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 import Footer from "./components/footer";
-import SideBar from "./components/SideNavBar"
+import SideBar from "./components/SideNavBar";
 
 export default {
   name: "App",
 
   components: {
-    NavBar,
+    // NavBar,
     Footer,
-    SideBar
+    SideBar,
   },
 
   data: () => ({
