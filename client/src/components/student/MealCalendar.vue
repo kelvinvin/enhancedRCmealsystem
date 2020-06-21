@@ -28,16 +28,14 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-container class="grey lighten-2" id="menuContainer" >
+      <v-container id="menuContainer" >
         <div
           v-show="breakfastsFound.length == 0 && dinnersFound.length == 0"
-          class="message"
+          class="message" 
         >Dining Hall is not open on this day</div>
-        <!-- <div v-show="breakfastsFound.length != 0" class="message">Breakfast</div> -->
-
-        <v-expansion-panels focusable>
-          <v-expansion-panel>
-            <v-expansion-panel-header>Breakfast</v-expansion-panel-header>
+        <v-expansion-panels multiple v-show="breakfastsFound.length!=0 || dinnersFound.length!=0">
+          <v-expansion-panel v-show="breakfastsFound.length!=0">
+            <v-expansion-panel-header><div class="panelHeader">Breakfast</div></v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-row v-show="breakfastsFound.length != 0" no-gutters>
                 <v-col v-for="meal in breakfastsFound" :key="meal.Meal_Id" cols="12" sm="2">
@@ -56,8 +54,8 @@
               </v-row>
             </v-expansion-panel-content>
           </v-expansion-panel>
-          <v-expansion-panel>
-            <v-expansion-panel-header>Dinner</v-expansion-panel-header>
+          <v-expansion-panel v-show="dinnersFound.length!=0">
+            <v-expansion-panel-header><div class="panelHeader">Dinner</div></v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-row v-show="dinnersFound.length != 0" no-gutters>
                 <v-col v-for="meal in dinnersFound" :key="meal.Meal_Id" cols="12" sm="2">
@@ -164,5 +162,9 @@ export default {
 
 #menuContainer {
   min-width: 1200px
+}
+
+.panelHeader {
+  font-weight: bold
 }
 </style>
