@@ -5,14 +5,14 @@
     :expand-on-hover="expandOnHover"
     :mini-variant="miniVariant"
     :right="right"
+    src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
     :permanent="permanent"
-    :src="bg"
+    height="100%"
     absolute
     app
     dark
   >
     <v-list dense nav class="py-0">
-      <!-- To buffer the top navbar -->
       <v-list-item two-line :class="miniVariant && 'px-0'">
         <v-list-item-content>
           <v-list-item-title>
@@ -41,14 +41,12 @@
 </template>
 
 <script>
-import { mdiLogout } from "@mdi/js";
 export default {
   data() {
     return {
       isAdmin: null,
       drawer: true,
       items: null,
-      icons: { mdiLogout },
       color: "primary",
       colors: ["primary", "blue", "success", "red", "teal"],
       right: false,
@@ -86,25 +84,25 @@ export default {
         },
         {
           title: "My Meal Plan",
-          icon: "mdi-image",
+          icon: "mdi-account",
           path: "/myMealPlan",
           event: () => {},
         },
         {
           title: "Feedback",
-          icon: "mdi-help-box",
+          icon: "mdi-comment-text",
           path: "/submitfeedback",
           event: () => {},
         },
         {
           title: "Actions",
-          icon: "mdi-help-box",
+          icon: "mdi-gesture-double-tap",
           path: "/actions",
           event: () => {},
         },
         {
           title: "Log Out",
-          icon: "mdi-help-box",
+          icon: "mdi-logout",
           path: "/",
           event: () => this.logout(),
         },
@@ -119,25 +117,25 @@ export default {
         },
         {
           title: "View Feedback",
-          icon: "mdi-view-dashboard",
+          icon: "mdi-comment-text-multiple",
           path: "/viewfeedback",
           event: () => {},
         },
         {
           title: "Payment",
-          icon: "mdi-view-dashboard",
+          icon: "mdi-credit-card-outline",
           path: "/viewpayments",
           event: () => {},
         },
         {
           title: "Initialize Semester",
-          icon: "mdi-view-dashboard",
+          icon: "mdi-clock-start",
           path: "/initialize",
           event: () => {},
         },
         {
           title: "Log Out",
-          icon: "mdi-help-box",
+          icon: "mdi-logout",
           path: "/",
           event: () => this.logout(),
         },

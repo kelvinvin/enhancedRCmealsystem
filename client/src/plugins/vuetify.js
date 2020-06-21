@@ -8,7 +8,7 @@ export default new Vuetify({
     theme: {
       themes: {
         light: {
-          background: colors.indigo.lighten5, // Not automatically applied
+          background: colors.indigo.lighten5, 
         },
       },
     },

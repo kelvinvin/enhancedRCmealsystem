@@ -2,12 +2,22 @@
   <v-col>
     <v-row justify="space-around">
       <v-col>
-        <h4>Click on a date to open its respective menu</h4>
+        <v-tooltip v-model="show" left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon v-bind="attrs" v-on="on">
+              <v-icon>{{items.icon}}</v-icon>
+            </v-btn>
+          </template>
+          <span>
+            To view menu,
+            <br />click on the date in the calendar
+          </span>
+        </v-tooltip>
         <v-date-picker
           v-model="picker"
           :landscape="landscape"
           :reactive="reactive"
-          width="450px"
+          width="480px"
           :show-current="showCurrent"
           :type="month ? 'month' : 'date'"
           :multiple="multiple"
@@ -18,66 +28,54 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-container class="grey lighten-5">
+      <v-container class="grey lighten-2" id="menuContainer" >
         <div
           v-show="breakfastsFound.length == 0 && dinnersFound.length == 0"
           class="message"
-        >
-          No meals found
-        </div>
-        <div v-show="breakfastsFound.length != 0" class="message">
-          Breakfast
-        </div>
-        <v-row v-show="breakfastsFound.length != 0" no-gutters>
-          <v-col
-            v-for="meal in breakfastsFound"
-            :key="meal.Meal_Id"
-            cols="12"
-            sm="2"
-          >
-            <v-card
-              color="yellow lighten-2"
-              id="header"
-              class="pa-2"
-              outlined
-              tile
-            >
-              {{ meal.cuisineType }}
-            </v-card>
+        >Dining Hall is not open on this day</div>
+        <!-- <div v-show="breakfastsFound.length != 0" class="message">Breakfast</div> -->
 
-            <div v-for="mealComp in mealAttributes" :key="mealComp">
-              <v-card v-if="!!meal[mealComp]" class="pa-2" outlined tile>
-                {{ meal[mealComp] }}
-              </v-card>
-            </div>
-          </v-col>
-        </v-row>
+        <v-expansion-panels focusable>
+          <v-expansion-panel>
+            <v-expansion-panel-header>Breakfast</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-row v-show="breakfastsFound.length != 0" no-gutters>
+                <v-col v-for="meal in breakfastsFound" :key="meal.Meal_Id" cols="12" sm="2">
+                  <v-card
+                    color="orange lighten-2"
+                    id="header"
+                    class="pa-2"
+                    outlined
+                    tile
+                  >{{ meal.cuisineType }}</v-card>
 
-        <div v-show="dinnersFound.length != 0" class="message">Dinner</div>
-        <v-row v-show="dinnersFound.length != 0" no-gutters>
-          <v-col
-            v-for="meal in dinnersFound"
-            :key="meal.Meal_Id"
-            cols="12"
-            sm="2"
-          >
-            <v-card
-              color="blue lighten-2"
-              id="header"
-              class="pa-2"
-              outlined
-              tile
-            >
-              {{ meal.cuisineType }}
-            </v-card>
-
-            <div v-for="mealComp in mealAttributes" :key="mealComp">
-              <v-card v-if="!!meal[mealComp]" class="pa-2" outlined tile>
-                {{ meal[mealComp] }}
-              </v-card>
-            </div>
-          </v-col>
-        </v-row>
+                  <div v-for="mealComp in mealAttributes" :key="mealComp">
+                    <v-card v-if="!!meal[mealComp]" class="pa-2" outlined tile>{{ meal[mealComp] }}</v-card>
+                  </div>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header>Dinner</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-row v-show="dinnersFound.length != 0" no-gutters>
+                <v-col v-for="meal in dinnersFound" :key="meal.Meal_Id" cols="12" sm="2">
+                  <v-card
+                    color="blue lighten-2"
+                    id="header"
+                    class="pa-2"
+                    outlined
+                    tile
+                  >{{ meal.cuisineType }}</v-card>
+                  <div v-for="mealComp in mealAttributes" :key="mealComp">
+                    <v-card v-if="!!meal[mealComp]" class="pa-2" outlined tile>{{ meal[mealComp] }}</v-card>
+                  </div>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-container>
     </v-row>
   </v-col>
@@ -90,6 +88,7 @@ export default {
   name: "MealCalendar",
   data() {
     return {
+      items: { icon: "mdi-help-circle-outline" },
       meals: null,
       picker: new Date().toISOString().substr(0, 10),
       landscape: false,
@@ -108,8 +107,8 @@ export default {
         "mealComp2",
         "mealComp3",
         "mealComp4",
-        "mealComp5",
-      ],
+        "mealComp5"
+      ]
     };
   },
   methods: {
@@ -119,7 +118,7 @@ export default {
       this.dinnersFound = [];
       // check meal database if menu exists
       console.log("Going through meals..");
-      this.meals.forEach((meal) => {
+      this.meals.forEach(meal => {
         if (this.picker == meal.date) {
           if (meal.breakfastOrDinner == 0) {
             this.breakfastsFound.push(meal);
@@ -132,7 +131,7 @@ export default {
           }
         }
       });
-    },
+    }
   },
   async mounted() {
     this.meals = (await MealsService.getMeals()).data;
@@ -143,9 +142,9 @@ export default {
     picker: {
       handler: function() {
         this.menuOnDate();
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>
 
@@ -161,5 +160,9 @@ export default {
   color: black;
   font-size: medium;
   line-height: 50px;
+}
+
+#menuContainer {
+  min-width: 1200px
 }
 </style>
