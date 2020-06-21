@@ -13,14 +13,10 @@
     dark
   >
     <v-list dense nav class="py-0">
-      <v-list-item two-line :class="miniVariant && 'px-0'">
-        <v-list-item-content>
-          <v-list-item-title>
-            <img src="../assets/nusMeals.png"
-          /></v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-      <v-divider></v-divider>
+      <!-- To buffer the top navbar -->
+      <v-container fluid>
+        <v-img src="../assets/nusMeals.png" />
+      </v-container>
 
       <v-list-item
         v-for="item in items"
@@ -146,8 +142,4 @@ export default {
 </script>
 
 <style scoped>
-img {
-  /* float: center; */
-  max-width: 90%;
-}
 </style>

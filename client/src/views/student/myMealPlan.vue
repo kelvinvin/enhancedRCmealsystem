@@ -6,16 +6,16 @@
 </template>
 
 <script>
-import SelectionCheckBox from '@/components/student/SelectionCheckBox'
-import MyMealPlan from '@/components/student/MyMealPlan'
+import SelectionCheckBox from "@/components/student/SelectionCheckBox";
+import MyMealPlan from "@/components/student/MyMealPlan";
 
 export default {
-  name: 'myMealPlan',
+  name: "myMealPlan",
   components: {
     SelectionCheckBox,
-    MyMealPlan
-  }
-}
+    MyMealPlan,
+  },
+};
 </script>
 
 <style scoped>
