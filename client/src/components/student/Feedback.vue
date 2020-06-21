@@ -47,8 +47,8 @@
         :hover="true"
         :size="32"
         :dense="true"
-        color="yellow darken-1"
-        background-color="yellow darken-1"
+        color="blue darken-1"
+        background-color="blue darken-1"
       ></v-rating>
     </div>
     <!-- Feedback box section -->

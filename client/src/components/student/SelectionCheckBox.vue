@@ -358,7 +358,6 @@ export default {
 
 <style scoped>
 table {
-  border: 2px solid black;
   padding: 5px;
   margin-top: 10px;
   margin-bottom: 40px;
