@@ -1,6 +1,6 @@
 <template>
     <div class="mealSelectForm">
-        <div class="SelectionCheckBox"><SelectionCheckBox/></div>
+        <div class="selectionCheckBox"><SelectionCheckBox/></div>
         <div class="MyMealPlan"><MyMealPlan/></div>
     </div>
 </template>
@@ -22,7 +22,8 @@ export default {
     .mealSelectForm {
         margin: auto;
         max-width: 960px;
-        border: 5px solid black;
-        padding: 30px;
+        padding: 64px;
+        height: 100%;
+        background-color: white;
     }
 </style>

@@ -1,194 +1,157 @@
 <template>
   <div class="checkbox" id="mealForm">
-    <header><h1>Meal Selection</h1></header>
-    <p>
-      Please indicate the days and meals that you require this semester.
-      <br>
-      Note that you have to choose at least 9 meals/ week.
-    </p>
-    <form action="#" method="get" id="form1">
-      I would like to consume every:
-      <table>
-        <tr>
-          <th>&nbsp;</th>
-          <th><p>Monday</p></th>
-          <th><p>Tuesday</p></th>
-          <th><p>Wednesday</p></th>
-          <th><p>Thursday</p></th>
-          <th><p>Friday</p></th>
-          <th><p>Saturday</p></th>
-          <th><p>Sunday</p></th>
-        </tr>
+    <header>
+      <v-alert v-show="error != null" type="error">{{error}}</v-alert>
+      <h1>Meal Registeration</h1>
+    </header>
+    <div class="wordSection">
+      Please indicate the days of meals that you require this semester.
+      <br />Note that you have to choose at least 9 meals/ week.
+    </div>
+    <v-form action="#" method="get" id="form1">
+      <v-simple-table class="tableMeal">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>
+              <strong>Monday</strong>
+            </th>
+            <th>
+              <strong>Tuesday</strong>
+            </th>
+            <th>
+              <strong>Wednesday</strong>
+            </th>
+            <th>
+              <strong>Thursday</strong>
+            </th>
+            <th>
+              <strong>Friday</strong>
+            </th>
+            <th>
+              <strong>Saturday</strong>
+            </th>
+            <th>
+              <strong>Sunday</strong>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Breakfast</strong>
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="mondayBreakfast" name="bfMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="tuesdayBreakfast" name="bfMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="wednesdayBreakfast" name="bfMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="thursdayBreakfast" name="bfMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="fridayBreakfast" name="bfMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="saturdayBreakfast" name="bfMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="sundayBreakfast" name="bfMeal" disabled />
+            </td>
+          </tr>
 
-        <tr>
-          <td>
-            <p><strong>Breakfast</strong></p>
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="mondayBreakfast"
-              name="bfMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="tuesdayBreakfast"
-              name="bfMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="wednesdayBreakfast"
-              name="bfMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="thursdayBreakfast"
-              name="bfMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="fridayBreakfast"
-              name="bfMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="saturdayBreakfast"
-              name="bfMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="sundayBreakfast"
-              name="bfMeal"
-              disabled
-            />
-          </td>
-        </tr>
+          <tr>
+            <td>
+              <p>
+                <strong>Dinner</strong>
+              </p>
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="mondayDinner" name="dinMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="tuesdayDinner" name="dinMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="wednesdayDinner" name="dinMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="thursdayDinner" name="dinMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="fridayDinner" name="dinMeal" />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="saturdayDinner" name="dinMeal" disabled />
+            </td>
+            <td>
+              <v-checkbox color="primary" v-model="sundayDinner" name="dinMeal" />
+            </td>
+          </tr>
+        </tbody>
+      </v-simple-table>
 
-        <tr>
-          <td>
-            <p><strong>Dinner</strong></p>
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="mondayDinner"
-              name="dinMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="tuesdayDinner"
-              name="dinMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="wednesdayDinner"
-              name="dinMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="thursdayDinner"
-              name="dinMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="fridayDinner"
-              name="dinMeal"
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="saturdayDinner"
-              name="dinMeal"
-              disabled
-            />
-          </td>
-          <td>
-            <input
-              type="checkbox"
-              @change="updateCount"
-              v-model="sundayDinner"
-              name="dinMeal"
-            />
-          </td>
-        </tr>
-      </table>
-
-      Please indicate if you would like to consume during recess week. Note that
-      you have to opt for full-week meals in this category.
-      <br />
-      <div>
-        <p>I would like to opt for recess week consumption:</p>
-        <b-form-select v-model="recessSelect" :options="recessOptions">
-        </b-form-select>
+      <div class="wordSection">
+        <span>
+          I would like to opt for recess week consumption:
+          <v-tooltip v-model="show" top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon v-bind="attrs" v-on="on">
+                <v-icon>{{items.icon}}</v-icon>
+              </v-btn>
+            </template>
+            <span>Note that you have to opt for all the meals during recess week.</span>
+          </v-tooltip>
+        
+        <v-radio-group v-model="recessSelect" row>
+          <v-radio label="Yes" value="1"></v-radio>
+          <v-radio label="No" value="0"></v-radio>
+        </v-radio-group>
+        </span>
       </div>
-      <br />
-      <div>
-        <p>Do you have any dietary requirement:</p>
-        <b-form-select v-model="dietaryReqSelect" :options="dietaryReqOptions">
-        </b-form-select>
+      <div class="wordSection">
+        Dietary requirement:
+        <v-select dense outlined v-model="dietaryReqSelect" :items="dietaryReqOptions"></v-select>
       </div>
-      <br />
-      <div>
-        <p>Extra Credits:</p>
-        <b-form-select
-          v-model="creditSelect"
-          :options="creditOptions"
-          @change="updateCount"
-        >
-        </b-form-select>
+      <div class="wordSection">
+        <span>
+          Extra Credits:
+          <v-tooltip v-model="show" top max-width="400px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon v-bind="attrs" v-on="on">
+                <v-icon>{{items.icon}}</v-icon>
+              </v-btn>
+            </template>
+            <span>
+              This Extra Credits will be deducted from your account
+              when you consume meals during days that you do not register for,
+              or when you choose to consume more than one meal during a session.
+              You can only register extra credits now - before the semester commences.
+            </span>
+          </v-tooltip>
+        </span>
+        <v-select dense outlined v-model="creditSelect" :items="creditOptions"></v-select>
       </div>
+      <v-btn class="costButton" @click.prevent="updateCount">Calculate Cost</v-btn>
+      <h4>Cost: ${{ returnCost }}</h4>
+      
+      <MealPlanTnC />
       <br />
-      <i>Total cost based on this semester</i>
-      <p>${{ returnCost }}</p>
-    </form>
-
-    <MealPlanTnC />
-    <br>
-    <div class="error" v-html="error" />
-    <br>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      form="form1"
-      value="Submit"
-      @click.prevent="registerMealPlan"
-    >
-      Register Meal Plan
-    </button>
+      <!-- <div class="error" v-html="error" /> -->
+      <br />
+      <v-btn
+        color="primary"
+        type="submit"
+        form="form1"
+        value="Submit"
+        @click.prevent="registerMealPlan"
+      >Register Meal Plan</v-btn>
+      
+    </v-form>
   </div>
 </template>
 
@@ -203,12 +166,12 @@ import SemesterYear from "@/services/SemesterYear";
 export default {
   name: "SelectionCheckBox",
   components: {
-    MealPlanTnC,
+    MealPlanTnC
   },
   async mounted() {
     var registrationExisting = !!(
       await StudentMealPlanService.getStudentMealPlan({
-        userID: this.$store.state.user.id,
+        userID: this.$store.state.user.id
       })
     ).data[0];
     if (registrationExisting) {
@@ -216,7 +179,7 @@ export default {
         "You have already registered for this semester's meal plan";
     }
     const cost = (await CostService.getCosts()).data.map(
-      (element) => element.cost
+      element => element.cost
     );
     this.breakfastCost = cost[0];
     this.dinnerCost = cost[1];
@@ -228,20 +191,14 @@ export default {
   },
   data() {
     return {
+      items: { icon: "mdi-help-circle-outline" },
       cost: 0,
-      costPerMeal: 200,
-      costRecessWeek: 500,
       error: null,
-      recessSelect: false,
-      recessOptions: [
-        { value: "0", text: "No" },
-        { value: "1", text: "Yes" },
-      ],
       dietaryReqSelect: null,
       dietaryReqOptions: [
         { value: "none", text: "No Dietary Requirements" },
         { value: "halal", text: "Halal" },
-        { value: "vegetarian", text: "Vegetarian" },
+        { value: "vegetarian", text: "Vegetarian" }
       ],
       creditSelect: 0,
       creditOptions: [
@@ -250,7 +207,7 @@ export default {
         { value: "10", text: "10" },
         { value: "15", text: "15" },
         { value: "20", text: "20" },
-        { value: "25", text: "25" },
+        { value: "25", text: "25" }
       ],
       mondayBreakfast: false,
       mondayDinner: false,
@@ -267,12 +224,12 @@ export default {
       sundayBreakfast: false,
       sundayDinner: false,
 
-      breakfastCost: null,
-      dinnerCost: null,
+      breakfastCost: 0,
+      dinnerCost: 0,
 
       currentSemester: null,
       recWeek: null,
-      noRecWeek: null,
+      noRecWeek: null
     };
   },
   methods: {
@@ -282,7 +239,6 @@ export default {
       ).length;
       var noOfDinner = document.querySelectorAll("input[name=dinMeal]:checked")
         .length;
-
       if (this.recessSelect == "1") {
         this.cost =
           (this.breakfastCost * noOfBreakfast + this.dinnerCost * noOfDinner) *
@@ -292,7 +248,6 @@ export default {
           (this.breakfastCost * noOfBreakfast + this.dinnerCost * noOfDinner) *
           this.noRecWeek;
       }
-
       this.cost += this.creditSelect * this.dinnerCost;
     },
     registerMealPlan() {
@@ -333,41 +288,39 @@ export default {
           dinnerThursday: this.thursdayDinner,
           dinnerFriday: this.fridayDinner,
           extraCredit: this.creditSelect,
-          UserId: authUser.id,
+          UserId: authUser.id
         });
 
         PaymentService.registerAmount({
           amount: this.cost,
           SemesterDaySemesterYear: this.currentSemester,
           paymentMade: false,
-          UserId: authUser.id,
+          UserId: authUser.id
         });
 
         this.$router.push("/homepage");
         alert("Meal Registration successful");
       }
-    },
+    }
   },
   computed: {
     returnCost() {
       return this.cost;
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-table {
-  border: 2px solid black;
-  padding: 5px;
-  margin-top: 10px;
-  margin-bottom: 40px;
-  width: 100%;
-  align-self: center;
-  text-align: center;
-}
-
 .error {
   color: red;
+}
+
+.costButton {
+  margin-bottom: 24px;
+}
+
+.tableMeal {
+  margin-bottom: 24px;
 }
 </style>
