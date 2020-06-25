@@ -26,6 +26,16 @@ module.exports = (sequelize, DataTypes) => {
         return d;
       },
     },
+    dayTimingCategory: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: function () {
+        var d = new Date();
+        var timing = d.getHours() > 12 ? 'dinner' : 'breakfast';
+        var day = d.getDay().toString();
+        return timing + day;
+      }
+    }
   });
 
   Consumption.associate = function (models) {

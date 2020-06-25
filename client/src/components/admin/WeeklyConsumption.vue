@@ -3,10 +3,10 @@
     <template v-slot:default>
       <thead>
         <tr>
-          <th class="text-center">Breakfast</th>
-          <th class="text-center">Registered</th>
-          <th class="text-center">Dinner</th>
-          <th class="text-center">Registered</th>
+          <th >Breakfast</th>
+          <th >Registered</th>
+          <th >Dinner</th>
+          <th >Registered</th>
         </tr>
       </thead>
       <tbody>
@@ -50,10 +50,10 @@
       <br>
       <thead>
         <tr>
-          <th class="text-center">Recess Week</th>
-          <th class="text-center">Registered</th>
-          <th class="text-center">Dietary Requirement</th>
-          <th class="text-center">Registered</th>
+          <th >Recess Week</th>
+          <th >Registered</th>
+          <th >Dietary Requirement</th>
+          <th >Registered</th>
         </tr>
       </thead>
       <tbody>

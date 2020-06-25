@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div class="title">
+      Upload Meals
+    </div>
     <div v-if="submitted" class="alert alert-success">
       <strong>Success!</strong> Meal has been uploaded! Refreshing..
     </div>
@@ -23,36 +26,51 @@
         >
       </b-form-group>
     </div>
-    <br/>
     <!-- Menu type -->
- <!-- Menu type -->
-        <div v-if="mealTiming==0">
-            <p>Select Cuisine type:</p>
-            <b-form-select v-model="dropDownSelect" 
-            :options="dropDownOptionsBreakfast">
-            </b-form-select>
-        </div>
-        <div v-if="mealTiming==1">
-            <p>Select Cuisine type:</p>
-            <b-form-select v-model="dropDownSelect" 
-            :options="dropDownOptionsDinner">
-            </b-form-select>
-        </div>
+    <!-- Menu type -->
+    <div v-if="mealTiming == 0">
+      <p>Select Cuisine type:</p>
+      <b-form-select
+        v-model="dropDownSelect"
+        :options="dropDownOptionsBreakfast"
+      >
+      </b-form-select>
+    </div>
+    <div v-if="mealTiming == 1">
+      <p>Select Cuisine type:</p>
+      <b-form-select v-model="dropDownSelect" :options="dropDownOptionsDinner">
+      </b-form-select>
+    </div>
     <br />
     <div class="mealComponents">
       <!-- Meal components section -->
       <v-text-field v-model="mealComp1" label="Meal component 1"></v-text-field>
-      <v-text-field v-model="mealComp2" :disabled="!validMealComp2" label="Meal component 2"></v-text-field>
-      <v-text-field v-model="mealComp3" :disabled="!validMealComp3" label="Meal component 3"></v-text-field>
-      <v-text-field v-model="mealComp4" :disabled="!validMealComp4" label="Meal component 4"></v-text-field>
-      <v-text-field v-model="mealComp5" :disabled="!validMealComp5" label="Meal component 5"></v-text-field>
+      <v-text-field
+        v-model="mealComp2"
+        :disabled="!validMealComp2"
+        label="Meal component 2"
+      ></v-text-field>
+      <v-text-field
+        v-model="mealComp3"
+        :disabled="!validMealComp3"
+        label="Meal component 3"
+      ></v-text-field>
+      <v-text-field
+        v-model="mealComp4"
+        :disabled="!validMealComp4"
+        label="Meal component 4"
+      ></v-text-field>
+      <v-text-field
+        v-model="mealComp5"
+        :disabled="!validMealComp5"
+        label="Meal component 5"
+      ></v-text-field>
     </div>
-    <br/>
     <div class="error" v-html="error" />
-    <br/>
     <v-btn class="ma-2" outlined color="indigo" @click.prevent="addMeal"
       >Add Meal</v-btn
     >
+    <v-card height="60px" color="transparent" outlined></v-card>
   </div>
 </template>
 
@@ -60,25 +78,25 @@
 import "bootstrap/dist/css/bootstrap.css";
 import datePicker from "vue-bootstrap-datetimepicker";
 import "pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css";
-import MealsService from '@/services/MealsService';
+import MealsService from "@/services/MealsService";
 
 // Rating Initialization
 
 export default {
   name: "UploadMeal",
   computed: {
-      validMealComp2() {
-          return !!this.mealComp1;
-      },
-      validMealComp3() {
-          return this.validMealComp2 && !!this.mealComp2;
-      },
-      validMealComp4() {
-          return this.validMealComp3 && !!this.mealComp3;
-      },
-      validMealComp5() {
-          return this.validMealComp4 && !!this.mealComp4;
-      },
+    validMealComp2() {
+      return !!this.mealComp1;
+    },
+    validMealComp3() {
+      return this.validMealComp2 && !!this.mealComp2;
+    },
+    validMealComp4() {
+      return this.validMealComp3 && !!this.mealComp3;
+    },
+    validMealComp5() {
+      return this.validMealComp4 && !!this.mealComp4;
+    },
   },
   data() {
     return {
@@ -124,22 +142,19 @@ export default {
   methods: {
     async addMeal() {
       try {
-          const req = {
-            date: this.date,
-            mealComp1: this.mealComp1,
-            mealComp2: this.mealComp2,
-            mealComp3: this.mealComp3,
-            mealComp4: this.mealComp4,
-            mealComp5: this.mealComp5,
-            cuisineType: this.dropDownSelect,
-            breakfastOrDinner: this.mealTiming
-          };
-          console.log(req);
-          await MealsService.addMeal(req);
-          this.submitted = true;
-          // setTimeout(() => {
-          //   location.reload();
-          // }, 3000);
+        const req = {
+          date: this.date,
+          mealComp1: this.mealComp1,
+          mealComp2: this.mealComp2,
+          mealComp3: this.mealComp3,
+          mealComp4: this.mealComp4,
+          mealComp5: this.mealComp5,
+          cuisineType: this.dropDownSelect,
+          breakfastOrDinner: this.mealTiming,
+        };
+        console.log(req);
+        await MealsService.addMeal(req);
+        this.submitted = true;
       } catch (err) {
         this.alreadyExists = true;
         console.log(err);
