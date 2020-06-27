@@ -13,51 +13,51 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        breakfastMonday: {
+        bfMon: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        breakfastTuesday: {
+        bfTue: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        breakfastWednesday: {
+        bfWed: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        breakfastThursday: {
+        bfThu: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        breakfastFriday: {
+        bfFri: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        breakfastSaturday: {
+        bfSat: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        dinnerSunday: {
+        diSun: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        dinnerMonday: {
+        diMon: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        dinnerTuesday: {
+        diTue: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        dinnerWednesday: {
+        diWed: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        dinnerThursday: {
+        diThu: {
             type: DataTypes.INTEGER,
             // default: '0'
         },
-        dinnerFriday: {
+        diFri: {
             type: DataTypes.INTEGER,
             // default: '0'
         },

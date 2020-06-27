@@ -14,64 +14,64 @@
             <tr>
               <th scope="row">Monday</th>
               <td>
-                <div class="mealCheck" value="breakfastMonday">-</div>
+                <div class="mealCheck" value="bfMon">-</div>
               </td>
               <td>
-                <div class="mealCheck" value="dinnerMonday">-</div>
+                <div class="mealCheck" value="diMon">-</div>
               </td>
             </tr>
             <tr>
               <th scope="row">Tuesday</th>
               <td>
-                <div class="mealCheck" value="breakfastTuesday">-</div>
+                <div class="mealCheck" value="bfTue">-</div>
               </td>
               <td>
-                <div class="mealCheck" value="dinnerTuesday">-</div>
+                <div class="mealCheck" value="diTue">-</div>
               </td>
             </tr>
             <tr>
               <th scope="row">Wednesday</th>
               <td>
-                <div class="mealCheck" value="breakfastWednesday">-</div>
+                <div class="mealCheck" value="bfWed">-</div>
               </td>
               <td>
-                <div class="mealCheck" value="dinnerWednesday">-</div>
+                <div class="mealCheck" value="diWed">-</div>
               </td>
             </tr>
             <tr>
               <th scope="row">Thursday</th>
               <td>
-                <div class="mealCheck" value="breakfastThursday">-</div>
+                <div class="mealCheck" value="bfThu">-</div>
               </td>
               <td>
-                <div class="mealCheck" value="dinnerThursday">-</div>
+                <div class="mealCheck" value="diThu">-</div>
               </td>
             </tr>
             <tr>
               <th scope="row">Friday</th>
               <td>
-                <div class="mealCheck" value="breakfastFriday">-</div>
+                <div class="mealCheck" value="bfFri">-</div>
               </td>
               <td>
-                <div class="mealCheck" value="dinnerFriday">-</div>
+                <div class="mealCheck" value="diFri">-</div>
               </td>
             </tr>
             <tr>
               <th scope="row">Saturday</th>
               <td>
-                <div class="mealCheck" value="breakfastSaturday">-</div>
+                <div class="mealCheck" value="bfSat">-</div>
               </td>
               <td>
-                <div class="mealCheck" value="dinnerSaturday">-</div>
+                <div class="mealCheck" value="diSat">-</div>
               </td>
             </tr>
             <tr>
               <th scope="row">Sunday</th>
               <td>
-                <div class="mealCheck" value="breakfastSunday">-</div>
+                <div class="mealCheck" value="bfSun">-</div>
               </td>
               <td>
-                <div class="mealCheck" value="dinnerSunday">-</div>
+                <div class="mealCheck" value="diSun">-</div>
               </td>
             </tr>
           </tbody>

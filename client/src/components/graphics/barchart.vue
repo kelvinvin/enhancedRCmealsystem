@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{consumptionData}}
     <apexchart
       id="chart"
       width="500"

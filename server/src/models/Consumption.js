@@ -31,18 +31,20 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: function () {
         var now = new Date();
-        var timing = now.getHours() > 12 ? "Din" : "Bf";
+        var timing = now.getHours() > 12 ? "di" : "bf";
         const allDays = [
-          "sunday",
-          "monday",
-          "tuesday",
-          "wednesday",
-          "thursday",
-          "friday",
-          "saturday",
+          "Sun",
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri",
+          "Sat",
         ];
-        var day = allDays[now.getDay()];
-        return day + timing;
+        // var day = allDays[now.getDay()];
+        var day = allDays[Math.floor(Math.random() * 7)
+        ];
+        return timing + day;
       },
     },
   });
