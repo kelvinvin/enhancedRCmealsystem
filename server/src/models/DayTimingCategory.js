@@ -22,23 +22,15 @@ module.exports = (sequelize, DataTypes) => {
   //   });
   // };
 
-  dayTimingCategory.sync({force: true}).then(function () {
+  dayTimingCategory.sync({ force: true }).then(function () {
     const now = new Date();
-    const allDays = [
-      "Sun",
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat",
-    ];
-
+    const allDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const types = [
       { type: 1, name: "di" },
       { type: 0, name: "bf" },
     ];
     const disabledDays = ["diSat", "bfSun"];
+
     allDays.map((day) =>
       types.map((mealType) => {
         var modelName = mealType.name + day;

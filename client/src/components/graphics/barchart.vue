@@ -1,13 +1,5 @@
 <template>
-  <div>
-    {{consumptionData}}
-    <apexchart
-      id="chart"
-      width="500"
-      :options="chartOptions"
-      :series="series"
-    ></apexchart>
-  </div>
+  <apexchart id="chart" :options="chartOptions" :series="series"></apexchart>
 </template>
 
 <script>
@@ -19,6 +11,10 @@ export default {
     return {
       consumptionData: {},
       chartOptions: {
+        colors: [
+          "#0bd626", // consumed color
+          "#c20000", // wasted color]
+        ],
         title: {
           text: "Consumption Percentage",
           align: "left",
@@ -32,7 +28,6 @@ export default {
             color: "#263238",
           },
         },
-
         chart: {
           id: "consumptionBar",
           type: "bar",
@@ -40,21 +35,7 @@ export default {
           stackType: "100%",
         },
         xaxis: {
-          categories: [
-            "Monday Breakfast",
-            "Tuesday Breakfast",
-            "Wednesday Breakfast",
-            "Thursday Breakfast",
-            "Friday Breakfast",
-            "Saturday Breakfast",
-            "Sunday Dinner",
-            "Monday Dinner",
-            "Tuesday Dinner",
-            "Wednesday Dinner",
-            "Thursday Dinner",
-            "Friday Dinner",
-            "Saturday Dinner",
-          ],
+          type: "category",
         },
         tooltip: {
           enabled: true,
@@ -63,16 +44,12 @@ export default {
             fontSize: "12px",
             fontFamily: undefined,
           },
-          x: {
-            show: false,
-            format: "hh:mm tt dd MMM",
-          },
           y: {
             title: {
               formatter: (seriesName) => seriesName,
             },
           },
-        },
+        }
       },
       series: [
         {
@@ -87,10 +64,18 @@ export default {
     };
   },
   async mounted() {
-    this.consumptionData = (await ConsumptionService.getConsumptionPercentage()).data;
+    this.consumptionData = (
+      await ConsumptionService.getConsumptionPercentage()
+    ).data;
     this.series = [
-      { name: "Consumed", data: [1,2,3,4,5,6,3,8, 9,10,11,12] },
-      { name: "Wasted", data: [1,2,3,4,5,6,7,8, 9,10,11,12] },
+      {
+        name: "Consumed",
+        data: this.consumptionData[0],
+      },
+      {
+        name: "Wasted",
+        data: this.consumptionData[1],
+      },
     ];
   },
 };

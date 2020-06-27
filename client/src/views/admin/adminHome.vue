@@ -1,10 +1,9 @@
 <template>
   <div class="container">
-    <div>
-      <WeeklyConsumption />
-    </div>
     <br />
-    <v-container fluid class="consumptionLine">
+    <WeeklyConsumption />
+    <br />
+    <v-container>
       <v-row>
         <v-col>
           <ConsumptionLine />
@@ -14,6 +13,7 @@
         </v-col>
       </v-row>
     </v-container>
+    <br />
   </div>
 </template>
 

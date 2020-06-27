@@ -1,12 +1,9 @@
 <template>
-  <div>
-    <apexchart
-      id="chart"
-      width="500"
-      :options="chartOptions"
-      :series="series"
-    ></apexchart>
-  </div>
+  <apexchart
+    id="chart"
+    :options="chartOptions"
+    :series="series"
+  ></apexchart>
 </template>
 
 <script>
@@ -40,7 +37,6 @@ export default {
         xaxis: {
           type: "datetime",
         },
-        
         stroke: {
           // curve: "stepline",
         },
@@ -49,7 +45,6 @@ export default {
         },
         tooltip: {
           enabled: true,
-          custom: undefined,
           style: {
             fontSize: "12px",
           },
@@ -61,10 +56,6 @@ export default {
             title: {
               formatter: (seriesName) => seriesName,
             },
-          },
-          z: {
-            formatter: undefined,
-            title: "Size: ",
           },
           marker: {
             show: true,
@@ -85,7 +76,7 @@ export default {
     };
   },
   async mounted() {
-    this.consumptionData = (await ConsumptionService.getConsumptionHourly()).data;
+    this.consumptionData = (await ConsumptionService.getConsumption()).data;
     this.series = [{ name: "Meals Count", data: this.consumptionData }];
   },
 };
