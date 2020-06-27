@@ -228,6 +228,7 @@ export default {
       ).length;
       var noOfDinner = document.querySelectorAll("input[name=dinMeal]:checked")
         .length;
+        console.log(noOfBreakfast, noOfDinner)
       if (this.recessSelect == "1") {
         this.cost =
           (this.breakfastCost * noOfBreakfast + this.dinnerCost * noOfDinner) *

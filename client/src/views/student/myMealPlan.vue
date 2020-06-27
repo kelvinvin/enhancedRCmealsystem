@@ -1,7 +1,7 @@
 <template>
     <div class="mealSelectForm">
         <div v-if="!registered"><SelectionCheckBox/></div>
-        <div v-if="registered"><MyMealPlan/></div>
+        <div v-else-if="registered"><MyMealPlan/></div>
     </div>
 </template>
 

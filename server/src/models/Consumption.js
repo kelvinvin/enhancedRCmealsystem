@@ -26,6 +26,12 @@ module.exports = (sequelize, DataTypes) => {
         return now;
       },
     },
+    createdAtDay: {
+      type: DataTypes.DATE,
+      defaultValue: function() {
+        return new Date().setHours(0,0,0,0);
+      }
+    },
     dayTimingCategory: {
       type: DataTypes.STRING,
       allowNull: false,
