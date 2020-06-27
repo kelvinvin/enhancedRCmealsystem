@@ -19,7 +19,7 @@ export default {
       consumptionData: {},
       chartOptions: {
         title: {
-          text: "Consumption Trends (hourly)",
+          text: "Consumption Percentage",
           align: "left",
           margin: 10,
           offsetX: 100,
@@ -31,27 +31,36 @@ export default {
             color: "#263238",
           },
         },
+
         chart: {
-          id: "consumptionLines",
-          zoom: {
-            autoScaleYaxis: true,
-          },
+          id: "consumptionBar",
+          type: "bar",
+          stacked: true,
+          stackType: "100%",
         },
         xaxis: {
-          type: "datetime",
-        },
-        
-        stroke: {
-          // curve: "stepline",
-        },
-        markers: {
-          // size: 5,
+          categories: [
+            "Monday Breakfast",
+            "Tuesday Breakfast",
+            "Wednesday Breakfast",
+            "Thursday Breakfast",
+            "Friday Breakfast",
+            "Saturday Breakfast",
+            "Sunday Dinner",
+            "Monday Dinner",
+            "Tuesday Dinner",
+            "Wednesday Dinner",
+            "Thursday Dinner",
+            "Friday Dinner",
+            "Saturday Dinner",
+          ],
         },
         tooltip: {
           enabled: true,
           custom: undefined,
           style: {
             fontSize: "12px",
+            fontFamily: undefined,
           },
           x: {
             show: false,
@@ -62,31 +71,26 @@ export default {
               formatter: (seriesName) => seriesName,
             },
           },
-          z: {
-            formatter: undefined,
-            title: "Size: ",
-          },
-          marker: {
-            show: true,
-          },
-          fixed: {
-            enabled: false,
-            position: "topRight",
-            offsetX: 0,
-            offsetY: 0,
-          },
         },
       },
       series: [
         {
+          name: "Consumed",
+          data: [],
+        },
+        {
+          name: "Wasted",
           data: [],
         },
       ],
     };
   },
   async mounted() {
-    this.consumptionData = (await ConsumptionService.getConsumptionHourly()).data;
-    this.series = [{ name: "Meals Count", data: this.consumptionData }];
+    this.consumptionData = (await ConsumptionService.getConsumptionPercentage()).data;
+    this.series = [
+      { name: "Consumed", data: [1,2,3,4,5,6,3,8, 9,10,11,12] },
+      { name: "Wasted", data: [1,2,3,4,5,6,7,8, 9,10,11,12] },
+    ];
   },
 };
 </script>

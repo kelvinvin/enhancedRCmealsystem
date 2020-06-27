@@ -6,5 +6,8 @@ export default {
     },
     submitConsumption(ConsumptionContent) {
         return Api().post('Consumption', ConsumptionContent)
+    },
+    getConsumptionPercentage() {
+        return Api().get('ConsumptionPercentage')
     }
 }

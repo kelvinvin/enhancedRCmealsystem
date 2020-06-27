@@ -61,5 +61,38 @@ module.exports = (sequelize, DataTypes) => {
         User.hasOne(models.StudentPayment);
     };
 
+    User.sync().then(function () {
+        const now = new Date();
+        User.findOrCreate({
+            where: {
+                isAdmin: 1,
+            },
+            defaults: {
+                name: "admin",
+                email: "admin",
+                matric_id: "A0000000A",
+                password: "$2a$08$WOKkHeNWg/iTNzL7/T.9j.fSdpsTyfWaZaJ1Vquy7gO7VR.OnFN6y",
+                // password is P@ssw0rd1,
+                isAdmin: 1,
+                createdAt: now,
+                updatedAt: now                
+            }
+        });
+        User.findOrCreate({
+            where: {
+                isAdmin: 0,
+            },
+            defaults: {
+                name: "test",
+                email: "test",
+                matric_id: "A1234567A",
+                password: "$2a$08$WOKkHeNWg/iTNzL7/T.9j.fSdpsTyfWaZaJ1Vquy7gO7VR.OnFN6y",
+                // password is P@ssw0rd1,
+                isAdmin: 0,
+                createdAt: now,
+                updatedAt: now                
+            }
+        });
+    });
     return User
 }

@@ -44,6 +44,9 @@ module.exports = (app) => {
     app.get('/consumption',
         ConsumptionController.getConsumption)
 
+    app.get('/consumptionPercentage',
+        ConsumptionController.getConsumptionPercentage)
+
     app.post('/admin',
         UpdateCostController.updateCost)
 

@@ -1,4 +1,5 @@
 const { Consumption} = require('../models/')
+const { StudentMealPlan } = require('../models/')
 
 module.exports = {
     async getConsumption (req, res) {
@@ -27,6 +28,20 @@ module.exports = {
         } catch {
             res.status(400).send({
                 error: 'Consumption cannot be submitted'
+            })
+        }
+    },
+    async getConsumptionPercentage (req, res) {
+        try {
+            const meals = await Consumption.count({
+                attributes: ["dayTimingCategory"
+                ],
+                group: "dayTimingCategory"
+            })
+            res.send([meals])
+        } catch (err) {
+            res.status(500).send({
+                error: 'An error has occured trying to fetch the consumption records'
             })
         }
     }

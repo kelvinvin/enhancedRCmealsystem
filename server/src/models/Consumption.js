@@ -19,23 +19,32 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: function () {
-        var d = new Date();
-        d.setMinutes (d.getMinutes() + 30);
-        d.setMinutes (0);
-        d.setSeconds (0);
-        return d;
+        var now = new Date();
+        now.setMinutes(now.getMinutes() + 30);
+        now.setMinutes(0);
+        now.setSeconds(0);
+        return now;
       },
     },
     dayTimingCategory: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: function () {
-        var d = new Date();
-        var timing = d.getHours() > 12 ? 'dinner' : 'breakfast';
-        var day = d.getDay().toString();
-        return timing + day;
-      }
-    }
+        var now = new Date();
+        var timing = now.getHours() > 12 ? "Din" : "Bf";
+        const allDays = [
+          "sunday",
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday",
+          "saturday",
+        ];
+        var day = allDays[now.getDay()];
+        return day + timing;
+      },
+    },
   });
 
   Consumption.associate = function (models) {

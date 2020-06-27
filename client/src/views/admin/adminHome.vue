@@ -3,22 +3,31 @@
     <div>
       <WeeklyConsumption />
     </div>
-    <br>
-    <div class="consumptionLine">
-      <ConsumptionLine />
-    </div>
+    <br />
+    <v-container fluid class="consumptionLine">
+      <v-row>
+        <v-col>
+          <ConsumptionLine />
+        </v-col>
+        <v-col>
+          <ConsumptionBar />
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
 import WeeklyConsumption from "@/components/admin/WeeklyConsumption";
 import ConsumptionLine from "@/components/graphics/linechart";
+import ConsumptionBar from "@/components/graphics/barchart";
 
 export default {
   name: "adminHome",
   components: {
     WeeklyConsumption,
-    ConsumptionLine
+    ConsumptionLine,
+    ConsumptionBar,
   },
 };
 </script>
