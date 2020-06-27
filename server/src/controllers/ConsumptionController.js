@@ -18,6 +18,30 @@ module.exports = {
   },
   async submitConsumption(req, res) {
     try {
+            // const test = await Consumption.count({
+            //     where: {
+            //         UserId: req.body.UserId,
+            //         // createdAtDay: new Date().setHour(0,0,0,0),
+            //         breakfastOrDinner: req.body.breakfastOrDinner,
+            //     },
+            // }).then(result => {
+            //     console.log(result)
+            //     if (result <= 3) {
+            //     Consumption.create(req.body)}
+            // })
+
+            // const creditLeft = StudentMealPlan.findOne({
+            //     where: {
+            //         UserId: req.body.UserId
+            //     }
+            // }).then(response => response.extraCredit)
+            // console.log("counter", counterForSesssion)
+            // console.log(creditLeft)
+
+            // if (counterForSesssion <= 30) {
+            //     const update = await Consumption.create(req.body)
+            //     res.send(update)
+            // }
       const consumption = await Consumption.create(req.body);
       res.send(consumption);
     } catch {
