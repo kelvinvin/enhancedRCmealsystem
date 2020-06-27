@@ -39,13 +39,11 @@ module.exports = {
                 group: "dayTimingCategory"
             })
             const registered = await StudentMealPlan.findAll()
-            // meals.forEach(function(e) { e.c = +e.b - +e.a });
-
-            // meals.map(
-            //     x => x.registered = 2
-                // x => {x.totalRegistered = registered.filter(element => element.x.dayTimingCategory == '1').length}
-            // )
-            res.send(meals)
+            var calculated = meals.map( x => {
+                x.wasted = registered.filter(element => element[x.dayTimingCategory] == '1').length - x.count;
+                return x
+                })
+            res.send(calculated)
         } catch (err) {
             res.status(500).send({
                 error: 'An error has occured trying to fetch the consumption records'
