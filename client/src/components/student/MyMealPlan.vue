@@ -1,53 +1,84 @@
 <template>
-  <div>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Day</th>
-          <th scope="col">Breakfast</th>
-          <th scope="col">Dinner</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">Monday</th>
-          <td><div class="mealCheck" value="breakfastMonday">-</div></td>
-          <td><div class="mealCheck" value="dinnerMonday">-</div></td>
-        </tr>
-        <tr>
-          <th scope="row">Tuesday</th>
-          <td><div class="mealCheck" value="breakfastTuesday">-</div></td>
-          <td><div class="mealCheck" value="dinnerTuesday">-</div></td>
-        </tr>
-        <tr>
-          <th scope="row">Wednesday</th>
-          <td><div class="mealCheck" value="breakfastWednesday">-</div></td>
-          <td><div class="mealCheck" value="dinnerWednesday">-</div></td>
-        </tr>
-        <tr>
-          <th scope="row">Thursday</th>
-          <td><div class="mealCheck" value="breakfastThursday">-</div></td>
-          <td><div class="mealCheck" value="dinnerThursday">-</div></td>
-        </tr>
-        <tr>
-          <th scope="row">Friday</th>
-          <td><div class="mealCheck" value="breakfastFriday">-</div></td>
-          <td><div class="mealCheck" value="dinnerFriday">-</div></td>
-        </tr>
-        <tr>
-          <th scope="row">Saturday</th>
-          <td><div class="mealCheck" value="breakfastSaturday">-</div></td>
-          <td><div class="mealCheck" value="dinnerSaturday">-</div></td>
-        </tr>
-        <tr>
-          <th scope="row">Sunday</th>
-          <td><div class="mealCheck" value="breakfastSunday">-</div></td>
-          <td><div class="mealCheck" value="dinnerSunday">-</div></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container">
+    <v-simple-table>
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col">Breakfast</th>
+            <th scope="col">Dinner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Monday</th>
+            <td>
+              <div class="mealCheck" value="breakfastMonday">-</div>
+            </td>
+            <td>
+              <div class="mealCheck" value="dinnerMonday">-</div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Tuesday</th>
+            <td>
+              <div class="mealCheck" value="breakfastTuesday">-</div>
+            </td>
+            <td>
+              <div class="mealCheck" value="dinnerTuesday">-</div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Wednesday</th>
+            <td>
+              <div class="mealCheck" value="breakfastWednesday">-</div>
+            </td>
+            <td>
+              <div class="mealCheck" value="dinnerWednesday">-</div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Thursday</th>
+            <td>
+              <div class="mealCheck" value="breakfastThursday">-</div>
+            </td>
+            <td>
+              <div class="mealCheck" value="dinnerThursday">-</div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Friday</th>
+            <td>
+              <div class="mealCheck" value="breakfastFriday">-</div>
+            </td>
+            <td>
+              <div class="mealCheck" value="dinnerFriday">-</div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Saturday</th>
+            <td>
+              <div class="mealCheck" value="breakfastSaturday">-</div>
+            </td>
+            <td>
+              <div class="mealCheck" value="dinnerSaturday">-</div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Sunday</th>
+            <td>
+              <div class="mealCheck" value="breakfastSunday">-</div>
+            </td>
+            <td>
+              <div class="mealCheck" value="dinnerSunday">-</div>
+            </td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
     <div id="creditsMsg">
-      You have <span id="creditsCount">{{ myMealPlan.extraCredit }}</span> meal
+      You have
+      <span id="creditsCount">{{ myMealPlan.extraCredit }}</span> meal
       credits left.
     </div>
     <!-- link to user in database -->
@@ -64,16 +95,17 @@ export default {
       myMealPlan: null,
       icons: {
         blank: '<i class="mdi mdi-checkbox-blank-outline"></i>',
-        tick: '<i class="mdi mdi-checkbox-marked-outline"></i>',
-      },
+        tick: '<i class="mdi mdi-checkbox-marked-outline"></i>'
+      }
     };
   },
   async mounted() {
     this.myMealPlan = (
       await StudentMealPlanService.getStudentMealPlan({
-        userID: this.$store.state.user.id,
+        userID: this.$store.state.user.id
       })
     ).data[0];
+    console.log(this.myMealPlan.extraCredit)
     setTimeout(
       function() {
         var x = document.querySelectorAll(".mealCheck"),
@@ -89,7 +121,7 @@ export default {
       }.bind(this),
       1
     );
-  },
+  }
 };
 </script>
 
@@ -101,4 +133,8 @@ export default {
 #creditsCount {
   font-weight: bold;
 }
+
+/* .container {
+  height: 100%;
+} */
 </style>

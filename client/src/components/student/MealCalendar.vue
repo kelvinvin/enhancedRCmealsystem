@@ -25,17 +25,19 @@
           :disabled="disabled"
           :events="enableEvents ? functionEvents : null"
         ></v-date-picker>
+        <div
+          v-show="breakfastsFound.length == 0 && dinnersFound.length == 0"
+          class="message"
+        >Dining Hall is not open on this day</div>
       </v-col>
     </v-row>
     <v-row>
-      <v-container id="menuContainer" >
-        <div
-          v-show="breakfastsFound.length == 0 && dinnersFound.length == 0"
-          class="message" 
-        >Dining Hall is not open on this day</div>
+      <v-container id="menuContainer">
         <v-expansion-panels multiple v-show="breakfastsFound.length!=0 || dinnersFound.length!=0">
           <v-expansion-panel v-show="breakfastsFound.length!=0">
-            <v-expansion-panel-header><div class="panelHeader">Breakfast</div></v-expansion-panel-header>
+            <v-expansion-panel-header>
+              <div class="panelHeader">Breakfast</div>
+            </v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-row v-show="breakfastsFound.length != 0" no-gutters>
                 <v-col v-for="meal in breakfastsFound" :key="meal.Meal_Id" cols="12" sm="2">
@@ -52,10 +54,24 @@
                   </div>
                 </v-col>
               </v-row>
+              <!-- <v-simple-table v-show="breakfastsFound.length != 0">
+                <template v-slot:default>
+                  <thead>
+                    <tr v-for="meal in breakfastsFound" :key="meal.Meal_Id"><th>{{meal.cuisineType}}</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="mealComp in mealAttributes" :key="mealComp">
+                      <td v-if="!!meal[mealComp]">{{ meal[mealComp] }}</td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table> -->
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel v-show="dinnersFound.length!=0">
-            <v-expansion-panel-header><div class="panelHeader">Dinner</div></v-expansion-panel-header>
+            <v-expansion-panel-header>
+              <div class="panelHeader">Dinner</div>
+            </v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-row v-show="dinnersFound.length != 0" no-gutters>
                 <v-col v-for="meal in dinnersFound" :key="meal.Meal_Id" cols="12" sm="2">
@@ -133,6 +149,7 @@ export default {
   },
   async mounted() {
     this.meals = (await MealsService.getMeals()).data;
+    console.log("meals", this.meals);
     this.menuOnDate();
   },
   watch: {
@@ -151,20 +168,20 @@ export default {
   margin-top: 50px;
 }
 
-.message {
-  /* font-style: italic; */
+.message { 
+/* font-style: italic; */
   font-weight: bold;
   text-align: center;
   color: black;
   font-size: medium;
   line-height: 50px;
-}
+} 
 
 #menuContainer {
-  min-width: 1200px
+  min-width: 1200px;
 }
 
 .panelHeader {
-  font-weight: bold
+  font-weight: bold;
 }
 </style>

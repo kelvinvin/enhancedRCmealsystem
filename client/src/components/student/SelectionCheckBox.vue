@@ -158,7 +158,6 @@
 <script>
 import MealPlanTnC from "./MealPlanTnC.vue";
 import StudentMealPlan from "@/services/StudentMealPlanService";
-import StudentMealPlanService from "@/services/StudentMealPlanService";
 import PaymentService from "@/services/PaymentService";
 import CostService from "@/services/CostService";
 import SemesterYear from "@/services/SemesterYear";
@@ -169,15 +168,6 @@ export default {
     MealPlanTnC
   },
   async mounted() {
-    var registrationExisting = !!(
-      await StudentMealPlanService.getStudentMealPlan({
-        userID: this.$store.state.user.id
-      })
-    ).data[0];
-    if (registrationExisting) {
-      document.getElementById("mealForm").innerHTML =
-        "You have already registered for this semester's meal plan";
-    }
     const cost = (await CostService.getCosts()).data.map(
       element => element.cost
     );
