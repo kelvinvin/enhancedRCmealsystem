@@ -39,7 +39,7 @@ module.exports = {
                 group: "dayTimingCategory"
             })
             const registered = await StudentMealPlan.findAll()
-            meals.forEach(function(e) { e.c = +e.b - +e.a });
+            // meals.forEach(function(e) { e.c = +e.b - +e.a });
 
             // meals.map(
             //     x => x.registered = 2
