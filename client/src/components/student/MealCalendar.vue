@@ -33,9 +33,14 @@
     </v-row>
     <v-row>
       <v-container id="menuContainer">
-        <v-expansion-panels multiple v-show="breakfastsFound.length!=0 || dinnersFound.length!=0">
+        <v-expansion-panels
+          inset
+          hover
+          focusable
+          v-show="breakfastsFound.length!=0 || dinnersFound.length!=0"
+        >
           <v-expansion-panel v-show="breakfastsFound.length!=0">
-            <v-expansion-panel-header>
+            <v-expansion-panel-header color="orange lighten-1">
               <div class="panelHeader">Breakfast</div>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
@@ -65,11 +70,11 @@
                     </tr>
                   </tbody>
                 </template>
-              </v-simple-table> -->
+              </v-simple-table>-->
             </v-expansion-panel-content>
           </v-expansion-panel>
           <v-expansion-panel v-show="dinnersFound.length!=0">
-            <v-expansion-panel-header>
+            <v-expansion-panel-header color="blue lighten-1">
               <div class="panelHeader">Dinner</div>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
@@ -168,17 +173,18 @@ export default {
   margin-top: 50px;
 }
 
-.message { 
-/* font-style: italic; */
+.message {
+  /* font-style: italic; */
   font-weight: bold;
   text-align: center;
   color: black;
   font-size: medium;
   line-height: 50px;
-} 
+}
 
 #menuContainer {
-  min-width: 1200px;
+  width: 60%;
+  min-width: 800px;
 }
 
 .panelHeader {
