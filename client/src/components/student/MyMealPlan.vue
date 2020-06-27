@@ -1,6 +1,7 @@
 <template>
-  <div class="container">
-      <v-simple-table>
+  <v-container>
+    <v-row align="center" justify="center">
+      <v-simple-table class="tbl">
         <template>
           <thead>
             <tr>
@@ -76,16 +77,19 @@
           </tbody>
         </template>
       </v-simple-table>
-    <v-hover class="mealCredits">
-      <template v-slot="{hover}">
-        <v-card
-          :elevation="hover ? 24:3"
-          class="mx-auto pa-6"
-        >Meal Credits Left: {{ myMealPlan.extraCredit }}</v-card>
-      </template>
-    </v-hover>
+    </v-row>
+    <v-row>
+      <v-hover class="mealCredits">
+        <template v-slot="{hover}">
+          <v-card
+            :elevation="hover ? 24:3"
+            class="mx-auto pa-6"
+          >Meal Credits Left: {{ myMealPlan.extraCredit }}</v-card>
+        </template>
+      </v-hover>
+    </v-row>
     <!-- link to user in database -->
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -138,7 +142,8 @@ export default {
   font-weight: bold;
 }
 
-.container {
-  display: inline-block;
+.tbl {
+  width: 560px;
+  text-align: left;
 }
 </style>

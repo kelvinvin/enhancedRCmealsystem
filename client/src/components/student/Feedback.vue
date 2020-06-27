@@ -1,46 +1,29 @@
 <template>
-  <div class="container">
-    <div v-if="submitted" class="alert alert-success">
-      <strong>Success!</strong> Your feedback has been successfully submitted!
+  <v-container>
+    <v-alert type="success" v-if="submitted">Success! Your feedback has been successfully submitted!</v-alert>
+    <v-alert type="error" v-if="error != null">{{error}}</v-alert>
+    <!-- Date to select -->
+    <div class="comp">
+      <span>Choose your date for feedback</span>
+      <date-picker v-model="date" :config="options"></date-picker>
     </div>
-    <div class="row">
-      <!-- Date to select -->
-      <div class="col-md-12">
-        <p>Choose your date for feedback</p>
-        <date-picker v-model="date" :config="options"></date-picker>
+    <!-- Menu type -->
+    <div class="comp">
+      <span>Select Cuisine type</span>
+      <v-radio-group mandatory v-model="mealTiming" row>
+        <v-radio label="Breakfast" value="0"></v-radio>
+        <v-radio label="Dinner" value="1"></v-radio>
+      </v-radio-group>
+      <div v-if="mealTiming == 0">
+        <v-select solo dense v-model="dropDownSelect" :items="dropDownOptionsBreakfast"></v-select>
+      </div>
+      <div v-if="mealTiming == 1">
+        <v-select solo dense v-model="dropDownSelect" :items="dropDownOptionsDinner"></v-select>
       </div>
     </div>
-    <br />
-    <!-- Options for bfast/ dinner -->
-    <div>
-      <b-form-group label="Select Menu Time:">
-        <b-form-radio v-model="mealTiming" name="menu-time" value="0"
-          >Breakfast</b-form-radio
-        >
-        <b-form-radio v-model="mealTiming" name="menu-time" value="1"
-          >Dinner</b-form-radio
-        >
-      </b-form-group>
-    </div>
-    <br />
-    <!-- Menu type -->
-    <div v-if="mealTiming == 0">
-      <p>Select Cuisine type:</p>
-      <b-form-select
-        v-model="dropDownSelect"
-        :options="dropDownOptionsBreakfast"
-      >
-      </b-form-select>
-    </div>
-    <div v-if="mealTiming == 1">
-      <p>Select Cuisine type:</p>
-      <b-form-select v-model="dropDownSelect" :options="dropDownOptionsDinner">
-      </b-form-select>
-    </div>
-    <br />
     <!-- Rating -->
-    <div>
-      Rating:
+    <div class="comp">
+      Rating
       <v-rating
         v-model="rating"
         :length="5"
@@ -50,22 +33,19 @@
         color="blue darken-1"
         background-color="blue darken-1"
       ></v-rating>
-    </div>
-    <!-- Feedback box section -->
-    <div>
-      <b-form-textarea
+      <!-- Feedback box section -->
+      <v-textarea
         id="textarea"
+        solo
+        append-icon="mdi-comment"
         v-model="text"
-        placeholder="Enter feedback here..."
+        placeholder="Enter feedback here... (Optional)"
         rows="7"
-        max-rows="30"
-      ></b-form-textarea>
+      ></v-textarea>
     </div>
     <br />
-    <div class="error" v-html="error" />
-    <br />
-    <b-button @click.prevent="submitFeedback">Submit Feedback</b-button>
-  </div>
+    <v-btn color="primary" @click.prevent="submitFeedback">Submit Feedback</v-btn>
+  </v-container>
 </template>
 
 <script>
@@ -83,7 +63,7 @@ export default {
       date: new Date(),
       options: {
         format: "DD/MM/YYYY",
-        useCurrent: false,
+        useCurrent: false
       },
       mealTiming: 0,
       dropDownSelect: null,
@@ -95,7 +75,7 @@ export default {
         { value: "ASIAN VEGETARIAN", text: "ASIAN VEGETARIAN" },
         { value: "MALAY", text: "MALAY" },
         { value: "HALAL VEGETARIAN", text: "HALAL VEGETARIAN" },
-        { value: "GRAB & GO", text: "GRAB & GO" },
+        { value: "GRAB & GO", text: "GRAB & GO" }
       ],
       dropDownOptionsDinner: [
         { value: "SELF SERVICE", text: "SELF SERVICE" },
@@ -104,17 +84,17 @@ export default {
         { value: "ASIAN", text: "ASIAN" },
         { value: "VEGETARIAN", text: "VEGETARIAN" },
         { value: "MALAY", text: "MALAY" },
-        { value: "INDIAN", text: "INDIAN" },
+        { value: "INDIAN", text: "INDIAN" }
       ],
       text: "",
       rating: null,
       rate: null,
       submitted: false,
-      error: null,
+      error: null
     };
   },
   components: {
-    datePicker,
+    datePicker
   },
   methods: {
     submitFeedback() {
@@ -135,23 +115,22 @@ export default {
             rating: this.rating,
             cuisineType: this.dropDownSelect,
             comment: this.text,
-            UserId: authUser.id,
+            UserId: authUser.id
           });
+          setTimeout(() => {
+            this.$router.push("/homepage");
+          }, 1000);
         }
       } catch (error) {
         this.error = error.response.data.error;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-.checked {
-  color: orange;
-}
-
-.error {
-  color: red;
+.comp {
+  margin-bottom: 40px;
 }
 </style>

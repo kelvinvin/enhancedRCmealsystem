@@ -1,7 +1,7 @@
 <template>
   <div class="checkbox" id="mealForm">
     <header>
-      <v-alert v-show="error != null" type="error">{{error}}</v-alert>
+      <v-alert v-if="error != null" type="error">{{error}}</v-alert>
       <h1>Meal Registeration</h1>
     </header>
     <div class="wordSection">
@@ -106,11 +106,11 @@
             </template>
             <span>Note that you have to opt for all the meals during recess week.</span>
           </v-tooltip>
-        
-        <v-radio-group v-model="recessSelect" row>
-          <v-radio label="Yes" value="1"></v-radio>
-          <v-radio label="No" value="0"></v-radio>
-        </v-radio-group>
+
+          <v-radio-group v-model="recessSelect" row>
+            <v-radio label="Yes" value="1"></v-radio>
+            <v-radio label="No" value="0"></v-radio>
+          </v-radio-group>
         </span>
       </div>
       <div class="wordSection">
@@ -138,7 +138,7 @@
       </div>
       <v-btn class="costButton" @click.prevent="updateCount">Calculate Cost</v-btn>
       <h4>Cost: ${{ returnCost }}</h4>
-      
+
       <MealPlanTnC />
       <br />
       <!-- <div class="error" v-html="error" /> -->
@@ -150,7 +150,6 @@
         value="Submit"
         @click.prevent="registerMealPlan"
       >Register Meal Plan</v-btn>
-      
     </v-form>
   </div>
 </template>
@@ -302,10 +301,6 @@ export default {
 </script>
 
 <style scoped>
-.error {
-  color: red;
-}
-
 .costButton {
   margin-bottom: 24px;
 }

@@ -1,5 +1,4 @@
 <template>
-  <v-content>
     <v-footer dark padless absolute>
       <v-card class="flex" flat tile>
         <v-card-text class="py-2 white--text text-center">
@@ -20,7 +19,6 @@
         </v-card-text>
       </v-card>
     </v-footer>
-  </v-content>
 </template>
 
 <script>

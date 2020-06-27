@@ -1,7 +1,7 @@
 <template>
     <div class="mealSelectForm">
-        <div v-if="!registered" class="selectionCheckBox"><SelectionCheckBox/></div>
-        <div v-if="registered" class="MyMealPlan"><MyMealPlan/></div>
+        <div v-if="!registered"><SelectionCheckBox/></div>
+        <div v-if="registered"><MyMealPlan/></div>
     </div>
 </template>
 
@@ -38,9 +38,8 @@ export default {
         margin: auto;
         max-width: 960px;
         padding: 64px;
-        height: 100%;
         background-color: white;
+        height: 100%;
     }
-
   
 </style>

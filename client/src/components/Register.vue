@@ -158,7 +158,7 @@ export default {
           this.submitted = true;
           setTimeout(() => {
             this.$router.push("/homepage");
-          }, 3000);
+          }, 500);
         }
       } catch (err) {
         this.alreadyExists = true;

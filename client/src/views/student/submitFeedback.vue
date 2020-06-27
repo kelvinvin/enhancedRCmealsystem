@@ -1,23 +1,26 @@
 <template>
-  <div class="container">
-    <Feedback/>
+  <div class="feedbackContainer">
+    <Feedback />
   </div>
 </template>
 
 <script>
-import Feedback from '@/components/student/Feedback'
+import Feedback from "@/components/student/Feedback";
 
 export default {
-  name: 'submitFeedback',
+  name: "submitFeedback",
   components: {
     Feedback
   }
-}
+};
 </script>
 
 <style scoped>
-    .container {
-        margin: auto;
-        max-width: 960px;
-    }
+.feedbackContainer {
+  margin: auto;
+  max-width: 960px;
+  padding: 64px;
+  background-color: white;
+  height: 100%;
+}
 </style>
