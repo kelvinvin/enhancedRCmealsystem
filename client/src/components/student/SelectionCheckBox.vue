@@ -42,25 +42,25 @@
               <strong>Breakfast</strong>
             </td>
             <td>
-              <v-checkbox color="primary" v-model="mondayBreakfast" name="bfMeal" />
+              <v-checkbox color="orange lighten-2" v-model="mondayBreakfast" name="bfMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="tuesdayBreakfast" name="bfMeal" />
+              <v-checkbox color="orange lighten-1" v-model="tuesdayBreakfast" name="bfMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="wednesdayBreakfast" name="bfMeal" />
+              <v-checkbox color="orange lighten-1" v-model="wednesdayBreakfast" name="bfMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="thursdayBreakfast" name="bfMeal" />
+              <v-checkbox color="orange lighten-1" v-model="thursdayBreakfast" name="bfMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="fridayBreakfast" name="bfMeal" />
+              <v-checkbox color="orange lighten-1" v-model="fridayBreakfast" name="bfMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="saturdayBreakfast" name="bfMeal" />
+              <v-checkbox color="orange lighten-1" v-model="saturdayBreakfast" name="bfMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="sundayBreakfast" name="bfMeal" disabled />
+              <v-checkbox color="orange lighten-1" v-model="sundayBreakfast" name="bfMeal" disabled />
             </td>
           </tr>
 
@@ -71,25 +71,25 @@
               </p>
             </td>
             <td>
-              <v-checkbox color="primary" v-model="mondayDinner" name="dinMeal" />
+              <v-checkbox color="orange lighten-1" v-model="mondayDinner" name="dinMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="tuesdayDinner" name="dinMeal" />
+              <v-checkbox color="orange lighten-1" v-model="tuesdayDinner" name="dinMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="wednesdayDinner" name="dinMeal" />
+              <v-checkbox color="orange lighten-1" v-model="wednesdayDinner" name="dinMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="thursdayDinner" name="dinMeal" />
+              <v-checkbox color="orange lighten-1" v-model="thursdayDinner" name="dinMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="fridayDinner" name="dinMeal" />
+              <v-checkbox color="orange lighten-1" v-model="fridayDinner" name="dinMeal" />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="saturdayDinner" name="dinMeal" disabled />
+              <v-checkbox color="orange lighten-1" v-model="saturdayDinner" name="dinMeal" disabled />
             </td>
             <td>
-              <v-checkbox color="primary" v-model="sundayDinner" name="dinMeal" />
+              <v-checkbox color="orange lighten-1" v-model="sundayDinner" name="dinMeal" />
             </td>
           </tr>
         </tbody>
@@ -108,14 +108,14 @@
           </v-tooltip>
 
           <v-radio-group v-model="recessSelect" row>
-            <v-radio label="Yes" value="1"></v-radio>
-            <v-radio label="No" value="0"></v-radio>
+            <v-radio color="orange lighten-1" label="Yes" value="1"></v-radio>
+            <v-radio color="orange lighten-1" label="No" value="0"></v-radio>
           </v-radio-group>
         </span>
       </div>
       <div class="wordSection">
         Dietary requirement:
-        <v-select dense outlined v-model="dietaryReqSelect" :items="dietaryReqOptions"></v-select>
+        <v-select dense solo v-model="dietaryReqSelect" :items="dietaryReqOptions"></v-select>
       </div>
       <div class="wordSection">
         <span>
@@ -134,9 +134,9 @@
             </span>
           </v-tooltip>
         </span>
-        <v-select dense outlined v-model="creditSelect" :items="creditOptions"></v-select>
+        <v-select dense solo v-model="creditSelect" :items="creditOptions"></v-select>
       </div>
-      <v-btn class="costButton" @click.prevent="updateCount">Calculate Cost</v-btn>
+      <v-btn color="orange lighten-4" class="costButton" @click.prevent="updateCount">Calculate Cost</v-btn>
       <h4>Cost: ${{ returnCost }}</h4>
 
       <MealPlanTnC />
@@ -144,7 +144,7 @@
       <!-- <div class="error" v-html="error" /> -->
       <br />
       <v-btn
-        color="primary"
+        color="orange lighten-1"
         type="submit"
         form="form1"
         value="Submit"

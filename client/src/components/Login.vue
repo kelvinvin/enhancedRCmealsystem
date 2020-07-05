@@ -30,7 +30,7 @@
                 ></v-text-field>
                 <v-btn color="primary" large @click.prevent="login" type="submit">Login</v-btn>
                 <div class="SignUp">
-                  <v-btn small @click.prevent="signUp">Sign Up</v-btn>
+                  <v-btn small color="orange lighten-2" @click.prevent="signUp">Sign Up</v-btn>
                 </div>
                 <v-alert v-if="!!error" type="error">You have entered invalid login information</v-alert>
               </v-flex>
@@ -51,7 +51,6 @@ export default {
       password: "",
       error: null,
       showPass: false,
-      gradient: "to top right, rgba(63,81,181, .7), rgba(25,32,72, .7)",
       items: [
         {
           src: require("@/assets/background2.jpg")

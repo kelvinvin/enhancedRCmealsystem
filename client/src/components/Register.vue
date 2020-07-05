@@ -74,9 +74,10 @@
 
         <RegisterTnC @inputData="updateCheckBox" />
 
-        <b-button block type="submit" variant="primary" value="submit">Submit</b-button>
+        <!-- <b-button block type="submit" class="btn-warning" variant="primary" value="submit">Submit</b-button> -->
+      <v-btn type="submit" value="submit" large color="orange lighten-1">Register</v-btn>
       </b-form>
-        
+        <!-- <v-btn type="submit" value="submit" large color="orange lighten-1">Register</v-btn> -->
     </ValidationObserver></v-form>
   </div>
 </template>

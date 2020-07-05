@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-alert type="success" v-if="submitted">Success! Your feedback has been successfully submitted!</v-alert>
-    <v-alert type="error" v-if="error != null">{{error}}</v-alert>
+    <v-alert type="error" v-else-if="error != null">{{error}}</v-alert>
     <!-- Date to select -->
     <div class="comp">
       <span>Choose your date for feedback</span>
@@ -11,8 +11,8 @@
     <div class="comp">
       <span>Select Cuisine type</span>
       <v-radio-group mandatory v-model="mealTiming" row>
-        <v-radio label="Breakfast" value="0"></v-radio>
-        <v-radio label="Dinner" value="1"></v-radio>
+        <v-radio color="orange lighten-1" label="Breakfast" value="0"></v-radio>
+        <v-radio color="orange lighten-1" label="Dinner" value="1"></v-radio>
       </v-radio-group>
       <div v-if="mealTiming == 0">
         <v-select solo dense v-model="dropDownSelect" :items="dropDownOptionsBreakfast"></v-select>
@@ -30,7 +30,7 @@
         :hover="true"
         :size="32"
         :dense="true"
-        color="blue darken-1"
+        color="orange lighten-1"
         background-color="blue darken-1"
       ></v-rating>
       <!-- Feedback box section -->
@@ -44,7 +44,7 @@
       ></v-textarea>
     </div>
     <br />
-    <v-btn color="primary" @click.prevent="submitFeedback">Submit Feedback</v-btn>
+    <v-btn color="orange lighten-1" @click.prevent="submitFeedback">Submit Feedback</v-btn>
   </v-container>
 </template>
 
@@ -62,7 +62,7 @@ export default {
     return {
       date: new Date(),
       options: {
-        format: "DD/MM/YYYY",
+        format: "MM/DD/YYYY",
         useCurrent: false
       },
       mealTiming: 0,
@@ -117,6 +117,7 @@ export default {
             comment: this.text,
             UserId: authUser.id
           });
+          console.log(this.date);
           setTimeout(() => {
             this.$router.push("/homepage");
           }, 1000);

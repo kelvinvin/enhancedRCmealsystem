@@ -15,6 +15,8 @@
         </v-tooltip>
         <v-date-picker
           v-model="picker"
+          color="orange lighten-1"
+          header-color="blue darken-2"
           :landscape="landscape"
           :reactive="reactive"
           width="480px"
