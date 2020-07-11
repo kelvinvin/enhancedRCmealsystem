@@ -1,12 +1,14 @@
 <template>
-  <div class="container">
+<v-container>
+  <v-row>
+    <v-col>
     <div class="title">
       Upload Meals
     </div>
     <div v-if="submitted" class="alert alert-success">
-      <strong>Success!</strong> Meal has been uploaded! Refreshing..
+      <strong>Success!</strong> Meal has been uploaded!
     </div>
-
+    <div class="error" v-html="error" />
     <div class="row">
       <!-- Date to select -->
       <div class="col-md-12">
@@ -26,7 +28,7 @@
         >
       </b-form-group>
     </div>
-    <!-- Menu type -->
+
     <!-- Menu type -->
     <div v-if="mealTiming == 0">
       <p>Select Cuisine type:</p>
@@ -44,34 +46,40 @@
     <br />
     <div class="mealComponents">
       <!-- Meal components section -->
-      <v-text-field v-model="mealComp1" label="Meal component 1"></v-text-field>
+      <v-text-field solo v-model="mealComp1" label="Meal component 1"></v-text-field>
       <v-text-field
+      solo
         v-model="mealComp2"
         :disabled="!validMealComp2"
         label="Meal component 2"
       ></v-text-field>
       <v-text-field
+      solo
         v-model="mealComp3"
         :disabled="!validMealComp3"
         label="Meal component 3"
       ></v-text-field>
       <v-text-field
+      solo
         v-model="mealComp4"
         :disabled="!validMealComp4"
         label="Meal component 4"
       ></v-text-field>
       <v-text-field
+      solo
         v-model="mealComp5"
         :disabled="!validMealComp5"
         label="Meal component 5"
       ></v-text-field>
     </div>
-    <div class="error" v-html="error" />
-    <v-btn class="ma-2" outlined color="indigo" @click.prevent="addMeal"
+
+    <v-btn class="ma-2" solo color="orange lighten-1" @click.prevent="addMeal"
       >Add Meal</v-btn
     >
     <v-card height="60px" color="transparent" outlined></v-card>
-  </div>
+    </v-col>
+  </v-row>
+</v-container>
 </template>
 
 <script>
@@ -142,6 +150,9 @@ export default {
   methods: {
     async addMeal() {
       try {
+        if (this.dropDownSelect == null || this.mealTiming == -1) {
+          this.error = "Unable to submit meal due to incomplete registeration"
+        } else {
         const req = {
           date: this.date,
           mealComp1: this.mealComp1,
@@ -155,6 +166,7 @@ export default {
         console.log(req);
         await MealsService.addMeal(req);
         this.submitted = true;
+        }
       } catch (err) {
         this.alreadyExists = true;
         console.log(err);
@@ -170,6 +182,6 @@ export default {
 }
 
 .error {
-  color: red;
+  background-color: white;
 }
 </style>

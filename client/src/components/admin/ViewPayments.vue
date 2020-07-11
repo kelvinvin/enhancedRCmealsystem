@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-col>
       <v-data-table
       :headers="headers"
       :items="payments"
@@ -9,7 +9,7 @@
       class="elevation-1"
       ></v-data-table>
       <br>
-    </div>
+    </v-col>
 </template>
 
 <script>
