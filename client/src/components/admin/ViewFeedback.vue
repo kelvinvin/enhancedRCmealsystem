@@ -22,6 +22,7 @@ export default {
         for (var i = 0 ; i < this.feedbackData.length; i++) {
           var feedbackObj = this.feedbackData[i];         
           feedbackObj.createdAt = moment(feedbackObj.createdAt).format('MM/DD/YYYY');
+          feedbackObj.date = moment(feedbackObj.createdAt).format('MM/DD/YYYY');
           feedbackObj.breakfastOrDinner = feedbackObj.breakfastOrDinner ? "Dinner" : "Breakfast";
           this.feedbacks.push(feedbackObj);
         }
@@ -35,8 +36,8 @@ export default {
             sortable: false,
             value: 'feedback_id',
           },
-          { text: 'Submitted on', value: 'createdAt' },
-          { text: 'Date', value: 'date' },
+          { text: 'Submission date', value: 'createdAt' },
+          { text: 'Incident date', value: 'date' },
           { text: 'Timing', value: 'breakfastOrDinner' },
           { text: 'Cuisine Type', value: 'cuisineType' },
           { text: 'Rating', value: 'rating', sortable: false },

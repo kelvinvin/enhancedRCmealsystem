@@ -45,9 +45,9 @@ module.exports = (sequelize, DataTypes) => {
     Consumption.belongsTo(models.User);
   };
 
-// To generate 1000 random consumptions with User Id: 1
+// To generate 5 random consumptions with User Id: 1
     // Consumption.sync().then(function () {
-    //   const numOfRandomSamples = 1000;
+    //   const numOfRandomSamples = 30;
 
     //   const start = new Date(2020, 5, 14, 8, 30, 00)
     //   const end = new Date(2020, 5, 30, 8, 30, 00)

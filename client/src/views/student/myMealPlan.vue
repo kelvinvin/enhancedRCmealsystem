@@ -1,8 +1,8 @@
 <template>
-    <div class="mealSelectForm">
-        <div v-if="!registered"><SelectionCheckBox/></div>
-        <div v-else-if="registered"><MyMealPlan/></div>
-    </div>
+  <div class="mealSelectForm">
+    <div v-if="!registered"><SelectionCheckBox /></div>
+    <div v-else-if="registered"><MyMealPlan /></div>
+  </div>
 </template>
 
 <script>
@@ -19,27 +19,23 @@ export default {
   data() {
     return {
       registered: false,
-    }
+    };
   },
   async mounted() {
     this.registered = !!(
       await StudentMealPlanService.getStudentMealPlan({
-        userID: this.$store.state.user.id
+        userID: this.$store.state.user.id,
       })
     ).data[0];
-  }
+  },
 };
 </script>
 
-   
-
 <style scoped>
-    .mealSelectForm {
-        margin: auto;
-        max-width: 960px;
-        padding: 64px;
-        background-color: white;
-        height: 100%;
-    }
-  
+.mealSelectForm {
+  margin: auto;
+  max-width: 960px;
+  padding: 64px;
+  height: 100%;
+}
 </style>

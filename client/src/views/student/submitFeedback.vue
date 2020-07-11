@@ -10,8 +10,8 @@ import Feedback from "@/components/student/Feedback";
 export default {
   name: "submitFeedback",
   components: {
-    Feedback
-  }
+    Feedback,
+  },
 };
 </script>
 
@@ -20,7 +20,6 @@ export default {
   margin: auto;
   max-width: 960px;
   padding: 64px;
-  background-color: white;
   height: 100%;
 }
 </style>
