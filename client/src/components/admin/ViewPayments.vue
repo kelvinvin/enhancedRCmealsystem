@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
       <v-data-table
       :headers="headers"
       :items="payments"
@@ -14,11 +14,16 @@
 
 <script>
 import PaymentService from '@/services/PaymentService'
-
+var moment = require('moment');
 export default {
     name: "ViewPayments",
     async mounted() {
         this.payments = (await PaymentService.getPayment()).data
+        console.log(this.payments);
+          for (var i = 0 ; i < this.payments.length; i++) {
+            var paymentsObj = this.payments[i];         
+            paymentsObj.createdAt = moment(paymentsObj.createdAt).format('MM/DD/YYYY');
+          }
     },
     data () {
       return {

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <v-col>
       <v-data-table
       :headers="headers"
       :items="feedbacks"
@@ -9,7 +9,7 @@
       multi-sort
       class="elevation-1"
       ></v-data-table>
-    </div>
+    </v-col>
 </template>
 
 <script>
