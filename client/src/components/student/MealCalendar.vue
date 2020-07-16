@@ -19,8 +19,8 @@
           header-color="blue darken-2"
           :landscape="landscape"
           :reactive="reactive"
-          width="480px"
           :show-current="showCurrent"
+          :width="width"
           :type="month ? 'month' : 'date'"
           :multiple="multiple"
           :readonly="readonly"
@@ -184,6 +184,11 @@ export default {
       },
     },
   },
+  computed: {
+    width() {
+      return this.$vuetify.breakpoint.smAndDown ? 290 : 480
+    }
+  }
 };
 </script>
 

@@ -4,7 +4,6 @@
       :headers="headers"
       :items="feedbacks"
       :items-per-page="10"
-      :sort-by="['feedback_id']"
       :sort-desc="[false]"
       multi-sort
       class="elevation-1"
@@ -33,7 +32,7 @@ export default {
           {
             text: 'ID',
             align: 'start',
-            sortable: false,
+            sortable: true,
             value: 'feedback_id',
           },
           { text: 'Submission date', value: 'createdAt' },

@@ -23,12 +23,12 @@
         </ValidationProvider>
 
         <ValidationProvider rules="required|domain" name="Email">
-          <b-form-group slot-scope="{ valid, errors }" label="Email">
+          <b-form-group slot-scope="{ valid, errors }" label="NUS Email">
             <b-form-input
               type="email"
               v-model="account.email"
               :state="errors[0] ? false : (valid ? true : null)"
-              placeholder="Enter email"
+              placeholder="Enter NUS domain email"
             ></b-form-input>
             <b-form-invalid-feedback>{{ errors[0] }}</b-form-invalid-feedback>
           </b-form-group>
@@ -89,7 +89,7 @@ import RegisterTnC from "./student/RegisterTnC";
 
 extend("domain", {
   validate: value => {
-    var nusDomainRegex = /^e[\d]{7}@u.nus.edu$/;
+    var nusDomainRegex = /@u.nus.edu$/;
     return nusDomainRegex.test(value);
   },
   message: "Please enter your NUS domain email."

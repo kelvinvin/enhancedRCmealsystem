@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row align="center" justify="center">
-      <v-simple-table class="tbl">
+      <v-simple-table id="mealTable" class="tbl">
         <template>
           <thead>
             <tr>
@@ -80,12 +80,10 @@
     </v-row>
     <v-row>
       <v-hover class="mealCredits">
-        <template v-slot="{hover}">
           <v-card
-            :elevation="hover ? 24:3"
+            elevation="24:3"
             class="mx-auto pa-6"
           >Meal Credits Left: {{ myMealPlan.extraCredit }}</v-card>
-        </template>
       </v-hover>
     </v-row>
     <!-- link to user in database -->
@@ -131,7 +129,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .mealCredits {
   font-weight: bold;
   text-align: center;
@@ -145,5 +143,11 @@ export default {
 .tbl {
   width: 560px;
   text-align: left;
+}
+
+.v-data-table
+  tbody
+  tr:hover:not(.v-data-table__expanded__content) {
+  background: #ffffff !important;
 }
 </style>

@@ -1,39 +1,47 @@
 <template>
-  <v-navigation-drawer
-    v-model="drawer"
-    :color="color"
-    :expand-on-hover="expandOnHover"
-    :mini-variant="miniVariant"
-    :right="right"
-    src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
-    :permanent="permanent"
-    height="100%"
-    absolute
-    app
-    dark
-  >
-    <v-list dense nav class="py-0">
-      <!-- To buffer the top navbar -->
-      <v-container fluid>
-        <v-img src="../assets/nusMeals.png" />
-      </v-container>
-
-      <v-list-item
-        v-for="item in items"
-        :key="item.title"
-        @click.prevent="item.event()"
-        link
-        :to="item.path"
+  <div>
+    <v-hover @hover="hover = true" v-slot:default="{ hover }">
+      <v-navigation-drawer
+        v-model="drawer"
+        :color="color"
+        :expand-on-hover="expandOnHover"
+        :mini-variant="miniVariant"
+        :right="right"
+        src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+        height="100%"
+        absolute
+        app
+        dark
+        permanent
       >
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-  </v-navigation-drawer>
+        <v-list dense nav class="py-0">
+          <!-- To buffer the top navbar -->
+          <v-container fluid>
+            <a href="/homepage">
+              <v-img
+                v-show="!$vuetify.breakpoint.xs && hover"
+                src="../assets/nusMeals.png"
+              />
+            </a>
+          </v-container>
+
+          <v-list-item
+            v-for="item in items"
+            :key="item.title"
+            @click.prevent="item.event()"
+            :to="item.path"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+    </v-hover>
+  </div>
 </template>
 
 <script>
@@ -46,10 +54,10 @@ export default {
       color: "primary",
       colors: ["primary", "blue", "success", "red", "teal"],
       right: false,
-      permanent: true,
       miniVariant: false,
-      expandOnHover: false,
+      expandOnHover: true,
       background: false,
+      hover: false,
     };
   },
   computed: {
@@ -141,5 +149,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
