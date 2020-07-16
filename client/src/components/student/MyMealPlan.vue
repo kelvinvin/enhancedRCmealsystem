@@ -83,7 +83,8 @@
           <v-card
             elevation="24:3"
             class="mx-auto pa-6"
-          >Meal Credits Left: {{ myMealPlan.extraCredit }}</v-card>
+          >Extra Meal Credits Left: {{ myMealPlan.extraCredit }}</v-card>
+        </template>
       </v-hover>
     </v-row>
     <!-- link to user in database -->
