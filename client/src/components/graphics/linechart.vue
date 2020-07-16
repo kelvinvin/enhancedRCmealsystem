@@ -1,9 +1,5 @@
 <template>
-  <apexchart
-    id="chart"
-    :options="chartOptions"
-    :series="series"
-  ></apexchart>
+  <apexchart id="chart" :options="chartOptions" :series="series"></apexchart>
 </template>
 
 <script>
@@ -36,6 +32,13 @@ export default {
         },
         xaxis: {
           type: "datetime",
+        },
+        yaxis: {
+          labels: {
+            formatter: function(val) {
+              return val.toFixed(0);
+            },
+          },
         },
         stroke: {
           // curve: "stepline",
