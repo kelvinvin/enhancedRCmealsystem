@@ -80,7 +80,7 @@
     </v-row>
     <v-row>
       <v-hover class="mealCredits">
-        <v-card elevation="24:3" class="mx-auto pa-6"
+        <v-card elevation="3" class="mx-auto pa-6"
           >Extra Meal Credits Left: {{ myMealPlan.extraCredit }}</v-card
         >
       </v-hover>

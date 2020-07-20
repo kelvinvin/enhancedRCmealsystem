@@ -1,50 +1,68 @@
 <template>
   <v-container>
-    <v-alert type="success" v-if="submitted">Success! Your feedback has been successfully submitted!</v-alert>
-    <v-alert type="error" v-else-if="error != null">{{error}}</v-alert>
+    <v-alert type="success" v-if="submitted"
+      >Success! Your feedback has been successfully submitted!</v-alert
+    >
+    <v-alert type="error" v-else-if="error != null">{{ error }}</v-alert>
     <!-- Date to select -->
     <div class="comp">
-      <span>Choose your date for feedback</span>
+      <span>Choose your date for feedback:</span>
       <date-picker v-model="date" :config="options"></date-picker>
     </div>
     <!-- Menu type -->
-    <div class="comp">
-      <span>Select Cuisine type</span>
+    <div>
+      <span>Select Cuisine type:</span>
       <v-radio-group mandatory v-model="mealTiming" row>
         <v-radio color="orange lighten-1" label="Breakfast" value="0"></v-radio>
         <v-radio color="orange lighten-1" label="Dinner" value="1"></v-radio>
       </v-radio-group>
       <div v-if="mealTiming == 0">
-        <v-select solo dense v-model="dropDownSelect" :items="dropDownOptionsBreakfast"></v-select>
+        <v-select
+          solo
+          dense
+          v-model="dropDownSelect"
+          :items="dropDownOptionsBreakfast"
+        ></v-select>
       </div>
       <div v-if="mealTiming == 1">
-        <v-select solo dense v-model="dropDownSelect" :items="dropDownOptionsDinner"></v-select>
+        <v-select
+          solo
+          dense
+          v-model="dropDownSelect"
+          :items="dropDownOptionsDinner"
+        ></v-select>
       </div>
     </div>
     <!-- Rating -->
-    <div class="comp">
-      Rating
-      <v-rating
-        v-model="rating"
-        :length="5"
-        :hover="true"
-        :size="32"
-        :dense="true"
-        color="orange lighten-1"
-        background-color="blue darken-1"
-      ></v-rating>
+    <div>
+      <div class="comp">
+        Rating:
+        <v-rating
+          v-model="rating"
+          :length="5"
+          :hover="true"
+          :size="32"
+          :dense="true"
+          color="orange lighten-1"
+          background-color="blue darken-1"
+        ></v-rating>
+      </div>
       <!-- Feedback box section -->
-      <v-textarea
-        id="textarea"
-        solo
-        append-icon="mdi-comment"
-        v-model="text"
-        placeholder="Enter feedback here... (Optional)"
-        rows="7"
-      ></v-textarea>
+      <div>
+        Message:
+        <v-textarea
+          id="textarea"
+          solo
+          append-icon="mdi-comment"
+          v-model="text"
+          placeholder="Enter feedback here... (Optional)"
+          rows="7"
+        ></v-textarea>
+      </div>
     </div>
-    <br />
-    <v-btn color="orange lighten-1" @click.prevent="submitFeedback">Submit Feedback</v-btn>
+    <v-btn color="orange lighten-1" @click.prevent="submitFeedback"
+      >Submit Feedback</v-btn
+    >
   </v-container>
 </template>
 
@@ -53,7 +71,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import datePicker from "vue-bootstrap-datetimepicker";
 import "pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css";
 import FeedbackService from "@/services/FeedbackService";
-import store from '@/store/store'
+import store from "@/store/store";
 
 // Rating Initialization
 
@@ -64,7 +82,7 @@ export default {
       date: new Date(),
       options: {
         format: "MM/DD/YYYY",
-        useCurrent: false
+        useCurrent: false,
       },
       mealTiming: 0,
       dropDownSelect: null,
@@ -76,7 +94,7 @@ export default {
         { value: "ASIAN VEGETARIAN", text: "ASIAN VEGETARIAN" },
         { value: "MALAY", text: "MALAY" },
         { value: "HALAL VEGETARIAN", text: "HALAL VEGETARIAN" },
-        { value: "GRAB & GO", text: "GRAB & GO" }
+        { value: "GRAB & GO", text: "GRAB & GO" },
       ],
       dropDownOptionsDinner: [
         { value: "SELF SERVICE", text: "SELF SERVICE" },
@@ -85,17 +103,17 @@ export default {
         { value: "ASIAN", text: "ASIAN" },
         { value: "VEGETARIAN", text: "VEGETARIAN" },
         { value: "MALAY", text: "MALAY" },
-        { value: "INDIAN", text: "INDIAN" }
+        { value: "INDIAN", text: "INDIAN" },
       ],
       text: "",
       rating: null,
       rate: null,
       submitted: false,
-      error: null
+      error: null,
     };
   },
   components: {
-    datePicker
+    datePicker,
   },
   methods: {
     submitFeedback() {
@@ -107,32 +125,44 @@ export default {
         } else if (this.rating == null) {
           this.error =
             "Please indicate your rating preference in your feedback";
-        } else if (store.state.feedbackCount >= 3) {
-          this.submitted = false;
-          this.error = "You have already submitted 3 feedback messages today. Please try again tomorrow."
         } else {
-          this.submitted = true;
-          const authUser = this.$store.state.user;
-          FeedbackService.submitFeedback({
+          const feedbackObj = {
             date: this.date,
             breakfastOrDinner: this.mealTiming,
-            rating: this.rating,
             cuisineType: this.dropDownSelect,
-            comment: this.text,
-            UserId: authUser.id
-          });
-          this.$store.dispatch("incrementCount");
+          };
+          if (
+            store.state.feedbacks.find(
+              (x) => JSON.stringify(x) == JSON.stringify(feedbackObj)
+            )
+          ) {
+            this.submitted = false;
+            this.error = "You have already submitted a feedback for this meal.";
+          } else {
+            console.log("No");
+            this.submitted = true;
+            const authUser = this.$store.state.user;
+            FeedbackService.submitFeedback({
+              date: this.date,
+              breakfastOrDinner: this.mealTiming,
+              rating: this.rating,
+              cuisineType: this.dropDownSelect,
+              comment: this.text,
+              UserId: authUser.id,
+            });
+            this.$store.dispatch("incrementCount", feedbackObj);
+          }
         }
       } catch (error) {
         this.error = error.response.data.error;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .comp {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 </style>

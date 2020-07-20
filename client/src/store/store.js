@@ -11,7 +11,7 @@ export default new Vuex.Store({
         token: null,
         user: null,
         isUserLoggedIn: false,
-        feedbackCount: 0
+        feedbacks: []
     },
     mutations: {
         setToken: (state, token) => {
@@ -21,8 +21,11 @@ export default new Vuex.Store({
         setUser: (state, user) => {
             state.user = user
         },
-        incrementCount: (state) => {
-            state.feedbackCount++;
+        incrementCount: (state, feedback) => {
+            const feedbackExisting = state.feedbacks.includes(feedback)
+            if (!feedbackExisting) {
+                state.feedbacks.push(feedback)
+            }
         }
     },
     actions: {
@@ -32,8 +35,8 @@ export default new Vuex.Store({
         setUser ({commit}, user) {
             commit('setUser', user)
         },
-        incrementCount ({commit}) {
-            commit('incrementCount')
+        incrementCount ({commit}, feedback) {
+            commit('incrementCount', feedback)
         }
     }
 })
