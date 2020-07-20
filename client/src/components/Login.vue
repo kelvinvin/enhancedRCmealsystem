@@ -1,42 +1,43 @@
 <template>
   <div class="container">
-    <v-img class="background" 
-    v-for="(item, i) in items" 
-    :key="i" 
-    :src="item.src" 
-    aspect-ratio="1.7">
+    <v-img
+      class="background"
+      v-for="(item, i) in items"
+      :key="i"
+      :src="item.src"
+      aspect-ratio="1.7"
+    >
     </v-img>
     <v-form class="form" onSubmit="login">
-          <v-container fill-height>
-            <v-layout>
-              <v-flex text-xs-center>
-                <v-text-field
-                  filled
-                  solo
-                  label="Email"
-                  type="text"
-                  class="username"
-                  v-model="email"
-                ></v-text-field>
-                <v-text-field
-                  solo
-                  filled
-                  label="Password"
-                  class="password"
-                  v-model="password"
-                  :append-icon="showPass ? 'visibility' : 'visibility_off'"
-                  :type="showPass ? 'text' : 'password'"
-                  @click:append="showPass = !showPass"
-                ></v-text-field>
-                <v-btn color="primary" large @click.prevent="login" type="submit">Login</v-btn>
-                <div class="SignUp">
-                  <v-btn small color="orange lighten-2" @click.prevent="signUp">Sign Up</v-btn>
-                </div>
-                <v-alert v-if="!!error" type="error">You have entered invalid login information</v-alert>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-form>
+        <v-text-field
+          solo
+          clearable
+          label="Email"
+          type="text"
+          class="username"
+          v-model="email"
+        ></v-text-field>
+        <v-text-field
+          solo
+          label="Password"
+          class="password"
+          v-model="password"
+          :append-icon="showPass ? 'visibility' : 'visibility_off'"
+          :type="showPass ? 'text' : 'password'"
+          @click:append="showPass = !showPass"
+        ></v-text-field>
+        <v-btn color="primary" large @click.prevent="login" type="submit"
+          >Login</v-btn
+        >
+        <div class="SignUp">
+          <v-btn small color="orange lighten-2" @click.prevent="signUp"
+            >Sign Up</v-btn
+          >
+        </div>
+        <v-alert  v-if="!!error" type="error"
+          >You have entered invalid login information</v-alert
+        >
+    </v-form>
   </div>
 </template>
 
@@ -53,9 +54,9 @@ export default {
       showPass: false,
       items: [
         {
-          src: require("@/assets/background2.jpg")
-        }
-      ]
+          src: require("@/assets/background2.jpg"),
+        },
+      ],
     };
   },
   methods: {
@@ -67,7 +68,7 @@ export default {
       try {
         const response = await AuthenticationService.login({
           email: this.email,
-          password: this.password
+          password: this.password,
         });
         this.$store.dispatch("setToken", response.data.token);
         this.$store.dispatch("setUser", response.data.user);
@@ -79,8 +80,8 @@ export default {
       } catch (error) {
         this.error = error.response.data.error;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -94,14 +95,14 @@ export default {
 }
 
 .toolbar {
-  min-width: 100%
+  min-width: 100%;
 }
 
 .background {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-	
+  position: fixed;
+  top: 0;
+  left: 0;
+
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
@@ -110,7 +111,8 @@ export default {
 .form {
   text-align: center;
   display: inline-block;
-  margin-top: 10%
+  margin-top: 10%;
+  width:370px
 }
 
 .errorMsg {
