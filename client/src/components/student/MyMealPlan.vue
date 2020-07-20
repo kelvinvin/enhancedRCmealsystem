@@ -80,14 +80,11 @@
     </v-row>
     <v-row>
       <v-hover class="mealCredits">
-          <v-card
-            elevation="24:3"
-            class="mx-auto pa-6"
-          >Extra Meal Credits Left: {{ myMealPlan.extraCredit }}</v-card>
-        </template>
+        <v-card elevation="24:3" class="mx-auto pa-6"
+          >Extra Meal Credits Left: {{ myMealPlan.extraCredit }}</v-card
+        >
       </v-hover>
     </v-row>
-    <!-- link to user in database -->
   </v-container>
 </template>
 
@@ -101,14 +98,14 @@ export default {
       myMealPlan: null,
       icons: {
         blank: '<i class="mdi mdi-checkbox-blank-outline"></i>',
-        tick: '<i class="mdi mdi-checkbox-marked-outline"></i>'
-      }
+        tick: '<i class="mdi mdi-checkbox-marked-outline"></i>',
+      },
     };
   },
   async mounted() {
     this.myMealPlan = (
       await StudentMealPlanService.getStudentMealPlan({
-        userID: this.$store.state.user.id
+        userID: this.$store.state.user.id,
       })
     ).data[0];
     setTimeout(
@@ -126,7 +123,7 @@ export default {
       }.bind(this),
       1
     );
-  }
+  },
 };
 </script>
 
@@ -144,11 +141,5 @@ export default {
 .tbl {
   width: 560px;
   text-align: left;
-}
-
-.v-data-table
-  tbody
-  tr:hover:not(.v-data-table__expanded__content) {
-  background: #ffffff !important;
 }
 </style>
