@@ -72,11 +72,11 @@ export default {
       this.$router.push("/");
     },
     hovering() {
-      this.$emit('hoverevent')
+      this.$emit("hoverevent");
     },
     hoveringnot() {
-      this.$emit('nohoverevent')
-    }
+      this.$emit("nohoverevent");
+    },
   },
   created() {
     this.isAdmin = this.$store.state.user.isAdmin;
@@ -103,16 +103,13 @@ export default {
           event: () => {},
         },
         {
-          title: "Actions",
-          icon: "mdi-gesture-double-tap",
-          path: "/actions",
-          event: () => {},
-        },
-        {
           title: "Log Out",
           icon: "mdi-logout",
           path: "/",
-          event: () => this.logout(),
+          event: () => {
+            this.hoveringnot();
+            this.logout();
+          },
         },
       ];
     } else {
@@ -145,7 +142,10 @@ export default {
           title: "Log Out",
           icon: "mdi-logout",
           path: "/",
-          event: () => this.logout(),
+          event: () => {
+            this.hoveringnot();
+            this.logout();
+          },
         },
       ];
     }
