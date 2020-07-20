@@ -72,6 +72,7 @@ import datePicker from "vue-bootstrap-datetimepicker";
 import "pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css";
 import FeedbackService from "@/services/FeedbackService";
 import store from "@/store/store";
+var moment = require('moment');
 
 // Rating Initialization
 
@@ -79,7 +80,7 @@ export default {
   name: "Feedback",
   data() {
     return {
-      date: new Date(),
+      date: moment(new Date()).format('L'),
       options: {
         format: "MM/DD/YYYY",
         useCurrent: false,
