@@ -32,6 +32,8 @@ export default {
         },
         xaxis: {
           type: "datetime",
+          // initial dates shown will be within a week of today's date. all data still available via panning
+          range: new Date("2020-01-08").getTime() - new Date("2020-01-01").getTime()
         },
         yaxis: {
           labels: {
