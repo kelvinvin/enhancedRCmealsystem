@@ -3,10 +3,16 @@
     id="main"
     :style="{ background: $vuetify.theme.themes.light.background }"
   >
-      <SideBar v-if="$store.state.isUserLoggedIn" />
+    <SideBar class="sidebar"
+      v-if="$store.state.isUserLoggedIn"
+      @hoverevent="on()"
+      @nohoverevent="off()"
+    />
     <v-content>
+      <div id="overlay"></div>
       <router-view />
     </v-content>
+
     <Footer />
   </v-app>
 </template>
@@ -26,6 +32,15 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+    on() {
+      document.getElementById("overlay").style.display = "block";
+    },
+
+    off() {
+      document.getElementById("overlay").style.display = "none";
+    },
+  },
 };
 </script>
 
@@ -36,5 +51,23 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  z-index: 12; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+.sidebar {
+  z-index:13;
 }
 </style>

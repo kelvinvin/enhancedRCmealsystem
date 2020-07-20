@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-hover @hover="hover = true" v-slot:default="{ hover }">
+  <div @mouseleave="hoveringnot()" @mouseenter="hovering()">
+    <v-hover v-slot:default="{ hover }">
       <v-navigation-drawer
         v-model="drawer"
         :color="color"
@@ -24,7 +24,6 @@
               />
             </a>
           </v-container>
-
           <v-list-item
             v-for="item in items"
             :key="item.title"
@@ -57,7 +56,6 @@ export default {
       miniVariant: false,
       expandOnHover: true,
       background: false,
-      hover: false,
     };
   },
   computed: {
@@ -73,6 +71,12 @@ export default {
       this.$store.dispatch("setUser", null);
       this.$router.push("/");
     },
+    hovering() {
+      this.$emit('hoverevent')
+    },
+    hoveringnot() {
+      this.$emit('nohoverevent')
+    }
   },
   created() {
     this.isAdmin = this.$store.state.user.isAdmin;
