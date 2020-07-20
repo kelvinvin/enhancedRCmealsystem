@@ -179,7 +179,7 @@
             >
           </v-tooltip>
 
-          <v-radio-group v-model="recessSelect" row>
+          <v-radio-group @change="updateCount" v-model="recessSelect" row>
             <v-radio color="orange lighten-1" label="Yes" value="1"></v-radio>
             <v-radio color="orange lighten-1" label="No" value="0"></v-radio>
           </v-radio-group>
@@ -311,7 +311,7 @@ export default {
       var noOfDinner = Object.entries(this.registeredSchedule).filter(
         (x) => x[0].endsWith("Dinner") && x[1]
       ).length;
-      if (this.recessSelect) {
+      if (this.recessSelect == "1") {
         this.cost =
           (this.breakfastCost * noOfBreakfast + this.dinnerCost * noOfDinner) *
           this.recWeek;
@@ -374,7 +374,7 @@ export default {
         alert("Meal Registration successful");
       }
     },
-  }
+  },
 };
 </script>
 
