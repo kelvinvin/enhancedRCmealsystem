@@ -53,6 +53,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import datePicker from "vue-bootstrap-datetimepicker";
 import "pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css";
 import FeedbackService from "@/services/FeedbackService";
+import store from '@/store/store'
 
 // Rating Initialization
 
@@ -106,6 +107,9 @@ export default {
         } else if (this.rating == null) {
           this.error =
             "Please indicate your rating preference in your feedback";
+        } else if (store.state.feedbackCount >= 3) {
+          this.submitted = false;
+          this.error = "You have already submitted 3 feedback messages today. Please try again tomorrow."
         } else {
           this.submitted = true;
           const authUser = this.$store.state.user;
@@ -117,10 +121,7 @@ export default {
             comment: this.text,
             UserId: authUser.id
           });
-          console.log(this.date);
-          setTimeout(() => {
-            this.$router.push("/homepage");
-          }, 1000);
+          this.$store.dispatch("incrementCount");
         }
       } catch (error) {
         this.error = error.response.data.error;

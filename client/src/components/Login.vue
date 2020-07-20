@@ -9,34 +9,34 @@
     >
     </v-img>
     <v-form class="form" onSubmit="login">
-        <v-text-field
-          solo
-          clearable
-          label="Email"
-          type="text"
-          class="username"
-          v-model="email"
-        ></v-text-field>
-        <v-text-field
-          solo
-          label="Password"
-          class="password"
-          v-model="password"
-          :append-icon="showPass ? 'visibility' : 'visibility_off'"
-          :type="showPass ? 'text' : 'password'"
-          @click:append="showPass = !showPass"
-        ></v-text-field>
-        <v-btn color="primary" large @click.prevent="login" type="submit"
-          >Login</v-btn
+      <v-text-field
+        solo
+        label="Email"
+        type="text"
+        class="username"
+        v-model="email"
+      ></v-text-field>
+      <v-text-field
+        solo
+        label="Password"
+        class="password"
+        v-model="password"
+        suggested="current-password"
+        :append-icon="showPass ? 'visibility' : 'visibility_off'"
+        :type="showPass ? 'text' : 'password'"
+        @click:append="showPass = !showPass"
+      ></v-text-field>
+      <v-btn color="primary" large @click.prevent="login" type="submit"
+        >Login</v-btn
+      >
+      <div class="SignUp">
+        <v-btn small color="orange lighten-2" @click.prevent="signUp"
+          >Sign Up</v-btn
         >
-        <div class="SignUp">
-          <v-btn small color="orange lighten-2" @click.prevent="signUp"
-            >Sign Up</v-btn
-          >
-        </div>
-        <v-alert  v-if="!!error" type="error"
-          >You have entered invalid login information</v-alert
-        >
+      </div>
+      <v-alert v-if="!!error" type="error"
+        >You have entered invalid login information</v-alert
+      >
     </v-form>
   </div>
 </template>
@@ -112,7 +112,7 @@ export default {
   text-align: center;
   display: inline-block;
   margin-top: 10%;
-  width:370px
+  width: 370px;
 }
 
 .errorMsg {
