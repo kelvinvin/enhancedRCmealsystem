@@ -142,4 +142,10 @@ export default {
   width: 560px;
   text-align: left;
 }
+
+.v-data-table
+  tbody
+  tr:hover:not(.v-data-table__expanded__content) {
+  background: #ffffff !important;
+}
 </style>
