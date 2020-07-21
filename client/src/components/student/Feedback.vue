@@ -1,14 +1,19 @@
 <template>
   <v-container>
-    <v-alert type="success" v-if="submitted"
-      >Success! Your feedback has been successfully submitted!</v-alert
-    >
-    <v-alert type="error" v-else-if="error != null">{{ error }}</v-alert>
+    <header>
+      <v-alert type="success" v-if="submitted"
+        >Success! Your feedback has been successfully submitted!</v-alert
+      >
+      <v-alert type="error" v-else-if="error != null">{{ error }}</v-alert>
+      <h1>Submit Feedback</h1>
+    </header>
+
     <!-- Date to select -->
     <div class="comp">
       <span>Choose your date for feedback:</span>
       <date-picker v-model="date" :config="options"></date-picker>
     </div>
+
     <!-- Menu type -->
     <div>
       <span>Select Cuisine type:</span>
@@ -33,6 +38,7 @@
         ></v-select>
       </div>
     </div>
+
     <!-- Rating -->
     <div>
       <div class="comp">
@@ -47,6 +53,7 @@
           background-color="blue darken-1"
         ></v-rating>
       </div>
+      
       <!-- Feedback box section -->
       <div>
         Message:
@@ -72,7 +79,7 @@ import datePicker from "vue-bootstrap-datetimepicker";
 import "pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css";
 import FeedbackService from "@/services/FeedbackService";
 import store from "@/store/store";
-var moment = require('moment');
+var moment = require("moment");
 
 // Rating Initialization
 
@@ -80,7 +87,7 @@ export default {
   name: "Feedback",
   data() {
     return {
-      date: moment(new Date()).format('L'),
+      date: moment(new Date()).format("L"),
       options: {
         format: "MM/DD/YYYY",
         useCurrent: false,

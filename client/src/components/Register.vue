@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="submitted" class="alert alert-success">
-      <strong>Success!</strong> Redirecting in 3 seconds..
+      <strong>Success!</strong> Redirecting..
     </div>
     <div v-if="alreadyExists" class="alert alert-danger">
       <strong>Error!</strong> Your account already exists. Please
@@ -159,7 +159,7 @@ export default {
           this.submitted = true;
           setTimeout(() => {
             this.$router.push("/homepage");
-          }, 500);
+          }, 4000);
         }
       } catch (err) {
         this.alreadyExists = true;

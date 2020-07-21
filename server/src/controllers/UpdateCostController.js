@@ -9,7 +9,7 @@ module.exports = {
                 }
             })
             if (!exist) {
-                const breakfastCost = await MealCost.create({
+                await MealCost.create({
                     breakfastOrDinner: req.body.breakfastOrDinner,
                 })
             }

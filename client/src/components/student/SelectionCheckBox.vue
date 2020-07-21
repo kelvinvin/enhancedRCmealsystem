@@ -2,10 +2,13 @@
   <div class="checkbox" id="mealForm">
     <header>
       <v-alert v-if="error != null" type="error">{{ error }}</v-alert>
+      <v-alert v-if="error == null && success!=null" type="success">{{ success }}</v-alert>
       <h1>Meal Registration</h1>
     </header>
     <div class="wordSection">
       Please indicate the days of meals that you require this semester.
+      {{ error }}
+
       <br />Note that you have to choose at least 9 meals/ week.
     </div>
     <v-form action="#" method="get" id="form1">
@@ -178,11 +181,10 @@
               week.</span
             >
           </v-tooltip>
-
-          <v-radio-group @change="updateCount" v-model="recessSelect" row>
-            <v-radio color="orange lighten-1" label="Yes" value="1"></v-radio>
-            <v-radio color="orange lighten-1" label="No" value="0"></v-radio>
-          </v-radio-group>
+      <v-radio-group mandatory v-model="recessSelect" row>
+        <v-radio color="orange lighten-1" label="No" value="0"></v-radio>
+        <v-radio color="orange lighten-1" label="Yes" value="1"></v-radio>
+      </v-radio-group>
         </span>
       </div>
       <div class="wordSection">
@@ -263,6 +265,7 @@ export default {
       items: { icon: "mdi-help-circle-outline" },
       cost: 0,
       error: null,
+      success: null,
       dietaryReqSelect: null,
       dietaryReqOptions: [
         { value: "none", text: "No Dietary Requirements" },
@@ -341,8 +344,11 @@ export default {
         this.error = "Please indicate if you have any dietary requirement";
       } else if (!termsAndCond) {
         this.error =
-          "Please ensure that you have read the terms and conditions above";
+          "Please ensure that you have read the terms and conditions below";
       } else {
+        this.error = null;
+        this.success =
+          "Success! Your meal plan has been registered. Please proceed to payment at NUS Fastpay";
         const authUser = this.$store.state.user;
         StudentMealPlan.registerMealPlan({
           recessWeek: this.recessSelect,
@@ -369,9 +375,6 @@ export default {
           paymentMade: false,
           UserId: authUser.id,
         });
-
-        this.$router.push("/homepage");
-        alert("Meal Registration successful");
       }
     },
   },

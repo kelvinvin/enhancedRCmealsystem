@@ -1,19 +1,11 @@
 <template>
   <div>
-    <input
-      type="checkbox"
-      name="tncCheckBox"
-      value="check"
-      id="agree"
-      @click="check"
-    />
-    I have read and agree to the
+    <input type="checkbox" name="tncCheckBox" value="check" id="agree" @click="check"/> I have
+    read and agree to the
+    <a @click="dialogSwitch();return false" href="javascript:void(0);"
+      >Terms and Conditions</a
+    >
     <v-dialog v-model="dialog" width="900px">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn text v-bind="attrs" v-on="on">
-          Terms and Conditions
-        </v-btn>
-      </template>
       <v-card>
         <v-card-title>
           <span class="headline">Terms and Conditions</span>
@@ -116,10 +108,13 @@ export default {
   name: "RegisterTnC",
   data() {
     return {
-      checked: false,
+      dialog: false,
     };
   },
   methods: {
+    dialogSwitch() {
+      this.dialog = !this.dialog;
+    },
     check() {
       this.checked = !this.checked;
       this.$emit("inputData", this.checked);
@@ -134,5 +129,9 @@ export default {
   width: 600px;
   border: 1px solid black;
   margin: auto;
+}
+
+div:first-of-type{
+  margin-bottom: 15px
 }
 </style>

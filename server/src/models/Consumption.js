@@ -1,4 +1,3 @@
-const { Sequelize } = require(".");
 const allDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 module.exports = (sequelize, DataTypes) => {
