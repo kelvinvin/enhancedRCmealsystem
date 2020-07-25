@@ -20,7 +20,7 @@
             <a href="/homepage">
               <v-img
                 v-show="!$vuetify.breakpoint.xs && hover"
-                src="../assets/nusMeals.png"
+                src="../assets/nusMeals2.png"
               />
             </a>
           </v-container>
