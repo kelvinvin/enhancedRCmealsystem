@@ -17,9 +17,8 @@ export default {
         ],
         title: {
           text: "Consumption Percentage",
-          align: "left",
+          align: "centre",
           margin: 10,
-          offsetX: 100,
           offsetY: 0,
           floating: false,
           style: {

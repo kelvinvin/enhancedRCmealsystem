@@ -13,10 +13,8 @@ export default {
       chartOptions: {
         title: {
           text: "Consumption Trends (hourly)",
-          align: "left",
+          align: "centre",
           margin: 10,
-          offsetX: 100,
-          offsetY: 0,
           floating: false,
           style: {
             fontSize: "16px",
