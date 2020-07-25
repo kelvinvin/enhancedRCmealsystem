@@ -23,6 +23,7 @@ export default {
           for (var i = 0 ; i < this.payments.length; i++) {
             var paymentsObj = this.payments[i];         
             paymentsObj.createdAt = moment(paymentsObj.createdAt).format('MM/DD/YYYY');
+            paymentsObj.paymentMade = paymentsObj.paymentMade ? "Yes" : "No"
           }
     },
     data () {

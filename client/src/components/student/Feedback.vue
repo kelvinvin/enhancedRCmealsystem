@@ -60,7 +60,6 @@
         <v-textarea
           id="textarea"
           solo
-          append-icon="mdi-comment"
           v-model="text"
           placeholder="Enter feedback here... (Optional)"
           rows="7"

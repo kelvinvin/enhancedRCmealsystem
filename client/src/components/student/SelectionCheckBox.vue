@@ -2,14 +2,16 @@
   <div class="checkbox" id="mealForm">
     <header>
       <v-alert v-if="error != null" type="error">{{ error }}</v-alert>
-      <v-alert v-if="error == null && success!=null" type="success">{{ success }}</v-alert>
+      <v-alert v-if="error == null && success != null" type="success">{{
+        success
+      }}</v-alert>
       <h1>Meal Registration</h1>
     </header>
     <div class="wordSection">
       Please indicate the days of meals that you require this semester.
       {{ error }}
-
-      <br />Note that you have to choose at least 9 meals/ week.
+      <br />
+      Note that you have to choose at least 9 meals/ week.
     </div>
     <v-form action="#" method="get" id="form1">
       <v-simple-table class="tableMeal">
@@ -181,10 +183,10 @@
               week.</span
             >
           </v-tooltip>
-      <v-radio-group mandatory v-model="recessSelect" row>
-        <v-radio color="orange lighten-1" label="No" value="0"></v-radio>
-        <v-radio color="orange lighten-1" label="Yes" value="1"></v-radio>
-      </v-radio-group>
+          <v-radio-group mandatory v-model="recessSelect" row>
+            <v-radio color="orange lighten-1" label="No" value="0"></v-radio>
+            <v-radio color="orange lighten-1" label="Yes" value="1"></v-radio>
+          </v-radio-group>
         </span>
       </div>
       <div class="wordSection">
@@ -387,6 +389,11 @@ export default {
 }
 
 .tableMeal {
-  margin-bottom: 24px;
+  margin-bottom: 15px;
+}
+
+.wordSection {
+  line-height: 1.6;
+  margin-bottom: 10px
 }
 </style>
