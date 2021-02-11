@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@mdi/js": "^5.3.45",
-    "apexcharts": "^3.19.2",
+    "apexcharts": "^3.24.0",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "bootstrap-vue": "^2.14.0",
